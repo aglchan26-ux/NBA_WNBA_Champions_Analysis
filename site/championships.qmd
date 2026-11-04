@@ -1,0 +1,60 @@
+---
+title: "Championships and playoff basketball"
+---
+
+## Which shots survive the playoffs?
+
+Change in points per shot from the regular season to the playoffs, by shot zone (NBA, every season).
+Below zero = the shot got worse in the playoffs.
+
+```{python}
+import plotly.graph_objects as go
+from _viz import show, read, SERIES, line, end_labels
+z = read("step5_playoff_zone_by_season.csv")
+z = z[z.league == "NBA"]
+fig = go.Figure()
+zones = ["three", "rim", "paint / short mid", "long mid"]
+ends = {}
+for zone, col in zip(zones, SERIES):
+    d = z[z.zone == zone].sort_values("season")
+    line(fig, d.season, d.pps_change, zone, col, hovertemplate=zone + ": %{y:+.3f}<extra></extra>")
+    ends[zone] = d.pps_change.iloc[-1]
+end_labels(fig, ends, z.season.max(), 0.012)
+fig.add_hline(y=0, line=dict(color="#8a8984", width=1))
+fig.update_layout(height=420, yaxis_title="playoff minus regular-season pts/shot",
+                  margin=dict(r=120, t=40), xaxis=dict(range=[z.season.min() - 0.5, z.season.max() + 0.5]))
+show(fig)
+```
+
+```{python}
+from IPython.display import Markdown
+r = read("step5_playoff_zone_resilience.csv").dropna(subset=["pps_change"])
+r = r[["league", "zone", "seasons", "pps_change", "lo95", "hi95", "seasons_worse_in_playoffs"]].round(3)
+r["seasons_worse_in_playoffs"] = r.seasons_worse_in_playoffs.map(lambda x: "" if x != x else f"{x:.0%}")
+Markdown(r.to_markdown(index=False))
+```
+
+## Champion profiles by era
+
+Share of champions that had each ingredient: a primary scorer, a secondary scorer, a floor-spacing big and
+a perimeter defender. The ingredients are loose definitions meant to show drift, not a recipe.
+
+```{python}
+e = read("step5_champions_by_era.csv")
+cols = {"C1_primary_scorer": "primary scorer", "C2_secondary_scorer": "secondary scorer", "C3_spacing_big": "spacing big",
+        "C4_perimeter_d": "perimeter defender", "n_high_usage": "high-usage players", "team_three_diet": "three-point diet"}
+Markdown(e[["league", "era", *cols]].rename(columns=cols).round(2).to_markdown(index=False))
+```
+
+## Does roster mix predict titles better than team strength?
+
+Forward-chained test (train on past seasons, predict the next champion). Higher log-likelihood is better.
+
+```{python}
+t = read("step5_B_title_cv.csv")
+Markdown(t[["league", "model", "test_seasons", "mean_loglik_champion", "uniform_baseline_loglik", "mean_prob_on_champion"]].round(3).to_markdown(index=False))
+```
+
+::: {.caveat}
+*In progress:* lineup eras (small ball, double bigs), playoff-available rosters, and team defensive profiles.
+:::

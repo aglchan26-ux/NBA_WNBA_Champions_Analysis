@@ -1,0 +1,61 @@
+sample_id,league,season_num,player,position,minutes,role_tier,definition,hand_subtype,hand_archetype,confidence,confidence_source,hand_notes,archetype,subtype,model_top2_archetype,own_membership,agree_archetype,agree_subtype,hand_in_top2
+S001,WNBA,2026,Te-Hina Paopao,G,405.0,deep_bench,defined,Defensive / connector guard,Secondary guard,3.0,owner,,Spot-up 3-and-D wing,Movement shooter,Connector forward,0.0,False,False,False
+S002,NBA,2024,Amir Coffey,G,1458.0,rotation,blended,Microwave scoring guard,Secondary guard,2.0,owner,,Spot-up 3-and-D wing,Movement shooter,Connector forward,0.0,False,False,False
+S003,WNBA,2026,Rickea Jackson,F,118.0,limited_sample,limited_sample,Shot-making scorer,On-ball creator,3.0,owner,,Hub big / point forward,Interior hub big,Connector forward,0.0,False,False,False
+S004,NBA,2023,Will Barton,G,990.0,rotation,defined,Microwave scoring guard,Secondary guard,2.0,owner,,Secondary guard,Defensive / connector guard,Connector forward,1.0,True,False,True
+S005,WNBA,2021,Chennedy Carter,G,282.0,starter,defined,Microwave scoring guard,Secondary guard,3.0,owner,,On-ball creator,Floor general,Connector forward,0.0,False,False,False
+S006,NBA,2026,Toumani Camara,F,2730.0,starter,blended,Catch-and-shoot wing,Spot-up 3-and-D wing,3.0,owner,Has 3&D,Spot-up 3-and-D wing,Catch-and-shoot wing,On-ball creator,3.46053465514765e-191,True,True,True
+S007,NBA,2021,Dennis Smith Jr.,G,421.0,rotation,defined,Defensive / connector guard,Secondary guard,2.0,owner,,On-ball creator,Floor general,Connector forward,0.0,False,False,False
+S008,NBA,2021,Dewayne Dedmon,C,210.0,limited_sample,limited_sample,Rim-running finisher,Rim-running big,2.0,owner,,Rim-running big,Rim-running finisher,Rim-running big,0.0696156528337403,True,True,True
+S009,NBA,2019,Marco Belinelli,G,1818.0,rotation,defined,Movement shooter,Spot-up 3-and-D wing,3.0,owner,,Secondary guard,Microwave scoring guard,Connector forward,1.0,False,False,False
+S010,WNBA,2021,Aerial Powers,F,309.0,starter,defined,Perimeter stopper forward,Connector forward,2.0,owner,Scoring as well though,Hub big / point forward,Alpha scorer,Connector forward,0.0,False,False,True
+S011,NBA,2026,Domantas Sabonis,F,565.0,starter,blended,Interior hub big,Hub big / point forward,3.0,owner,,Hub big / point forward,Interior hub big,On-ball creator,0.0,True,True,True
+S012,WNBA,2023,Gabby Williams,F,285.0,starter,defined,Perimeter stopper forward,Connector forward,2.0,owner,,Connector forward,Perimeter stopper forward,Connector forward,0.05325916570943701,True,True,True
+S013,WNBA,2026,Holly Winterburn,G,327.0,deep_bench,defined,Defensive / connector guard,Secondary guard,1.0,owner,,Secondary guard,Defensive / connector guard,Spot-up 3-and-D wing,1.0,True,True,True
+S014,NBA,2025,Evan Mobley,C,2170.0,starter,defined,Interior hub big,Hub big / point forward,3.0,owner,Scoring + anchor,Hub big / point forward,Stretch / skilled big,Rim-running big,0.9991842395295865,True,False,True
+S015,WNBA,2023,Emma Cannon,F,316.0,deep_bench,defined,Can't tell,,,owner,,Hub big / point forward,Stretch / skilled big,On-ball creator,0.0,False,False,False
+S016,NBA,2025,Colin Castleton,C,430.0,rotation,defined,Rim-running finisher,Rim-running big,2.0,owner,,Rim-running big,Low-usage rim protector,Hub big / point forward,0.9841617526160674,True,False,True
+S017,WNBA,2023,DiJonai Carrington,G,550.0,rotation,blended,Low-usage glue defender,Spot-up 3-and-D wing,3.0,owner,shooter too 3&d,Connector forward,Perimeter stopper forward,Connector forward,0.0,False,False,False
+S018,WNBA,2023,Brittney Sykes,G,1251.0,starter,blended,Perimeter stopper forward,Connector forward,3.0,owner,Scoring + defense,On-ball creator,Alpha scorer,Connector forward,0.0,False,False,True
+S019,WNBA,2021,Lauren Cox,F,304.0,deep_bench,defined,Rebounding / rim-running forward,Connector forward,1.0,owner,,Connector forward,Rebounding / rim-running forward,On-ball creator,0.9997374882727755,True,True,True
+S020,WNBA,2020,Diamond DeShields,G,223.0,limited_sample,limited_sample,Defensive / connector guard,Secondary guard,1.0,owner,,On-ball creator,Floor general,Connector forward,0.0,False,False,False
+S021,WNBA,2026,Ashlon Jackson,G,258.0,rotation,defined,Defensive / connector guard,Secondary guard,1.0,owner,,Spot-up 3-and-D wing,Movement shooter,Connector forward,0.0,False,False,False
+S022,NBA,2026,Lindy Waters III,F,287.0,deep_bench,defined,Movement shooter,Spot-up 3-and-D wing,3.0,owner,,Spot-up 3-and-D wing,Movement shooter,On-ball creator,2.4617905444518757e-44,True,True,True
+S023,NBA,2022,Duncan Robinson,F,2046.0,starter,defined,Movement shooter,Spot-up 3-and-D wing,3.0,owner,,Spot-up 3-and-D wing,Catch-and-shoot wing,Connector forward,0.9989581846092159,True,False,True
+S024,WNBA,2023,Li Meng,G,539.0,rotation,blended,Movement shooter,Spot-up 3-and-D wing,2.0,owner,,Spot-up 3-and-D wing,Movement shooter,Connector forward,0.0,True,True,True
+S025,NBA,2026,Tony Bradley,C,453.0,deep_bench,defined,Rim-running finisher,Rim-running big,3.0,owner,,Rim-running big,Low-usage rim protector,Rim-running big,0.15859709535169306,True,False,True
+S026,NBA,2021,Ignas Brazdeikis,F,249.0,limited_sample,limited_sample,Catch-and-shoot wing,Spot-up 3-and-D wing,1.0,owner,,Connector forward,Perimeter stopper forward,Connector forward,0.03823427815792763,False,False,False
+S027,NBA,2024,Brandon Ingram,F,2105.0,starter,defined,Shot-making scorer,On-ball creator,3.0,owner,,On-ball creator,Alpha scorer,Connector forward,0.9999650659407081,True,False,True
+S028,WNBA,2020,Sug Sutton,G,113.0,limited_sample,limited_sample,Defensive / connector guard,Secondary guard,2.0,owner,,Secondary guard,Defensive / connector guard,Connector forward,1.0,True,True,True
+S029,WNBA,2025,DiJonai Carrington,G,679.0,rotation,blended,Perimeter stopper forward,Connector forward,3.0,owner,,On-ball creator,Floor general,Connector forward,0.0,False,False,True
+S030,WNBA,2021,Satou Sabally,F,423.0,starter,defined,Scoring stretch forward,Connector forward,2.0,owner,,Hub big / point forward,Interior hub big,On-ball creator,0.0,False,False,False
+S031,WNBA,2020,Kiah Stokes,C,599.0,starter,blended,Interior hub big,Hub big / point forward,2.0,owner,,Spot-up 3-and-D wing,Stretch big (spot-up),Spot-up 3-and-D wing,1.2413118004857184e-49,False,False,False
+S032,WNBA,2025,Kennedy Burke,G,780.0,rotation,blended,Microwave scoring guard,Secondary guard,2.0,owner,,Spot-up 3-and-D wing,Movement shooter,Connector forward,0.0,False,False,False
+S033,NBA,2026,Jusuf Nurkic,C,1084.0,starter,defined,Low-usage rim protector,Rim-running big,3.0,owner,and small playmaking more in between,Hub big / point forward,Interior hub big,Rim-running big,0.9700886498242629,False,False,True
+S034,WNBA,2024,Kristy Wallace,G,448.0,starter,defined,Microwave scoring guard,Secondary guard,1.0,owner,,Spot-up 3-and-D wing,Low-usage glue defender,Connector forward,0.0,False,False,False
+S035,NBA,2020,Cedi Osman,F,1909.0,starter,blended,Catch-and-shoot wing,Spot-up 3-and-D wing,3.0,owner,,Connector forward,Scoring stretch forward,Connector forward,0.13772849941309512,False,False,False
+S036,WNBA,2023,Jade Melbourne,G,307.0,deep_bench,defined,Defensive / connector guard,Secondary guard,1.0,owner,,On-ball creator,Floor general,Connector forward,0.0,False,False,False
+S037,NBA,2022,John Collins,F,1667.0,starter,blended,Stretch big (spot-up),Spot-up 3-and-D wing,3.0,owner,Can also be scoring stretch forward,Connector forward,Scoring stretch forward,Connector forward,0.04968506813731009,False,False,False
+S038,NBA,2020,Rudy Gay,F,1460.0,rotation,blended,Scoring stretch forward,Connector forward,3.0,owner,,Hub big / point forward,Interior hub big,Connector forward,0.0,False,False,True
+S039,WNBA,2026,Kamilla Cardoso,C,1144.0,starter,defined,Interior hub big,Hub big / point forward,3.0,owner,also had rim finishing abailities,Rim-running big,Rim-running finisher,Hub big / point forward,0.9999999674700005,False,False,True
+S040,NBA,2025,Baylor Scheierman,G,385.0,deep_bench,defined,Defensive / connector guard,Secondary guard,2.0,owner,,Spot-up 3-and-D wing,Low-usage glue defender,Connector forward,0.0,False,False,False
+S041,NBA,2021,Rodney McGruder,G,194.0,limited_sample,limited_sample,Microwave scoring guard,Secondary guard,2.0,owner,,Secondary guard,Defensive / connector guard,Connector forward,1.0,True,False,True
+S042,NBA,2023,Marcus Smart,G,1961.0,starter,defined,Defensive / connector guard,Secondary guard,3.0,owner,Connector guard but also low usage gkue,Secondary guard,Defensive / connector guard,Connector forward,1.0,True,True,True
+S043,WNBA,2024,Mercedes Russell,C,583.0,rotation,blended,Can't tell,,,owner,,Rim-running big,Low-usage rim protector,Rim-running big,0.07169739843425468,False,False,False
+S044,NBA,2022,Scotty Hopson,G,18.0,limited_sample,limited_sample,Can't tell,,,owner,,Secondary guard,Defensive / connector guard,Connector forward,1.0,False,False,False
+S045,NBA,2026,Scottie Barnes,F,2681.0,starter,blended,Jumbo playmaker,Hub big / point forward,3.0,owner,Playmaker with scoring shot making not alpha though,Hub big / point forward,Interior hub big,Connector forward,0.0,True,False,True
+S046,WNBA,2019,Aerial Powers,F,595.0,rotation,blended,Catch-and-shoot wing,Spot-up 3-and-D wing,2.0,owner,,Hub big / point forward,Stretch / skilled big,On-ball creator,0.0,False,False,False
+S047,WNBA,2026,Sug Sutton,G,260.0,deep_bench,defined,Defensive / connector guard,Secondary guard,1.0,owner,,On-ball creator,Floor general,Connector forward,0.0,False,False,False
+S048,WNBA,2026,Maya Caldwell,G,628.0,rotation,blended,Microwave scoring guard,Secondary guard,2.0,owner,,Spot-up 3-and-D wing,Low-usage glue defender,Connector forward,0.0,False,False,False
+S049,WNBA,2025,Leila Lacan,G,665.0,starter,blended,Defensive / connector guard,Secondary guard,3.0,owner,big on defense,On-ball creator,Floor general,Connector forward,0.0,False,False,False
+S050,WNBA,2022,Megan Gustafson,C,319.0,deep_bench,defined,Stretch / skilled big,Hub big / point forward,2.0,owner,,Rim-running big,Rim-running finisher,Rim-running big,7.339294026008704e-06,False,False,False
+S051,WNBA,2024,Maya Caldwell,G,406.0,rotation,defined,Microwave scoring guard,Secondary guard,2.0,owner,,Secondary guard,Defensive / connector guard,Connector forward,1.0,True,False,True
+S052,NBA,2026,Steven Adams,C,730.0,rotation,defined,Low-usage rim protector,Rim-running big,3.0,owner,mixed with rim running,Rim-running big,Low-usage rim protector,Hub big / point forward,0.9968220773446602,True,True,True
+S053,NBA,2023,Jordan Clarkson,G,1989.0,starter,blended,Microwave scoring guard,Secondary guard,2.0,owner,mixed with microwave scorer,On-ball creator,Alpha scorer,Connector forward,0.0,False,False,False
+S054,NBA,2026,Ja Morant,G,568.0,starter,blended,Shot-making scorer,On-ball creator,3.0,owner,mixed with floor generalcreated shots himself and others ,On-ball creator,Alpha scorer,Connector forward,0.0,True,False,True
+S055,NBA,2026,Zeke Nnaji,F,627.0,deep_bench,defined,Rim-running finisher,Rim-running big,2.0,owner,,Connector forward,Rebounding / rim-running forward,On-ball creator,0.896095840983909,False,False,False
+S056,NBA,2023,Dalano Banton,G,279.0,deep_bench,defined,Defensive / connector guard,Secondary guard,2.0,owner,,On-ball creator,Floor general,Connector forward,0.0,False,False,False
+S057,NBA,2019,LaMarcus Aldridge,C,2690.0,starter,defined,Stretch / skilled big,Hub big / point forward,3.0,owner,also stretch forward,Hub big / point forward,Alpha scorer,Rim-running big,0.998949868511063,True,False,True
+S058,WNBA,2026,Laura Ziegler,F,29.0,limited_sample,limited_sample,Rebounding / rim-running forward,Connector forward,1.0,owner,,Connector forward,Rebounding / rim-running forward,Connector forward,0.4858380625915507,True,True,True
+S059,NBA,2022,Christian Wood,F,2093.0,starter,blended,Scoring stretch forward,Connector forward,3.0,owner,,Hub big / point forward,Stretch / skilled big,On-ball creator,0.0,False,False,False
+S060,WNBA,2021,Allie Quigley,G,636.0,rotation,defined,Shot-making scorer,On-ball creator,2.0,owner,mixed with microwave scorer,Secondary guard,Microwave scoring guard,Connector forward,1.0,False,False,False

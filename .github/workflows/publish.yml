@@ -1,0 +1,24 @@
+# Publishes site/ to GitHub Pages. Charts and tables are pre-rendered locally (Quarto "freeze"),
+# so this job never needs the raw data or Python: it only assembles the committed outputs.
+name: Publish site
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: 1.6.42
+      - uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+          path: site
+          render: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

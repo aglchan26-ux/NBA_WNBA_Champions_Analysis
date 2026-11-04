@@ -1,0 +1,35 @@
+---
+title: "Which player archetypes drive winning, and does pay track that value?"
+subtitle: "NBA 2003-04 to 2025-26 and WNBA 2009 to 2026, built from play-by-play, box scores and salary sheets"
+toc: false
+---
+
+```{python}
+from _viz import read
+c = read("data_completeness_by_season.csv")
+p = read("participation_summary.csv").set_index("league")
+nba_seasons = (c.league == "NBA").sum(); wnba_seasons = (c.league == "WNBA").sum()
+from IPython.display import HTML
+HTML(f"""<div class="stat-row">
+<div class="stat"><div class="num">{nba_seasons}</div><div class="lbl">NBA seasons</div></div>
+<div class="stat"><div class="num">{wnba_seasons}</div><div class="lbl">WNBA seasons</div></div>
+<div class="stat"><div class="num">{int(p.player_seasons.sum()):,}</div><div class="lbl">player-seasons</div></div>
+<div class="stat"><div class="num">6</div><div class="lbl">style archetypes, 15 sub-types</div></div>
+</div>""")
+```
+
+## What this project does
+
+1. **Measures every player per possession**, with small samples pulled toward their position's average
+   (empirical Bayes), instead of per-36 numbers that overrate short stints.
+2. **Groups players into style archetypes** (clustering on shot diet, creation, rebounding and defense),
+   then checks the labels against hand labels and against how players change roles after trades.
+3. **Links team archetype mix to winning:** net rating, playoff resilience and championships, and how the
+   winning formula has drifted from era to era in each league.
+4. **Asks whether pay follows value:** salary as a share of the cap, compared within contract types
+   (rookie scale, minimum, max), with intervals. A player is called over- or under-paid only when the interval excludes zero.
+
+::: {.caveat}
+Everything here is association, not causation. The WNBA sample is small (12-13 teams a season), so
+WNBA estimates carry wide intervals. Pages marked *in progress* will fill in as each step finishes.
+:::

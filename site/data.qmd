@@ -1,0 +1,71 @@
+---
+title: "Data and coverage"
+---
+
+## How complete is each season?
+
+Share of **minutes played** covered by each data component (100% = every player-season has it).
+Darker = more complete.
+
+```{python}
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+from _viz import show, read, SEQ_BLUE
+c = read("data_completeness_by_season.csv")
+comp = {"box_poss": "Box score + possessions", "shot_loc": "Shot locations", "creation": "Drive / pull-up tags",
+        "defense_pbp": "Rim blocks / steal types", "salary_ok": "Salary", "age_ok": "Age", "pos_ok": "Position",
+        "hustle": "Hustle (deflections, contests)"}
+fig = make_subplots(rows=2, cols=1, subplot_titles=("NBA", "WNBA"), vertical_spacing=0.14)
+for i, lg in enumerate(["NBA", "WNBA"], 1):
+    d = c[c.league == lg]
+    z = (d[list(comp)].T.to_numpy() * 100).round(0)
+    fig.add_heatmap(x=d.season, y=list(comp.values()), z=z, zmin=0, zmax=100, colorscale=SEQ_BLUE,
+                    xgap=2, ygap=2, showscale=(i == 1), colorbar=dict(title="%", len=0.5, y=0.78),
+                    hovertemplate="%{y}<br>season %{x}: %{z:.0f}% of minutes<extra></extra>", row=i, col=1)
+fig.update_layout(height=640, hovermode="closest", margin=dict(l=10, r=10, t=40, b=10))
+fig.update_xaxes(dtick=2, showgrid=False, showticklabels=True); fig.update_yaxes(showgrid=False, autorange="reversed")
+show(fig)
+```
+
+Season = the calendar year the season ends (NBA 2026 = 2025-26).
+
+## Which seasons can run which analysis (85% rule)
+
+| Analysis | Needs | NBA from | WNBA from |
+|---|---|---|---|
+| Archetypes, team net rating, championships | box score, shot locations, position | 2003-04 | 2009 |
+| + defensive-type features (rim blocks, steal types) | play-by-play detail | 2006-07 | 2013 |
+| + creation tags (drives, pull-ups) | play-by-play shot descriptions | 2017-18 | 2019 |
+| **Salary value (main window)** | everything above except creation tags, plus salary and age | **2009-10** (2006-07 if ages are filled) | **2021** |
+| + hustle stats | NBA.com hustle tracking | 2017-18 | not available |
+
+## Who counts
+
+A player-season is **counted** if the player appeared in at least 15% of team games, or averaged 20+ minutes
+over at least 6 games (NBA) or 4 games (WNBA), which covers injury-shortened seasons. Uncounted rows stay in
+the data but do not shape the archetypes, labels or value rankings. Players who were hurt for the playoffs
+are not counted on their team's playoff roster.
+
+```{python}
+from IPython.display import Markdown
+p = read("participation_summary.csv")
+p = p.rename(columns={"player_seasons": "player-seasons", "not_counted": "not counted", "injury_exempt": "kept by injury rule",
+                      "likely_season_ending": "likely season-ending", "absent_playoffs": "missed playoffs",
+                      "minutes_not_counted_pct": "% minutes not counted"})
+Markdown(p.to_markdown(index=False))
+```
+
+## Sources
+
+| Data | Source | Use |
+|---|---|---|
+| Box scores, play-by-play, schedules | ESPN, via the sportsdataverse data releases | all stats |
+| NBA salaries 2000-2025 | owner-supplied files; 2025-26 from ESPN's salary list; 2026-27 from Basketball-Reference contracts | salary value |
+| WNBA salaries 2021-2026 | Her Hoop Stats WNBA Salary Cap Database; gaps filled from Spotrac | salary value |
+| NBA hustle stats | NBA.com, via the gabriel1200/site_Data mirror | defense checks |
+| WNBA ages (to 2019) | FiveThirtyEight WNBA-stats (CC BY 4.0) | age |
+
+::: {.caveat}
+Raw source files are not redistributed here. The repository contains the code, a fetch script and
+aggregated outputs only.
+:::

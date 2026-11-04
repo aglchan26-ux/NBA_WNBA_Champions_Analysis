@@ -1,0 +1,34 @@
+---
+title: "Methods and validation"
+---
+
+| Course concept | Where it is used |
+|---|---|
+| Regularization / partial pooling | empirical-Bayes shrinkage of every rate and percentage; ridge models |
+| Clustering, model selection | K-Means baseline, Gaussian mixtures, BIC + bootstrap stability for k |
+| Label evaluation | agreement with blind hand labels, Cohen's kappa, ARI |
+| Concept drift | pooled vs per-era fits; rolling-window coefficients |
+| Time-aware cross-validation | forward-chained seasons for net rating and title models |
+| Gradient boosting + SHAP | net-rating model and feature importance |
+| Calibration, uncertainty | bootstrap intervals; probability on the eventual champion |
+| Text preprocessing, TF-IDF, embeddings, topic models, zero-shot labels | *Step 4, in progress* |
+
+## Small-sample adjustment beats per-36
+
+Split-half test: fit on one half of a player's season, predict the other half. Deviance relative to raw rates
+(negative = better).
+
+```{python}
+from IPython.display import Markdown
+from _viz import read
+v = read("step2_validation.csv")
+v = v[(v.test == "split_half")].groupby(["league", "method"]).vs_raw_pct.median().unstack().round(1)
+Markdown(v.to_markdown())
+```
+
+## Net rating from roster mix (out-of-time R²)
+
+```{python}
+n = read("step5_A_netrating_cv.csv")
+Markdown(n[["league", "features", "model", "test_seasons", "r2_out_of_time", "rmse"]].round(3).to_markdown(index=False))
+```

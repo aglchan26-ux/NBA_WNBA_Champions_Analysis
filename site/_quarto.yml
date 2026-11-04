@@ -1,0 +1,45 @@
+project:
+  type: website
+  output-dir: _site
+  resources:
+    - js/plotly.min.js
+
+website:
+  title: "Hoops Value"
+  description: "Which player archetypes drive winning in the NBA and WNBA, and does pay track that value?"
+  site-url: https://USERNAME.github.io/hoops-value/   # set after the GitHub repo exists
+  repo-url: https://github.com/USERNAME/hoops-value     # set after the GitHub repo exists
+  navbar:
+    left:
+      - href: index.qmd
+        text: Overview
+      - href: data.qmd
+        text: Data
+      - href: archetypes.qmd
+        text: Archetypes
+      - href: championships.qmd
+        text: Championships
+      - href: salary.qmd
+        text: Salary value
+      - href: methods.qmd
+        text: Methods
+  page-footer:
+    center: "Association, not causation. Sources and licenses on the Data page."
+
+format:
+  html:
+    theme:
+      light: [cosmo, theme-light.scss]
+      dark: [darkly, theme-dark.scss]
+    css: styles.css
+    toc: true
+    code-fold: true
+    code-summary: "Show code"
+    include-in-header:
+      - text: '<script src="js/plotly.min.js"></script>'
+    include-after-body: plotly-theme.html
+
+execute:
+  freeze: auto      # outputs are rendered locally (with the data) and committed; CI never needs the raw data
+  echo: false
+  warning: false

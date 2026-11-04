@@ -1,0 +1,13 @@
+league,season,player,role_tier,archetype,subtype,creation_tags,defense_tags,hustle_tags,efficiency_tag,"eff (pts/TSA vs role, 90%)",bench_microwave
+NBA,2025,Scoot Henderson,rotation,On-ball creator,Floor general,Downhill driver,none stand out,Deflection disruptor + Loose-ball hustler,Within range,"-0.048 [-0.105,+0.009]",False
+NBA,2026,Scoot Henderson,rotation,On-ball creator,Shot-making scorer,none stand out,none stand out,none stand out,Within range,"-0.036 [-0.111,+0.039]",True
+NBA,2025,Payton Pritchard,rotation,Secondary guard,Microwave scoring guard,Pull-up shooter,none stand out,Loose-ball hustler,Above role average,"+0.117 [+0.059,+0.174]",True
+NBA,2025,Shai Gilgeous-Alexander,starter,On-ball creator,Alpha scorer,Pull-up shooter,Jump-shot blocker + Passing-lane thief + On-ball pickpocket,Loose-ball hustler,Above role average,"+0.114 [+0.072,+0.155]",False
+NBA,2025,Alex Caruso,rotation,Secondary guard,Defensive / connector guard,none stand out,Passing-lane thief + On-ball pickpocket,Deflection disruptor + Charge taker,Within range,"+0.006 [-0.070,+0.083]",False
+NBA,2025,Dyson Daniels,starter,On-ball creator,Floor general,Downhill driver,Passing-lane thief + On-ball pickpocket,Deflection disruptor + Loose-ball hustler,Within range,"-0.041 [-0.094,+0.011]",False
+NBA,2025,Brook Lopez,starter,Connector forward,Rim-defending big forward,none stand out,Rim protector,Interior contester,Above role average,"+0.093 [+0.032,+0.155]",False
+NBA,2025,Nikola Jokic,starter,Hub big / point forward,Point forward / scoring hub,none stand out,Passing-lane thief,Deflection disruptor,Above role average,"+0.142 [+0.094,+0.191]",False
+WNBA,2025,Caitlin Clark,starter,On-ball creator,Alpha scorer,Pull-up shooter,none stand out,n/a (season not covered),Within range,"-0.041 [-0.123,+0.040]",False
+WNBA,2025,A'ja Wilson,starter,Hub big / point forward,Point forward / scoring hub,none stand out,Rim protector + Passing-lane thief,n/a (season not covered),Within range,"+0.058 [-0.001,+0.117]",False
+WNBA,2025,Natasha Cloud,starter,Secondary guard,Defensive / connector guard,Downhill driver,none stand out,n/a (season not covered),Within range,"+0.011 [-0.062,+0.083]",False
+WNBA,2025,Sami Whitcomb,rotation,Secondary guard,Microwave scoring guard,none stand out,none stand out,n/a (season not covered),Within range,"+0.008 [-0.066,+0.081]",True

@@ -1,0 +1,27 @@
+<script>
+// Re-colour Plotly charts when Quarto's light/dark toggle changes: text, grid, and the two
+// league hues are stepped to their dark-mode values (same hues, validated for the dark surface).
+(function () {
+  const LIGHT = {"#2a78d6": "#2a78d6", "#eb6834": "#eb6834", "#1baf7a": "#1baf7a", "#eda100": "#eda100"};
+  const DARK = {"#2a78d6": "#3987e5", "#eb6834": "#d95926", "#1baf7a": "#199e70", "#eda100": "#c98500"};
+  function apply() {
+    if (!window.Plotly) return;
+    const dark = document.body.classList.contains("quarto-dark");
+    const cs = getComputedStyle(document.body);
+    const text = cs.getPropertyValue("--viz-text").trim(), grid = cs.getPropertyValue("--viz-grid").trim();
+    document.querySelectorAll(".js-plotly-plot").forEach(function (el) {
+      Plotly.relayout(el, {"font.color": text, "xaxis.gridcolor": grid, "yaxis.gridcolor": grid,
+                           "xaxis2.gridcolor": grid, "yaxis2.gridcolor": grid, "legend.font.color": text});
+      (el.data || []).forEach(function (tr, i) {
+        const base = tr._baseColor || (tr.line && tr.line.color) || (tr.marker && tr.marker.color);
+        if (typeof base !== "string") return;
+        tr._baseColor = base;
+        const c = (dark ? DARK : LIGHT)[base] || base;
+        Plotly.restyle(el, {"line.color": c, "marker.color": c}, [i]);
+      });
+    });
+  }
+  new MutationObserver(apply).observe(document.body, {attributes: true, attributeFilter: ["class"]});
+  window.addEventListener("load", apply);
+})();
+</script>

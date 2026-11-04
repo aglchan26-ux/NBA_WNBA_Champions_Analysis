@@ -1,0 +1,7 @@
+:root { --viz-text: #0b0b0b; --viz-muted: #52514e; --viz-grid: #e4e3df; }
+body.quarto-dark { --viz-text: #f0efec; --viz-muted: #c3c2b7; --viz-grid: #3a3a37; }
+.stat-row { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1rem 0 1.5rem; }
+.stat { flex: 1 1 10rem; border: 1px solid var(--viz-grid); border-radius: 8px; padding: .75rem 1rem; }
+.stat .num { font-size: 1.8rem; font-weight: 600; line-height: 1.1; }
+.stat .lbl { color: var(--viz-muted); font-size: .9rem; }
+.caveat { color: var(--viz-muted); font-size: .92rem; }

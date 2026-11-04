@@ -1,0 +1,81 @@
+sample_id,league,season_num,player,position,minutes,role_tier,definition,hand_subtype,hand_archetype,confidence,confidence_source,hand_notes,archetype,subtype,model_top2_archetype,own_membership,agree_archetype,agree_subtype,hand_in_top2
+S001,WNBA,2024,Ariel Atkins,G,1195.0,starter,defined,Catch-and-shoot wing,Spot-up 3-and-D wing,1.0,owner,Leans defense over but strong scorign capabnilities,Secondary guard,Microwave scoring guard,Connector forward,1.0,False,False,False
+S002,WNBA,2025,Aaliyah Nye,G,674.0,rotation,blended,Defensive / connector guard,Secondary guard,3.0,owner,More lean connector guard les defense,Spot-up 3-and-D wing,Low-usage glue defender,Connector forward,0.0,False,False,False
+S003,WNBA,2024,Moriah Jefferson,G,184.0,limited_sample,limited_sample,Can't tell,,,rule,Unsure,Secondary guard,Defensive / connector guard,Connector forward,1.0,False,False,False
+S004,NBA,2025,Scoot Henderson,G,1760.0,rotation,blended,Microwave scoring guard,Secondary guard,2.0,owner,Microwave in terms of scoring focused drive focused ,On-ball creator,Floor general,Connector forward,0.0,False,False,False
+S005,WNBA,2020,Isabelle Harrison,F,259.0,starter,defined,Low-usage glue defender,Spot-up 3-and-D wing,2.0,owner,Glue defender low usage but scoring abilities but not 3&d low 3 rate,Hub big / point forward,Interior hub big,On-ball creator,0.0,False,False,False
+S006,NBA,2021,Talen Horton-Tucker,F,1301.0,rotation,defined,Defensive / connector guard,Secondary guard,2.0,rule,,On-ball creator,Floor general,Connector forward,0.99981538845272,False,False,False
+S007,NBA,2021,Brian Bowen II,F,15.0,limited_sample,limited_sample,Can't tell,,,rule,,Connector forward,Rebounding / rim-running forward,On-ball creator,0.6184626829686973,False,False,False
+S008,WNBA,2025,Lexie Brown,G,229.0,limited_sample,limited_sample,Defensive / connector guard,Secondary guard,2.0,rule,,Spot-up 3-and-D wing,Movement shooter,Connector forward,0.0,False,False,False
+S009,NBA,2025,Adem Bona,C,910.0,rotation,defined,Rim-running finisher,Rim-running big,2.0,rule,,Rim-running big,Low-usage rim protector,Hub big / point forward,0.9999346243348114,True,False,True
+S010,WNBA,2021,Brionna Jones,F,1000.0,starter,blended,Rim-running finisher,Rim-running big,1.5,rule,,Hub big / point forward,Interior hub big,On-ball creator,0.0,False,False,False
+S011,NBA,2023,Gabe Vincent,G,1757.0,starter,defined,Microwave scoring guard,Secondary guard,3.0,rule,,Secondary guard,Defensive / connector guard,Connector forward,1.0,True,False,True
+S012,NBA,2020,Luke Kennard,G,921.0,starter,defined,Movement shooter,Spot-up 3-and-D wing,3.0,rule,,Secondary guard,Microwave scoring guard,Connector forward,1.0,False,False,False
+S013,NBA,2025,Trentyn Flowers,F,26.0,limited_sample,limited_sample,Can't tell,,,rule,,Connector forward,Perimeter stopper forward,Connector forward,0.0816747204203631,False,False,False
+S014,WNBA,2022,Kelsey Mitchell,G,1010.0,starter,defined,Shot-making scorer,On-ball creator,1.5,rule,,Secondary guard,Microwave scoring guard,Connector forward,1.0,False,False,False
+S015,WNBA,2020,Skylar Diggins-Smith,G,674.0,starter,blended,Shot-making scorer,On-ball creator,1.5,rule,blended with some creation,On-ball creator,Shot-making scorer,Connector forward,0.0,True,True,True
+S016,WNBA,2022,Victoria Vivians,G,939.0,starter,defined,Defensive / connector guard,Secondary guard,1.5,rule,,Secondary guard,Defensive / connector guard,Connector forward,1.0,True,True,True
+S017,WNBA,2026,Antonia Delaere,F,459.0,deep_bench,defined,Can't tell,,,rule,,Spot-up 3-and-D wing,Movement shooter,On-ball creator,2.092708469039401e-34,False,False,False
+S018,NBA,2022,Delon Wright,G,1457.0,rotation,defined,Defensive / connector guard,Secondary guard,2.0,rule,,Secondary guard,Defensive / connector guard,Connector forward,1.0,True,True,True
+S019,WNBA,2020,Brianna Turner,F,614.0,starter,blended,Low-usage rim protector,Rim-running big,1.5,rule,protector with finishing chops,Rim-running big,Low-usage rim protector,On-ball creator,0.0,True,True,True
+S020,WNBA,2019,Erica Wheeler,G,850.0,starter,blended,Catch-and-shoot wing,Spot-up 3-and-D wing,1.5,rule,,On-ball creator,Shot-making scorer,Connector forward,0.0,False,False,False
+S021,NBA,2026,Josh Oduro,C,81.0,limited_sample,limited_sample,Rim-running finisher,Rim-running big,2.0,rule,,Rim-running big,Low-usage rim protector,Hub big / point forward,0.9777076193984024,True,False,True
+S022,NBA,2023,Luka Garza,C,243.0,limited_sample,limited_sample,Stretch / skilled big,Hub big / point forward,2.0,rule,,Hub big / point forward,Stretch / skilled big,Rim-running big,0.999999999992685,True,True,True
+S023,WNBA,2020,Bella Alarie,C,309.0,rotation,defined,Can't tell,,,rule,,Rim-running big,Low-usage rim protector,Hub big / point forward,0.8924210060476986,False,False,False
+S024,WNBA,2026,Veronica Burton,G,1257.0,starter,blended,Floor general,On-ball creator,2.0,rule,floor general + defensive balance,On-ball creator,Floor general,Connector forward,0.0,True,True,True
+S025,NBA,2024,Grant Williams,F,2126.0,starter,defined,Scoring stretch forward,Connector forward,3.0,rule,,Connector forward,Scoring stretch forward,On-ball creator,0.9248582424165298,True,True,True
+S026,NBA,2021,Patrick Patterson,F,583.0,rotation,blended,Scoring stretch forward,Connector forward,2.0,rule,,Spot-up 3-and-D wing,Low-usage glue defender,On-ball creator,0.0,False,False,False
+S027,WNBA,2026,Raquel Carrera,F,161.0,limited_sample,limited_sample,Rebounding / rim-running forward,Connector forward,2.0,rule,,Connector forward,Rebounding / rim-running forward,On-ball creator,0.9995446801069422,True,True,True
+S028,NBA,2024,Orlando Robinson,C,303.0,deep_bench,defined,Rim-running finisher,Rim-running big,2.0,rule,,Rim-running big,Rim-running finisher,Rim-running big,0.009978820525136635,True,True,True
+S029,NBA,2021,Onyeka Okongwu,F,599.0,deep_bench,blended,Rim-running finisher,Rim-running big,2.0,rule,,Rim-running big,Low-usage rim protector,On-ball creator,0.0,True,False,True
+S030,WNBA,2026,Shyanne Sellers,G,21.0,limited_sample,limited_sample,Defensive / connector guard,Secondary guard,2.0,rule,,Secondary guard,Defensive / connector guard,Connector forward,1.0,True,True,True
+S031,NBA,2023,Trey Lyles,F,1248.0,rotation,defined,Scoring stretch forward,Connector forward,2.0,rule,,Connector forward,Scoring stretch forward,On-ball creator,0.999962763026557,True,True,True
+S032,NBA,2020,Melvin Frazier Jr.,G,127.0,limited_sample,limited_sample,Defensive / connector guard,Secondary guard,2.0,rule,,Secondary guard,Defensive / connector guard,Connector forward,1.0,True,True,True
+S033,WNBA,2021,Reshanda Gray,F,211.0,limited_sample,limited_sample,Defensive / connector guard,Secondary guard,1.5,rule,,Rim-running big,Rim-running finisher,On-ball creator,0.0,False,False,False
+S034,WNBA,2024,Jacy Sheldon,G,931.0,starter,defined,Movement shooter,Spot-up 3-and-D wing,2.0,rule,,Secondary guard,Defensive / connector guard,Connector forward,1.0,False,False,False
+S035,WNBA,2024,Lexie Brown,G,379.0,starter,defined,Defensive / connector guard,Secondary guard,2.0,rule,,Secondary guard,Defensive / connector guard,Connector forward,1.0,True,True,True
+S036,WNBA,2021,Betnijah Laney,F,1078.0,starter,defined,Scoring stretch forward,Connector forward,1.5,rule,,On-ball creator,Shot-making scorer,Connector forward,0.985837385433639,False,False,True
+S037,NBA,2021,Juancho Hernangomez,F,901.0,rotation,defined,Low-usage rim protector,Rim-running big,2.0,rule,,Connector forward,Rebounding / rim-running forward,On-ball creator,0.9999999999986642,False,False,False
+S038,WNBA,2021,Isabelle Harrison,F,666.0,rotation,blended,Perimeter stopper forward,Connector forward,1.5,rule,,Rim-running big,Rim-running finisher,On-ball creator,0.0,False,False,False
+S039,WNBA,2019,Azura Stevens,F,143.0,limited_sample,limited_sample,Interior hub big,Hub big / point forward,1.5,rule,,Connector forward,Perimeter stopper forward,On-ball creator,0.667326929994153,False,False,False
+S040,NBA,2021,Kent Bazemore,F,1334.0,rotation,blended,Scoring stretch forward,Connector forward,2.0,rule,score from 3 + also slashing,Connector forward,Perimeter stopper forward,Connector forward,0.0574635964022871,True,False,True
+S041,WNBA,2024,Kalani Brown,C,513.0,rotation,defined,Low-usage rim protector,Rim-running big,2.0,rule,,Rim-running big,Rim-running finisher,Hub big / point forward,0.9808328369672428,True,False,True
+S042,WNBA,2019,Arica Carter,G,25.0,limited_sample,limited_sample,Can't tell,,,rule,,Secondary guard,Defensive / connector guard,Connector forward,1.0,False,False,False
+S043,NBA,2024,Isaiah Mobley,F,72.0,limited_sample,limited_sample,Rim-running finisher,Rim-running big,2.0,rule,,Connector forward,Perimeter stopper forward,Connector forward,0.022997983065531337,False,False,False
+S044,WNBA,2024,Nneka Ogwumike,F,1177.0,starter,defined,Alpha scorer,On-ball creator,3.0,rule,,Connector forward,Scoring stretch forward,On-ball creator,0.9988542522768039,False,False,True
+S045,NBA,2026,Markelle Fultz,G,35.0,limited_sample,limited_sample,Can't tell,,,rule,,Secondary guard,Defensive / connector guard,Connector forward,1.0,False,False,False
+S046,NBA,2022,Nicolas Batum,F,1465.0,starter,blended,Catch-and-shoot wing,Spot-up 3-and-D wing,3.0,rule,,Spot-up 3-and-D wing,Catch-and-shoot wing,On-ball creator,1.19535498205825e-124,True,True,True
+S047,WNBA,2021,Rachel Banham,G,342.0,rotation,defined,Defensive / connector guard,Secondary guard,1.5,rule,,Secondary guard,Microwave scoring guard,Connector forward,1.0,True,False,True
+S048,WNBA,2022,Isabelle Harrison,F,645.0,starter,blended,Perimeter stopper forward,Connector forward,1.5,rule,,Hub big / point forward,Interior hub big,On-ball creator,0.0,False,False,False
+S049,NBA,2024,Jamal Murray,G,1862.0,starter,blended,Shot-making scorer,On-ball creator,3.0,rule,,On-ball creator,Alpha scorer,Connector forward,0.0,True,False,True
+S050,WNBA,2019,Shey Peddy,G,70.0,limited_sample,limited_sample,Defensive / connector guard,Secondary guard,1.5,rule,,Secondary guard,Defensive / connector guard,Connector forward,1.0,True,True,True
+S051,WNBA,2021,Dearica Hamby,F,710.0,rotation,defined,Rim-running finisher,Rim-running big,1.5,rule,less rim running more scoring but. Not stretch,Connector forward,Perimeter stopper forward,On-ball creator,0.9999955298641945,False,False,False
+S052,NBA,2023,Harrison Barnes,F,2659.0,starter,defined,Catch-and-shoot wing,Spot-up 3-and-D wing,3.0,rule,,Connector forward,Scoring stretch forward,On-ball creator,0.9554195624638903,False,False,False
+S053,NBA,2023,Meyers Leonard,C,115.0,limited_sample,limited_sample,Rim-running finisher,Rim-running big,2.0,rule,,Connector forward,Scoring stretch forward,Rim-running big,0.0,False,False,True
+S054,WNBA,2026,Sabrina Ionescu,G,958.0,starter,blended,Floor general,On-ball creator,3.0,rule,,On-ball creator,Floor general,Connector forward,0.0,True,True,True
+S055,WNBA,2022,Tianna Hawkins,F,318.0,rotation,defined,Can't tell,,,rule,,Connector forward,Perimeter stopper forward,On-ball creator,0.638286082823255,False,False,False
+S056,NBA,2019,DeMarcus Cousins,C,772.0,starter,defined,Stretch / skilled big,Hub big / point forward,3.0,rule,,Hub big / point forward,Alpha scorer,Rim-running big,0.9999985847777126,True,False,True
+S057,WNBA,2019,Kahleah Copper,G,501.0,rotation,blended,Microwave scoring guard,Secondary guard,1.5,rule,,On-ball creator,Floor general,Connector forward,0.0,False,False,False
+S058,WNBA,2023,Teaira McCowan,C,784.0,starter,defined,Interior hub big,Hub big / point forward,1.5,rule,,Rim-running big,Rim-running finisher,Hub big / point forward,0.9997463570688592,False,False,True
+S059,NBA,2023,Javonte Green,G,483.0,rotation,defined,Low-usage glue defender,Spot-up 3-and-D wing,2.0,rule,,Connector forward,Rebounding / rim-running forward,Connector forward,0.0,False,False,False
+S060,WNBA,2024,Chelsea Gray,G,702.0,starter,blended,Floor general,On-ball creator,2.0,rule,,On-ball creator,Floor general,Connector forward,0.0,True,True,True
+S061,NBA,2019,Sindarius Thornwell,G,317.0,deep_bench,defined,Defensive / connector guard,Secondary guard,2.0,rule,,Secondary guard,Defensive / connector guard,Connector forward,1.0,True,True,True
+S062,NBA,2020,Shabazz Napier,G,1348.0,starter,blended,Floor general,On-ball creator,3.0,rule,,On-ball creator,Floor general,Connector forward,0.0,True,True,True
+S063,WNBA,2025,Janelle Salaun,F,973.0,starter,defined,Scoring stretch forward,Connector forward,2.0,rule,,Connector forward,Scoring stretch forward,On-ball creator,0.611287523360693,True,True,True
+S064,NBA,2023,Maxi Kleber,F,930.0,rotation,blended,Scoring stretch forward,Connector forward,2.0,rule,,Spot-up 3-and-D wing,Low-usage glue defender,On-ball creator,1.0788203898439145e-154,False,False,False
+S065,NBA,2020,Marcus Morris Sr.,F,1937.0,starter,defined,Scoring stretch forward,Connector forward,3.0,rule,high level stretch forward,Connector forward,Scoring stretch forward,On-ball creator,0.5840538245807263,True,True,True
+S066,NBA,2021,Raul Neto,G,1403.0,rotation,defined,Microwave scoring guard,Secondary guard,2.0,rule,,Secondary guard,Defensive / connector guard,Connector forward,1.0,True,False,True
+S067,NBA,2026,Zyon Pullin,G,42.0,limited_sample,limited_sample,Defensive / connector guard,Secondary guard,2.0,rule,,On-ball creator,Floor general,Connector forward,0.0,False,False,False
+S068,WNBA,2025,Tina Charles,C,1225.0,starter,defined,Shot-making scorer,On-ball creator,3.0,rule,,Hub big / point forward,Alpha scorer,Rim-running big,0.998616978998248,False,False,False
+S069,NBA,2021,Danilo Gallinari,F,1218.0,rotation,defined,Scoring stretch forward,Connector forward,2.0,rule,,Connector forward,Scoring stretch forward,On-ball creator,0.67909209173749,True,True,True
+S070,NBA,2022,Sam Hauser,F,161.0,limited_sample,limited_sample,Movement shooter,Spot-up 3-and-D wing,2.0,rule,,Spot-up 3-and-D wing,Catch-and-shoot wing,On-ball creator,6.578466547504111e-142,True,False,True
+S071,WNBA,2024,Grace Berger,G,103.0,limited_sample,limited_sample,Blended / tweener,Blended / tweener,2.0,rule,,On-ball creator,Floor general,Connector forward,0.0,False,False,False
+S072,NBA,2023,Damian Jones,C,476.0,deep_bench,defined,Rim-running finisher,Rim-running big,2.0,rule,,Rim-running big,Low-usage rim protector,Rim-running big,0.0011697806127297728,True,False,True
+S073,WNBA,2023,Rae Burrell,G,321.0,deep_bench,defined,Defensive / connector guard,Secondary guard,1.5,rule,,Secondary guard,Defensive / connector guard,Connector forward,1.0,True,True,True
+S074,NBA,2020,Harrison Barnes,F,2483.0,starter,blended,Catch-and-shoot wing,Spot-up 3-and-D wing,3.0,rule,,Connector forward,Scoring stretch forward,Connector forward,0.08105322682746693,False,False,False
+S075,NBA,2021,Lonnie Walker IV,G,1521.0,starter,defined,Microwave scoring guard,Secondary guard,3.0,rule,,Secondary guard,Microwave scoring guard,Connector forward,1.0,True,True,True
+S076,NBA,2024,Brook Lopez,C,2412.0,starter,blended,Stretch / skilled big,Hub big / point forward,3.0,rule,,Connector forward,Scoring stretch forward,Spot-up 3-and-D wing,0.0,False,False,False
+S077,WNBA,2026,Grace VanSlooten,F,94.0,limited_sample,limited_sample,Rebounding / rim-running forward,Connector forward,2.0,rule,,Connector forward,Rebounding / rim-running forward,On-ball creator,0.9998867433285683,True,True,True
+S078,WNBA,2025,Iliana Rupert,C,485.0,starter,defined,Stretch / skilled big,Hub big / point forward,2.0,rule,,Connector forward,Scoring stretch forward,Hub big / point forward,0.0,False,False,True
+S079,NBA,2020,Justise Winslow,F,353.0,rotation,defined,Microwave scoring guard,Secondary guard,2.0,rule,,Hub big / point forward,Interior hub big,Connector forward,0.0,False,False,False
+S080,NBA,2020,Bojan Bogdanovic,F,2082.0,starter,blended,Shot-making scorer,On-ball creator,3.0,rule,,Secondary guard,Alpha scorer,Connector forward,0.0,False,False,False
