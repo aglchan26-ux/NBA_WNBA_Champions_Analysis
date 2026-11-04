@@ -2,7 +2,8 @@
 
 **Which player archetypes drive winning in the NBA and WNBA, how has the championship formula drifted, and does pay track value?**
 
-Site: https://aglchan26-ux.github.io/NBA_WNBA_Champions_Analysis/
+Site: https://aglchan26-ux.github.io/NBA_WNBA_Public_Comparison/ (built site published from the public repo
+[NBA_WNBA_Public_Comparison](https://github.com/aglchan26-ux/NBA_WNBA_Public_Comparison))
 
 NBA 2003-04 to 2025-26 and WNBA 2009 to 2026, built from play-by-play, box scores and salary sheets. Each league
 is measured against itself and compared side by side. Everything reported is association, not causation.
@@ -43,6 +44,5 @@ Salary steps (`parse_wnba_salaries.py`, `build_salaries.py`) need the manually s
 
 ## Publishing
 
-Pushing to `main` runs `.github/workflows/publish.yml`, which assembles the pre-rendered site and publishes it to
-the `gh-pages` branch. Re-render locally (`quarto render` in `site/`) after the results change, then commit
-`site/_freeze`.
+Render locally (`quarto render` in `site/`), then copy `site/_site/` into the public repo
+`NBA_WNBA_Public_Comparison` and push; GitHub Pages serves it from that repo's `main` branch.

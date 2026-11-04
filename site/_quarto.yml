@@ -7,8 +7,7 @@ project:
 website:
   title: "Hoops Value"
   description: "Which player archetypes drive winning in the NBA and WNBA, and does pay track that value?"
-  site-url: https://aglchan26-ux.github.io/NBA_WNBA_Champions_Analysis/
-  repo-url: https://github.com/aglchan26-ux/NBA_WNBA_Champions_Analysis
+  site-url: https://aglchan26-ux.github.io/NBA_WNBA_Public_Comparison/
   navbar:
     left:
       - href: index.qmd

@@ -1,9 +1,9 @@
 # Publishes site/ to GitHub Pages. Pages read only the small aggregated tables committed in site/data,
 # so CI can execute any page whose frozen output is stale; it never needs the raw data.
 name: Publish site
+# The public site lives in aglchan26-ux/NBA_WNBA_Public_Comparison (this repo is private, and free
+# GitHub Pages needs a public repo). This job is kept for manual runs only.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 permissions:
   contents: write
