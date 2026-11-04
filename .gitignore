@@ -1,6 +1,6 @@
 # Raw and processed data are not redistributed (third-party terms); rebuild with scripts/fetch_data.py
-data/
-labeling/
+/data/
+/labeling/
 results/hand_label_key_*.csv
 # Site build output (the gh-pages branch holds the published copy)
 site/_site/
