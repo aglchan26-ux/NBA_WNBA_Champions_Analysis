@@ -19,7 +19,6 @@ fig = go.Figure()
 for lg, col in LEAGUE.items():
     d = s[s.league == lg]
     line(fig, d.season, d.minutes_weighted_matched, lg, col, hovertemplate=lg + ": %{y:.0%}<extra></extra>")
-fig.add_hline(y=0.85, line=dict(color="#8a8984", width=1, dash="dot"), annotation_text="85%", annotation_position="bottom right")
 fig.update_layout(height=360, yaxis=dict(tickformat=".0%", range=[0, 1.02]))
 show(fig)
 ```

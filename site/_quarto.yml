@@ -7,8 +7,8 @@ project:
 website:
   title: "Hoops Value"
   description: "Which player archetypes drive winning in the NBA and WNBA, and does pay track that value?"
-  site-url: https://USERNAME.github.io/hoops-value/   # set after the GitHub repo exists
-  repo-url: https://github.com/USERNAME/hoops-value     # set after the GitHub repo exists
+  site-url: https://aglchan26-ux.github.io/NBA_WNBA_Champions_Analysis/
+  repo-url: https://github.com/aglchan26-ux/NBA_WNBA_Champions_Analysis
   navbar:
     left:
       - href: index.qmd

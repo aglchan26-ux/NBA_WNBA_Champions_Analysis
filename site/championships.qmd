@@ -1,60 +1,134 @@
 ---
-title: "Championships and playoff basketball"
+title: "Championships: NBA and WNBA eras"
 ---
+
+::: {.callout-note appearance="simple"}
+## Takeaways
+- **NBA playoffs punish threes and rim attempts.** Points per three-point attempt fell in the playoffs in all
+  23 seasons (−0.040 points per shot). Rim attempts fell in 87% of seasons. Mid-range shots held up best.
+- **WNBA playoffs show no reliable shot-zone penalty.** Every zone's 95% interval includes zero; with 8-12
+  playoff teams a year the sample is small.
+- **The WNBA is about six years behind the NBA on the three-point shift, and the gap has grown.** In 2026,
+  37% of WNBA shots were threes, about where the NBA was in 2019-20. In 2017-2020 the gap was about three years.
+- **Recent WNBA champions are ahead of their own league.** From 2022 to 2026 they took 5 percentage points more of
+  their shots from three, and 7.5 points fewer at the rim, than the league average. NBA champions have stayed within 3 points of their league.
+:::
+
+Everything on this page is association, not causation, and each league is measured against itself.
 
 ## Which shots survive the playoffs?
 
-Change in points per shot from the regular season to the playoffs, by shot zone (NBA, every season).
-Below zero = the shot got worse in the playoffs.
+Points per shot in the playoffs minus the regular season, by zone. Below zero = the shot got worse in the
+playoffs. Each league is shown on its own.
 
 ```{python}
 import plotly.graph_objects as go
-from _viz import show, read, SERIES, line, end_labels
+from plotly.subplots import make_subplots
+from IPython.display import Markdown
+from _viz import show, read, SERIES, end_labels
 z = read("step5_playoff_zone_by_season.csv")
-z = z[z.league == "NBA"]
-fig = go.Figure()
 zones = ["three", "rim", "paint / short mid", "long mid"]
-ends = {}
-for zone, col in zip(zones, SERIES):
-    d = z[z.zone == zone].sort_values("season")
-    line(fig, d.season, d.pps_change, zone, col, hovertemplate=zone + ": %{y:+.3f}<extra></extra>")
-    ends[zone] = d.pps_change.iloc[-1]
-end_labels(fig, ends, z.season.max(), 0.012)
-fig.add_hline(y=0, line=dict(color="#8a8984", width=1))
-fig.update_layout(height=420, yaxis_title="playoff minus regular-season pts/shot",
-                  margin=dict(r=120, t=40), xaxis=dict(range=[z.season.min() - 0.5, z.season.max() + 0.5]))
+fig = make_subplots(rows=1, cols=2, subplot_titles=("NBA", "WNBA"), shared_yaxes=True, horizontal_spacing=0.08)
+for j, lg in enumerate(["NBA", "WNBA"], 1):
+    for zone, col in zip(zones, SERIES):
+        d = z[(z.league == lg) & (z.zone == zone)].sort_values("season")
+        fig.add_scatter(x=d.season, y=d.pps_change, name=zone, legendgroup=zone, showlegend=(j == 1),
+                        mode="lines+markers", line=dict(color=col, width=2), marker=dict(size=6, color=col),
+                        hovertemplate=f"{lg} {zone}: " + "%{y:+.3f}<extra></extra>", row=1, col=j)
+    fig.add_hline(y=0, line=dict(color="#8a8984", width=1), row=1, col=j)
+fig.update_layout(height=420, yaxis_title="playoff minus regular-season pts/shot", legend=dict(y=1.14))
 show(fig)
 ```
 
 ```{python}
-from IPython.display import Markdown
 r = read("step5_playoff_zone_resilience.csv").dropna(subset=["pps_change"])
-r = r[["league", "zone", "seasons", "pps_change", "lo95", "hi95", "seasons_worse_in_playoffs"]].round(3)
-r["seasons_worse_in_playoffs"] = r.seasons_worse_in_playoffs.map(lambda x: "" if x != x else f"{x:.0%}")
-Markdown(r.to_markdown(index=False))
+r["95% interval"] = [f"{lo:+.3f} to {hi:+.3f}" for lo, hi in zip(r.lo95, r.hi95)]
+r["seasons worse in playoffs"] = r.seasons_worse_in_playoffs.map(lambda x: f"{x:.0%}")
+r["avg change"] = r.pps_change.map(lambda x: f"{x:+.3f}")
+for lg in ["NBA", "WNBA"]:
+    display(Markdown(f"**{lg}**\n\n" + r[r.league == lg][["zone", "seasons", "avg change", "95% interval", "seasons worse in playoffs"]].to_markdown(index=False)))
 ```
 
-## Champion profiles by era
+## Which era is each league in?
 
-Share of champions that had each ingredient: a primary scorer, a secondary scorer, a floor-spacing big and
-a perimeter defender. The ingredients are loose definitions meant to show drift, not a recipe.
+How each league chooses its shots in the regular season: share of field-goal attempts from three, and from the
+mid-range.
+
+```{python}
+from _viz import LEAGUE
+p = read("step5_league_profiles.csv")
+fig = make_subplots(rows=1, cols=2, subplot_titles=("Share of shots from three", "Share of shots from mid-range"),
+                    horizontal_spacing=0.1)
+for j, f in enumerate(["three_share", "mid_share"], 1):
+    for lg, col in LEAGUE.items():
+        d = p[p.league == lg]
+        fig.add_scatter(x=d.season, y=d[f], name=lg, legendgroup=lg, showlegend=(j == 1), mode="lines+markers",
+                        line=dict(color=col, width=2), marker=dict(size=6, color=col),
+                        hovertemplate=f"{lg}: " + "%{y:.1%}<extra></extra>", row=1, col=j)
+fig.update_yaxes(tickformat=".0%")
+fig.update_layout(height=380, legend=dict(y=1.16))
+show(fig)
+```
+
+**How many years behind the NBA is the WNBA?** For each WNBA season, the NBA season with the same share
+(NBA series smoothed over 3 seasons). Blank where the WNBA value is outside the NBA's range.
+
+```{python}
+y = read("step5_wnba_years_behind.csv")
+fig = go.Figure()
+for f, nm, col in [("three_share", "three-point share", "#2a78d6"), ("mid_share", "mid-range share", "#eb6834")]:
+    d = y[y.feature == f]
+    fig.add_scatter(x=d.wnba_season, y=d.years_behind, name=nm, mode="lines+markers",
+                    line=dict(color=col, width=2), marker=dict(size=8, color=col),
+                    hovertemplate=nm + ": %{y:.1f} years behind<extra></extra>")
+fig.update_layout(height=340, yaxis_title="years behind the NBA", xaxis_title="WNBA season", legend=dict(y=1.12))
+show(fig)
+```
+
+## How champions differ from their own league
+
+Champion's share of shots minus its league's share that season, averaged by era (percentage points).
+Positive = the champion took more of that shot than the league did.
+
+```{python}
+c = read("step5_champion_vs_league.csv")
+import pandas as pd
+c["era"] = pd.cut(c.season, [2003, 2010, 2016, 2021, 2026], labels=["2004-10", "2011-16", "2017-21", "2022-26"])
+cols = {"three_share_vs_league": "threes", "rim_share_vs_league": "rim", "mid_share_vs_league": "mid-range",
+        "assisted_share_vs_league": "assisted makes"}
+for lg in ["NBA", "WNBA"]:
+    g = c[c.league == lg].groupby("era", observed=True)
+    t = (g[list(cols)].mean() * 100).round(1).rename(columns=cols)
+    t.insert(0, "champions", g.size())
+    display(Markdown(f"**{lg}**\n\n" + t.reset_index().to_markdown(index=False)))
+```
+
+## Champion ingredients by era
+
+Share of champions with each loosely defined ingredient. They're meant to show drift, not to be a recipe.
 
 ```{python}
 e = read("step5_champions_by_era.csv")
 cols = {"C1_primary_scorer": "primary scorer", "C2_secondary_scorer": "secondary scorer", "C3_spacing_big": "spacing big",
-        "C4_perimeter_d": "perimeter defender", "n_high_usage": "high-usage players", "team_three_diet": "three-point diet"}
-Markdown(e[["league", "era", *cols]].rename(columns=cols).round(2).to_markdown(index=False))
+        "C4_perimeter_d": "perimeter defender", "n_high_usage": "high-usage players"}
+for lg in ["NBA", "WNBA"]:
+    display(Markdown(f"**{lg}**\n\n" + e[e.league == lg][["era", *cols]].rename(columns=cols).round(2).to_markdown(index=False)))
 ```
 
 ## Does roster mix predict titles better than team strength?
 
-Forward-chained test (train on past seasons, predict the next champion). Higher log-likelihood is better.
+Forward-chained test: train on past seasons, predict the next champion. Higher log-likelihood is better.
+So far roster mix does not beat net rating alone in either league.
 
 ```{python}
 t = read("step5_B_title_cv.csv")
-Markdown(t[["league", "model", "test_seasons", "mean_loglik_champion", "uniform_baseline_loglik", "mean_prob_on_champion"]].round(3).to_markdown(index=False))
+t = t[["league", "model", "test_seasons", "mean_loglik_champion", "uniform_baseline_loglik", "mean_prob_on_champion"]]
+t.columns = ["league", "model", "test seasons", "log-lik (champion)", "log-lik (random pick)", "avg prob. on champion"]
+for lg in ["NBA", "WNBA"]:
+    display(Markdown(f"**{lg}**\n\n" + t[t.league == lg].drop(columns="league").round(3).to_markdown(index=False)))
 ```
 
 ::: {.caveat}
-*In progress:* lineup eras (small ball, double bigs), playoff-available rosters, and team defensive profiles.
+*In progress:* lineup eras (small ball, double bigs), playoff-available rosters, team defensive profiles,
+and roster age and size.
 :::

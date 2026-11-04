@@ -29,14 +29,14 @@ show(fig)
 
 Season = the calendar year the season ends (NBA 2026 = 2025-26).
 
-## Which seasons can run which analysis (85% rule)
+## Which seasons each analysis uses
 
 | Analysis | Needs | NBA from | WNBA from |
 |---|---|---|---|
 | Archetypes, team net rating, championships | box score, shot locations, position | 2003-04 | 2009 |
 | + defensive-type features (rim blocks, steal types) | play-by-play detail | 2006-07 | 2013 |
 | + creation tags (drives, pull-ups) | play-by-play shot descriptions | 2017-18 | 2019 |
-| **Salary value (main window)** | everything above except creation tags, plus salary and age | **2009-10** (2006-07 if ages are filled) | **2021** |
+| **Salary value** | everything above except creation tags, plus salary and age | **2009-10** | **2021** |
 | + hustle stats | NBA.com hustle tracking | 2017-18 | not available |
 
 ## Who counts
