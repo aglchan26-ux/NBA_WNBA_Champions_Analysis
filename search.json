@@ -1,59 +1,17 @@
 [
   {
-    "objectID": "archetypes.html",
-    "href": "archetypes.html",
-    "title": "Player archetypes",
+    "objectID": "salary.html",
+    "href": "salary.html",
+    "title": "Salary value",
     "section": "",
-    "text": "Six style archetypes are fitted jointly on both leagues, with each feature measured relative to its own league and season. Sub-types split each archetype further (e.g. Alpha scorer, Floor general and Shot-making scorer inside On-ball creator)."
+    "text": "Note\n\n\n\nIn progress (Step 6). This page will show salary as a share of the cap against on-court value, compared within contract types, with intervals and an injury-availability adjustment."
   },
   {
-    "objectID": "archetypes.html#how-the-mix-has-shifted",
-    "href": "archetypes.html#how-the-mix-has-shifted",
-    "title": "Player archetypes",
-    "section": "How the mix has shifted",
-    "text": "How the mix has shifted\nShare of all minutes played by each archetype, by season."
-  },
-  {
-    "objectID": "archetypes.html#how-trustworthy-are-the-labels",
-    "href": "archetypes.html#how-trustworthy-are-the-labels",
-    "title": "Player archetypes",
-    "section": "How trustworthy are the labels?",
-    "text": "How trustworthy are the labels?\n\n\n\n\n\n\n\n\n\n\n\ncheck\nestimate\n95% range\nhow_to_read\n\n\n\n\nBase archetype stability (bootstrap ARI, 10 resamples)\n0.95\n0.92 to 0.98\n1 = identical clusters on resampled data; &gt;0.9 is very stable\n\n\nSub-type stability (bootstrap ARI, range over 6 archetypes)\n0.88\n0.79 to 0.95\nlo/hi = weakest and strongest archetype split\n\n\nNBA: same archetype next season (same team, 1000+ min both years)\n0.8\n0.78 to 0.81\nroles persist but can evolve; ~0.6-0.8 is healthy\n\n\nWNBA: same archetype next season (same team, 1000+ min both years)\n0.75\n0.67 to 0.82\nroles persist but can evolve; ~0.6-0.8 is healthy\n\n\nNBA: pooled model vs NBA-only model (ARI, 500+ min)\n0.97\n\n1 = the joint model sorts players exactly as a league-only model\n\n\nWNBA: pooled model vs WNBA-only model (ARI, 500+ min)\n0.55\n\n1 = the joint model sorts players exactly as a league-only model\n\n\nDrift: early-seasons model applied to later seasons vs full model (ARI, 500+ min)\n0.86\n\nearly = NBA &lt;=2013-14, WNBA &lt;=2017; high = archetype definitions stable over time\n\n\nHand labels v1 - archetype agreement, all (TUNING set)\n0.52\n0.40 to 0.64\nchance ~0.17; kappa 0.41; top-2 0.59\n\n\nHand labels v1 - archetype agreement, NBA (TUNING set)\n0.59\n0.44 to 0.75\nchance ~0.17; kappa 0.50; top-2 0.62\n\n\nHand labels v1 - archetype agreement, WNBA (TUNING set)\n0.44\n0.27 to 0.61\nchance ~0.17; kappa 0.31; top-2 0.56\n\n\nHand labels v1 - archetype agreement, defined players (TUNING set)\n0.54\n0.38 to 0.71\nchance ~0.17; kappa 0.42; top-2 0.66\n\n\nHand labels v1 - archetype agreement, blended players (TUNING set)\n0.45\n0.25 to 0.66\nchance ~0.17; kappa 0.31; top-2 0.45\n\n\nHand labels v2 - archetype agreement, all (UNTOUCHED check)\n0.4\n0.28 to 0.53\nchance ~0.17; kappa 0.29; top-2 0.51\n\n\nHand labels v2 - archetype agreement, NBA (UNTOUCHED check)\n0.55\n0.37 to 0.73\nchance ~0.17; kappa 0.46; top-2 0.62\n\n\nHand labels v2 - archetype agreement, WNBA (UNTOUCHED check)\n0.25\n0.09 to 0.41\nchance ~0.17; kappa 0.11; top-2 0.39\n\n\nHand labels v2 - archetype agreement, defined players (UNTOUCHED check)\n0.45\n0.28 to 0.63\nchance ~0.17; kappa 0.34; top-2 0.55\n\n\nHand labels v2 - archetype agreement, blended players (UNTOUCHED check)\n0.26\n0.07 to 0.46\nchance ~0.17; kappa 0.09; top-2 0.42\n\n\nNBA: archetype changes, same team, half 1 vs 2\n0.17\n0.16 to 0.18\ntrades should change roles more often than the same-team baseline\n\n\nNBA: archetype changes, after trade\n0.28\n0.24 to 0.32\ntrades should change roles more often than the same-team baseline\n\n\nWNBA: archetype changes, same team, half 1 vs 2\n0.25\n0.22 to 0.27\ntrades should change roles more often than the same-team baseline\n\n\nWNBA: archetype changes, after trade\n0.45\n0.16 to 0.75\ntrades should change roles more often than the same-team baseline\n\n\nNBA: odds ratio of archetype change, trade vs same team (adjusted for segment minutes)\n1.86\n1.53 to 2.25\n&gt;1 means trades change roles beyond sampling noise\n\n\nNBA hustle check: Perimeter stopper forward - deflections (z vs league)\n0.42\n\nindependent NBA.com data (2017-18+); &gt;0 supports a defensive label\n\n\nNBA hustle check: Defensive / connector guard - deflections (z vs league)\n0.45\n\nindependent NBA.com data (2017-18+); &gt;0 supports a defensive label\n\n\nNBA hustle check: Low-usage rim protector - contested 2s (z vs league)\n1.8\n\nindependent NBA.com data (2017-18+); &gt;0 supports a defensive label\n\n\nNBA hustle check: Catch-and-shoot wing - deflections (z vs league)\n-0.74\n\nindependent NBA.com data (2017-18+); &gt;0 supports a defensive label"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Which player archetypes drive winning, and does pay track that value?",
-    "section": "",
-    "text": "23NBA seasons\n18WNBA seasons\n14,374player-seasons\n6style archetypes, 15 sub-types"
-  },
-  {
-    "objectID": "index.html#what-this-project-does",
-    "href": "index.html#what-this-project-does",
-    "title": "Which player archetypes drive winning, and does pay track that value?",
-    "section": "What this project does",
-    "text": "What this project does\n\nMeasures every player per possession, with small samples pulled toward their position’s average (empirical Bayes), instead of per-36 numbers that overrate short stints.\nGroups players into style archetypes (clustering on shot diet, creation, rebounding and defense), then checks the labels against hand labels and against how players change roles after trades.\nLinks team archetype mix to winning: net rating, playoff resilience and championships, and how the winning formula has drifted from era to era in each league.\nAsks whether pay follows value: salary as a share of the cap, compared within contract types (rookie scale, minimum, max), with intervals. A player is called over- or under-paid only when the interval excludes zero.\n\n\nEverything here is association, not causation. The WNBA sample is small (12-13 teams a season), so WNBA estimates carry wide intervals. Pages marked in progress will fill in as each step finishes."
-  },
-  {
-    "objectID": "methods.html",
-    "href": "methods.html",
-    "title": "Methods and validation",
-    "section": "",
-    "text": "Course concept\nWhere it is used\n\n\n\n\nRegularization / partial pooling\nempirical-Bayes shrinkage of every rate and percentage; ridge models\n\n\nClustering, model selection\nK-Means baseline, Gaussian mixtures, BIC + bootstrap stability for k\n\n\nLabel evaluation\nagreement with blind hand labels, Cohen’s kappa, ARI\n\n\nConcept drift\npooled vs per-era fits; rolling-window coefficients\n\n\nTime-aware cross-validation\nforward-chained seasons for net rating and title models\n\n\nGradient boosting + SHAP\nnet-rating model and feature importance\n\n\nCalibration, uncertainty\nbootstrap intervals; probability on the eventual champion\n\n\nText preprocessing, TF-IDF, embeddings, topic models, zero-shot labels\nStep 4, in progress"
-  },
-  {
-    "objectID": "methods.html#small-sample-adjustment-beats-per-36",
-    "href": "methods.html#small-sample-adjustment-beats-per-36",
-    "title": "Methods and validation",
-    "section": "Small-sample adjustment beats per-36",
-    "text": "Small-sample adjustment beats per-36\nSplit-half test: fit on one half of a player’s season, predict the other half. Deviance relative to raw rates (negative = better).\n\n\n\n\n\nleague\neb_pooled\neb_season\nper36\nraw\nridge\n\n\n\n\nNBA\n-20.8\n-20.8\n0.2\n0\n-28.7\n\n\nWNBA\n-16.7\n-17\n0.6\n0\n-19.8"
-  },
-  {
-    "objectID": "methods.html#net-rating-from-roster-mix-out-of-time-r²",
-    "href": "methods.html#net-rating-from-roster-mix-out-of-time-r²",
-    "title": "Methods and validation",
-    "section": "Net rating from roster mix (out-of-time R²)",
-    "text": "Net rating from roster mix (out-of-time R²)\n\n\n\n\n\n\n\n\n\n\n\n\n\nleague\nfeatures\nmodel\ntest_seasons\nr2_out_of_time\nrmse\n\n\n\n\nNBA\nstyle\nridge\n15\n0.442\n3.645\n\n\nNBA\nstyle\ngbm\n15\n0.408\n3.754\n\n\nNBA\nstyle\nseason_mean\n15\n0\n4.878\n\n\nNBA\nstyle+efficiency\nridge\n15\n0.605\n3.066\n\n\nNBA\nstyle+efficiency\ngbm\n15\n0.579\n3.167\n\n\nNBA\nstyle+efficiency\nseason_mean\n15\n0\n4.878\n\n\nWNBA\nstyle\nridge\n10\n0.121\n6.641\n\n\nWNBA\nstyle\ngbm\n10\n0.09\n6.757\n\n\nWNBA\nstyle\nseason_mean\n10\n0\n7.084\n\n\nWNBA\nstyle+efficiency\nridge\n10\n0.433\n5.336\n\n\nWNBA\nstyle+efficiency\ngbm\n10\n0.447\n5.265\n\n\nWNBA\nstyle+efficiency\nseason_mean\n10\n0\n7.084"
+    "objectID": "salary.html#salary-coverage",
+    "href": "salary.html#salary-coverage",
+    "title": "Salary value",
+    "section": "Salary coverage",
+    "text": "Salary coverage\nShare of minutes played by players with a known salary."
   },
   {
     "objectID": "championships.html",
@@ -112,18 +70,25 @@
     "text": "Can roster composition alone pick champions?\nThe same forward-chained test with no net rating, win % or team ratings: only archetype mix, player efficiency, stars, age, defensive stats, and which players were available for the playoffs.\n\n\nNBA\n\n\n\n\n\n\n\n\n\nmodel\navg prob. on champion\nchampion ranked 1st\nchampion in top 3\n\n\n\n\nnet rating only (reference)\n0.15\n0.33\n0.6\n\n\narchetype mix\n0.07\n0.07\n0.2\n\n\nplayer quality (efficiency vs role, stars)\n0.08\n0.13\n0.27\n\n\nmix + quality\n0.08\n0.07\n0.2\n\n\nmix + quality + stats (age, shot diet, defense)\n0.1\n0.07\n0.33\n\n\nplayoff-available roster: mix + quality + stats\n0.11\n0.2\n0.47\n\n\ntwo-stage: composition -&gt; predicted net -&gt; title\n0.09\n0.13\n0.53\n\n\n\n\n\nWNBA\n\n\n\n\n\n\n\n\n\nmodel\navg prob. on champion\nchampion ranked 1st\nchampion in top 3\n\n\n\n\nnet rating only (reference)\n0.3\n0.7\n0.8\n\n\narchetype mix\n0.16\n0.3\n0.5\n\n\nplayer quality (efficiency vs role, stars)\n0.21\n0.3\n0.8\n\n\nmix + quality\n0.18\n0.2\n0.4\n\n\nmix + quality + stats (age, shot diet, defense)\n0.2\n0.2\n0.7\n\n\nplayoff-available roster: mix + quality + stats\n0.25\n0.3\n0.8\n\n\ntwo-stage: composition -&gt; predicted net -&gt; title\n0.16\n0.2\n0.5\n\n\n\n\n\nRoster-only models beat a random pick but not net rating yet. The strongest one counts only players available for the playoffs.\n\nIn progress: lineup eras (small ball, double bigs), playoff-available rosters, team defensive profiles, and roster age and size."
   },
   {
-    "objectID": "salary.html",
-    "href": "salary.html",
-    "title": "Salary value",
+    "objectID": "archetypes.html",
+    "href": "archetypes.html",
+    "title": "Player archetypes",
     "section": "",
-    "text": "Note\n\n\n\nIn progress (Step 6). This page will show salary as a share of the cap against on-court value, compared within contract types, with intervals and an injury-availability adjustment."
+    "text": "Six style archetypes are fitted jointly on both leagues, with each feature measured relative to its own league and season. Sub-types split each archetype further (e.g. Alpha scorer, Floor general and Shot-making scorer inside On-ball creator)."
   },
   {
-    "objectID": "salary.html#salary-coverage",
-    "href": "salary.html#salary-coverage",
-    "title": "Salary value",
-    "section": "Salary coverage",
-    "text": "Salary coverage\nShare of minutes played by players with a known salary."
+    "objectID": "archetypes.html#how-the-mix-has-shifted",
+    "href": "archetypes.html#how-the-mix-has-shifted",
+    "title": "Player archetypes",
+    "section": "How the mix has shifted",
+    "text": "How the mix has shifted\nShare of all minutes played by each archetype, by season."
+  },
+  {
+    "objectID": "archetypes.html#how-trustworthy-are-the-labels",
+    "href": "archetypes.html#how-trustworthy-are-the-labels",
+    "title": "Player archetypes",
+    "section": "How trustworthy are the labels?",
+    "text": "How trustworthy are the labels?\n\n\n\n\n\n\n\n\n\n\n\ncheck\nestimate\n95% range\nhow_to_read\n\n\n\n\nBase archetype stability (bootstrap ARI, 10 resamples)\n0.95\n0.92 to 0.98\n1 = identical clusters on resampled data; &gt;0.9 is very stable\n\n\nSub-type stability (bootstrap ARI, range over 6 archetypes)\n0.88\n0.79 to 0.95\nlo/hi = weakest and strongest archetype split\n\n\nNBA: same archetype next season (same team, 1000+ min both years)\n0.8\n0.78 to 0.81\nroles persist but can evolve; ~0.6-0.8 is healthy\n\n\nWNBA: same archetype next season (same team, 1000+ min both years)\n0.75\n0.67 to 0.82\nroles persist but can evolve; ~0.6-0.8 is healthy\n\n\nNBA: pooled model vs NBA-only model (ARI, 500+ min)\n0.97\n\n1 = the joint model sorts players exactly as a league-only model\n\n\nWNBA: pooled model vs WNBA-only model (ARI, 500+ min)\n0.55\n\n1 = the joint model sorts players exactly as a league-only model\n\n\nDrift: early-seasons model applied to later seasons vs full model (ARI, 500+ min)\n0.86\n\nearly = NBA &lt;=2013-14, WNBA &lt;=2017; high = archetype definitions stable over time\n\n\nHand labels v1 - archetype agreement, all (TUNING set)\n0.52\n0.40 to 0.64\nchance ~0.17; kappa 0.41; top-2 0.59\n\n\nHand labels v1 - archetype agreement, NBA (TUNING set)\n0.59\n0.44 to 0.75\nchance ~0.17; kappa 0.50; top-2 0.62\n\n\nHand labels v1 - archetype agreement, WNBA (TUNING set)\n0.44\n0.27 to 0.61\nchance ~0.17; kappa 0.31; top-2 0.56\n\n\nHand labels v1 - archetype agreement, defined players (TUNING set)\n0.54\n0.38 to 0.71\nchance ~0.17; kappa 0.42; top-2 0.66\n\n\nHand labels v1 - archetype agreement, blended players (TUNING set)\n0.45\n0.25 to 0.66\nchance ~0.17; kappa 0.31; top-2 0.45\n\n\nHand labels v2 - archetype agreement, all (UNTOUCHED check)\n0.4\n0.28 to 0.53\nchance ~0.17; kappa 0.29; top-2 0.51\n\n\nHand labels v2 - archetype agreement, NBA (UNTOUCHED check)\n0.55\n0.37 to 0.73\nchance ~0.17; kappa 0.46; top-2 0.62\n\n\nHand labels v2 - archetype agreement, WNBA (UNTOUCHED check)\n0.25\n0.09 to 0.41\nchance ~0.17; kappa 0.11; top-2 0.39\n\n\nHand labels v2 - archetype agreement, defined players (UNTOUCHED check)\n0.45\n0.28 to 0.63\nchance ~0.17; kappa 0.34; top-2 0.55\n\n\nHand labels v2 - archetype agreement, blended players (UNTOUCHED check)\n0.26\n0.07 to 0.46\nchance ~0.17; kappa 0.09; top-2 0.42\n\n\nNBA: archetype changes, same team, half 1 vs 2\n0.17\n0.16 to 0.18\ntrades should change roles more often than the same-team baseline\n\n\nNBA: archetype changes, after trade\n0.28\n0.24 to 0.32\ntrades should change roles more often than the same-team baseline\n\n\nWNBA: archetype changes, same team, half 1 vs 2\n0.25\n0.22 to 0.27\ntrades should change roles more often than the same-team baseline\n\n\nWNBA: archetype changes, after trade\n0.45\n0.16 to 0.75\ntrades should change roles more often than the same-team baseline\n\n\nNBA: odds ratio of archetype change, trade vs same team (adjusted for segment minutes)\n1.86\n1.53 to 2.25\n&gt;1 means trades change roles beyond sampling noise\n\n\nNBA hustle check: Perimeter stopper forward - deflections (z vs league)\n0.42\n\nindependent NBA.com data (2017-18+); &gt;0 supports a defensive label\n\n\nNBA hustle check: Defensive / connector guard - deflections (z vs league)\n0.45\n\nindependent NBA.com data (2017-18+); &gt;0 supports a defensive label\n\n\nNBA hustle check: Low-usage rim protector - contested 2s (z vs league)\n1.8\n\nindependent NBA.com data (2017-18+); &gt;0 supports a defensive label\n\n\nNBA hustle check: Catch-and-shoot wing - deflections (z vs league)\n-0.74\n\nindependent NBA.com data (2017-18+); &gt;0 supports a defensive label"
   },
   {
     "objectID": "data.html",
@@ -159,5 +124,40 @@
     "title": "Data and coverage",
     "section": "Sources",
     "text": "Sources\n\n\n\n\n\n\n\n\nData\nSource\nUse\n\n\n\n\nBox scores, play-by-play, schedules\nESPN, via the sportsdataverse data releases\nall stats\n\n\nNBA salaries 2000-2025\nowner-supplied files; 2025-26 from ESPN’s salary list; 2026-27 from Basketball-Reference contracts\nsalary value\n\n\nWNBA salaries 2021-2026\nHer Hoop Stats WNBA Salary Cap Database; gaps filled from Spotrac\nsalary value\n\n\nNBA hustle stats\nNBA.com, via the gabriel1200/site_Data mirror\ndefense checks\n\n\nWNBA ages (to 2019)\nFiveThirtyEight WNBA-stats (CC BY 4.0)\nage\n\n\n\n\nRaw source files are not redistributed here. The repository contains the code, a fetch script and aggregated outputs only."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Which player archetypes drive winning, and does pay track that value?",
+    "section": "",
+    "text": "23NBA seasons\n18WNBA seasons\n14,374player-seasons\n6style archetypes, 15 sub-types"
+  },
+  {
+    "objectID": "index.html#what-this-project-does",
+    "href": "index.html#what-this-project-does",
+    "title": "Which player archetypes drive winning, and does pay track that value?",
+    "section": "What this project does",
+    "text": "What this project does\n\nMeasures every player per possession, with small samples pulled toward their position’s average (empirical Bayes), instead of per-36 numbers that overrate short stints.\nGroups players into style archetypes (clustering on shot diet, creation, rebounding and defense), then checks the labels against hand labels and against how players change roles after trades.\nLinks team archetype mix to winning: net rating, playoff resilience and championships, and how the winning formula has drifted from era to era in each league.\nAsks whether pay follows value: salary as a share of the cap, compared within contract types (rookie scale, minimum, max), with intervals. A player is called over- or under-paid only when the interval excludes zero.\n\n\nEverything here is association, not causation. The WNBA sample is small (12-13 teams a season), so WNBA estimates carry wide intervals. Pages marked in progress will fill in as each step finishes."
+  },
+  {
+    "objectID": "methods.html",
+    "href": "methods.html",
+    "title": "Methods and validation",
+    "section": "",
+    "text": "Course concept\nWhere it is used\n\n\n\n\nRegularization / partial pooling\nempirical-Bayes shrinkage of every rate and percentage; ridge models\n\n\nClustering, model selection\nK-Means baseline, Gaussian mixtures, BIC + bootstrap stability for k\n\n\nLabel evaluation\nagreement with blind hand labels, Cohen’s kappa, ARI\n\n\nConcept drift\npooled vs per-era fits; rolling-window coefficients\n\n\nTime-aware cross-validation\nforward-chained seasons for net rating and title models\n\n\nGradient boosting + SHAP\nnet-rating model and feature importance\n\n\nCalibration, uncertainty\nbootstrap intervals; probability on the eventual champion\n\n\nText preprocessing, TF-IDF, embeddings, topic models, zero-shot labels\nStep 4, in progress"
+  },
+  {
+    "objectID": "methods.html#small-sample-adjustment-beats-per-36",
+    "href": "methods.html#small-sample-adjustment-beats-per-36",
+    "title": "Methods and validation",
+    "section": "Small-sample adjustment beats per-36",
+    "text": "Small-sample adjustment beats per-36\nSplit-half test: fit on one half of a player’s season, predict the other half. Deviance relative to raw rates (negative = better).\n\n\n\n\n\nleague\neb_pooled\neb_season\nper36\nraw\nridge\n\n\n\n\nNBA\n-20.8\n-20.8\n0.2\n0\n-28.7\n\n\nWNBA\n-16.7\n-17\n0.6\n0\n-19.8"
+  },
+  {
+    "objectID": "methods.html#net-rating-from-roster-mix-out-of-time-r²",
+    "href": "methods.html#net-rating-from-roster-mix-out-of-time-r²",
+    "title": "Methods and validation",
+    "section": "Net rating from roster mix (out-of-time R²)",
+    "text": "Net rating from roster mix (out-of-time R²)\n\n\n\n\n\n\n\n\n\n\n\n\n\nleague\nfeatures\nmodel\ntest_seasons\nr2_out_of_time\nrmse\n\n\n\n\nNBA\nstyle\nridge\n15\n0.442\n3.645\n\n\nNBA\nstyle\ngbm\n15\n0.408\n3.754\n\n\nNBA\nstyle\nseason_mean\n15\n0\n4.878\n\n\nNBA\nstyle+efficiency\nridge\n15\n0.605\n3.066\n\n\nNBA\nstyle+efficiency\ngbm\n15\n0.579\n3.167\n\n\nNBA\nstyle+efficiency\nseason_mean\n15\n0\n4.878\n\n\nWNBA\nstyle\nridge\n10\n0.121\n6.641\n\n\nWNBA\nstyle\ngbm\n10\n0.09\n6.757\n\n\nWNBA\nstyle\nseason_mean\n10\n0\n7.084\n\n\nWNBA\nstyle+efficiency\nridge\n10\n0.433\n5.336\n\n\nWNBA\nstyle+efficiency\ngbm\n10\n0.447\n5.265\n\n\nWNBA\nstyle+efficiency\nseason_mean\n10\n0\n7.084"
   }
 ]
