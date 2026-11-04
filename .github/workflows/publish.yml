@@ -1,5 +1,5 @@
-# Publishes site/ to GitHub Pages. Charts and tables are pre-rendered locally (Quarto "freeze"),
-# so this job never needs the raw data or Python: it only assembles the committed outputs.
+# Publishes site/ to GitHub Pages. Pages read only the small aggregated tables committed in site/data,
+# so CI can execute any page whose frozen output is stale; it never needs the raw data.
 name: Publish site
 on:
   push:
@@ -12,6 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install jupyter nbformat nbclient pandas==2.2.3 plotly==5.24.1 tabulate
       - uses: quarto-dev/quarto-actions/setup@v2
         with:
           version: 1.6.42
