@@ -103,6 +103,43 @@ for lg in ["NBA", "WNBA"]:
     display(Markdown(f"**{lg}**\n\n" + t.reset_index().to_markdown(index=False)))
 ```
 
+## Champion identity: offense, defense, and archetype mix
+
+Each champion's offense and defense relative to its own league (points per 100 possessions; up and right = better).
+*Offense-led* or *defense-led* when one side's edge beats the other's by 3 or more points; otherwise *balanced*.
+
+```{python}
+ci = read("step5_champion_identity.csv")
+fig = make_subplots(rows=1, cols=2, subplot_titles=("NBA champions", "WNBA champions"), horizontal_spacing=0.1)
+for j, (lg, col) in enumerate(LEAGUE.items(), 1):
+    d = ci[ci.league == lg]
+    fig.add_scatter(x=d.off_edge, y=d.def_edge, mode="markers", name=lg, showlegend=False,
+                    marker=dict(size=10, color=col, line=dict(width=2, color="#fcfcfb")),
+                    customdata=d[["season", "team", "off_rank", "def_rank", "n_teams", "identity"]],
+                    hovertemplate="%{customdata[0]} %{customdata[1]}<br>offense #%{customdata[2]:.0f}, defense #%{customdata[3]:.0f} of %{customdata[4]}<br>%{customdata[5]}<extra></extra>",
+                    row=1, col=j)
+    for _, r in d[d.season >= 2022].iterrows():
+        fig.add_annotation(x=r.off_edge, y=r.def_edge, text=f"{r.team} {r.season % 100:02d}", showarrow=False,
+                           yshift=13, font=dict(size=11), row=1, col=j)
+    fig.add_hline(y=0, line=dict(color="#8a8984", width=1), row=1, col=j)
+    fig.add_vline(x=0, line=dict(color="#8a8984", width=1), row=1, col=j)
+fig.update_xaxes(title_text="offense edge vs league"); fig.update_yaxes(title_text="defense edge vs league", col=1)
+fig.update_layout(height=420, hovermode="closest")
+show(fig)
+```
+
+Champions' archetype minutes share minus the league average, by era (percentage points).
+
+```{python}
+ci["era"] = pd.cut(ci.season, [2003, 2010, 2016, 2021, 2026], labels=["2004-10", "2011-16", "2017-21", "2022-26"])
+arch = [c for c in ci.columns if c.startswith("arch_vs_league::")]
+for lg in ["NBA", "WNBA"]:
+    g = ci[ci.league == lg].groupby("era", observed=True)
+    t = (g[arch].mean() * 100).round(1).rename(columns=lambda c: c.split("::")[1])
+    t.insert(0, "identity mix", g.identity.agg(lambda s: ", ".join(f"{k} {v}" for k, v in s.value_counts().items())))
+    display(Markdown(f"**{lg}**\n\n" + t.reset_index().to_markdown(index=False)))
+```
+
 ## Champion ingredients by era
 
 Share of champions with each loosely defined ingredient. They're meant to show drift, not to be a recipe.
@@ -127,6 +164,22 @@ t.columns = ["league", "model", "test seasons", "log-lik (champion)", "log-lik (
 for lg in ["NBA", "WNBA"]:
     display(Markdown(f"**{lg}**\n\n" + t[t.league == lg].drop(columns="league").round(3).to_markdown(index=False)))
 ```
+
+## Can roster composition alone pick champions?
+
+The same forward-chained test with **no net rating, win % or team ratings**: only archetype mix, player
+efficiency, stars, age, defensive stats, and which players were available for the playoffs.
+
+```{python}
+nn = read("step5_title_no_net_cv.csv")
+nn = nn[["league", "model", "mean_prob_on_champion", "champion_ranked_1st", "champion_in_top3"]]
+nn.columns = ["league", "model", "avg prob. on champion", "champion ranked 1st", "champion in top 3"]
+for lg in ["NBA", "WNBA"]:
+    display(Markdown(f"**{lg}**\n\n" + nn[nn.league == lg].drop(columns="league").round(2).to_markdown(index=False)))
+```
+
+Roster-only models beat a random pick but not net rating yet. The strongest one counts only players available
+for the playoffs.
 
 ::: {.caveat}
 *In progress:* lineup eras (small ball, double bigs), playoff-available rosters, team defensive profiles,

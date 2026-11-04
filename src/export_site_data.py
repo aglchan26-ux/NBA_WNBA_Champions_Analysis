@@ -20,7 +20,7 @@ COPY = [
     "step3_subtypes.csv", "step5_champions_by_era.csv", "step5_playoff_zone_by_season.csv",
     "step5_playoff_zone_resilience.csv", "step5_B_title_cv.csv", "step5_A_netrating_cv.csv",
     "step5_A_ridge_coefs.csv", "step5_league_profiles.csv", "step5_wnba_years_behind.csv",
-    "step5_champion_vs_league.csv", "step5_C_drift_windows.csv", "step5_checklist_by_group.csv",
+    "step5_champion_vs_league.csv", "step5_champion_identity.csv", "step5_title_no_net_cv.csv", "step5_C_drift_windows.csv", "step5_checklist_by_group.csv",
 ]
 
 

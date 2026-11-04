@@ -54,6 +54,28 @@ def lag_by_feature(lg: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def champion_identity(ts: pd.DataFrame) -> pd.DataFrame:
+    """Where each champion sat on offense and defense relative to its own league that regular season.
+    identity: offense-led / defense-led when one side's edge exceeds the other's by >= 3 points per 100
+    possessions; otherwise balanced. Ranks are within the league-season (1 = best)."""
+    ts = ts.copy()
+    g = ts.groupby(["league", "season"])
+    ts["off_edge"] = ts.ortg - g.ortg.transform("mean")          # + = better offense
+    ts["def_edge"] = g.drtg.transform("mean") - ts.drtg          # + = better defense
+    ts["off_rank"] = g.ortg.rank(ascending=False, method="min")
+    ts["def_rank"] = g.drtg.rank(ascending=True, method="min")
+    ts["n_teams"] = g.team_id.transform("count")
+    c = ts[ts.champion == 1].copy()
+    gap = c.off_edge - c.def_edge
+    c["identity"] = np.select([gap >= 3, gap <= -3], ["offense-led", "defense-led"], "balanced")
+    arch = [x for x in ts.columns if x.startswith("arch_share::")]
+    lg_arch = g[arch].transform("mean")
+    for a in arch:
+        c[a.replace("arch_share::", "arch_vs_league::")] = (ts[a] - lg_arch[a]).loc[c.index]
+    keep = ["league", "season", "team", "off_edge", "def_edge", "off_rank", "def_rank", "n_teams", "identity"]
+    return c[keep + [x for x in c.columns if x.startswith("arch_vs_league::")]]
+
+
 def main() -> None:
     t = pd.read_parquet(PROC / "team_offense_zones.parquet")
     t = t[t.season_type == "regular"]
@@ -81,6 +103,7 @@ def main() -> None:
                      "nba_equiv_lo90": int(np.percentile(boots, 5)), "nba_equiv_hi90": int(np.percentile(boots, 95)),
                      "distance": round(float(d.min()), 2)})
     em = pd.DataFrame(rows)
+    champion_identity(ts).to_csv(RESULTS / "step5_champion_identity.csv", index=False)
     em.to_csv(RESULTS / "step5_wnba_nba_era_match.csv", index=False)
 
     champs = ts[ts.champion == 1][["league", "season", "team_id", "team"]]
