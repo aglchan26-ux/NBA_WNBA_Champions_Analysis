@@ -1,37 +1,37 @@
 league,feature,mean_abs_shap
-NBA,usage_concentration_z,2.114463371242993
-NBA,C4_perimeter_d_share_z,0.7669375420115107
-NBA,arch_share::Spot-up 3-and-D wing_z,0.7385202389324143
-NBA,team_three_diet_z,0.47952146091481573
-NBA,shooter_share_z,0.40970905583908424
-NBA,arch_share::On-ball creator_z,0.3743204951050268
-NBA,C3_spacing_big_share_z,0.24015682683844103
-NBA,arch_share::Rim-running big_z,0.2000848461705678
-NBA,n_high_usage_z,0.16570291167624981
-NBA,arch_share::Hub big / point forward_z,0.15398917929537098
-NBA,usage_concentration_z2,0.15170789299825302
-NBA,arch_share::Secondary guard_z,0.14583628152646233
-NBA,team_rim_diet_z2,0.14496951636669406
-NBA,team_three_diet_z2,0.13395706950385108
-NBA,rim_protector_share_z,0.11542303796319174
-NBA,team_rim_diet_z,0.07888873532791807
-NBA,C2_secondary_scorer_z,0.02729056950779092
-NBA,C1_primary_scorer_z,0.020797201893325883
-WNBA,usage_concentration_z,2.1180818895849765
-WNBA,arch_share::On-ball creator_z,1.2121572082806271
-WNBA,rim_protector_share_z,0.658377513868065
-WNBA,team_rim_diet_z2,0.6493551694623273
-WNBA,team_rim_diet_z,0.5700752304705998
-WNBA,arch_share::Secondary guard_z,0.5326288172702593
-WNBA,arch_share::Rim-running big_z,0.5234063141413644
-WNBA,team_three_diet_z,0.4962495208412808
-WNBA,shooter_share_z,0.46993151523958976
-WNBA,C3_spacing_big_share_z,0.4201212800984182
-WNBA,C4_perimeter_d_share_z,0.4194778055853616
-WNBA,arch_share::Spot-up 3-and-D wing_z,0.4086471331848244
-WNBA,arch_share::Hub big / point forward_z,0.3986863627381763
-WNBA,usage_concentration_z2,0.326231825621084
-WNBA,C1_primary_scorer_z,0.2798042400858793
-WNBA,n_high_usage_z,0.2551690171360637
-WNBA,team_three_diet_z2,0.14461034057859642
-WNBA,C2_secondary_scorer_z,0.12994362042084073
+NBA,usage_concentration_z,2.070572883468337
+NBA,C4_perimeter_d_share_z,0.7673938051033717
+NBA,arch_share::Spot-up 3-and-D wing_z,0.6637648541120941
+NBA,team_three_diet_z,0.48114936121134133
+NBA,shooter_share_z,0.39608670553032493
+NBA,arch_share::On-ball creator_z,0.35253353871462734
+NBA,C3_spacing_big_share_z,0.22034880321488445
+NBA,arch_share::Rim-running big_z,0.2091561979146633
+NBA,arch_share::Secondary guard_z,0.18262883383702375
+NBA,usage_concentration_z2,0.17448194483543716
+NBA,n_high_usage_z,0.15199500103469823
+NBA,arch_share::Hub big / point forward_z,0.1396021212609856
+NBA,rim_protector_share_z,0.13953829054856623
+NBA,team_three_diet_z2,0.1213571958443455
+NBA,team_rim_diet_z2,0.1031525083774696
+NBA,team_rim_diet_z,0.09043740695387634
+NBA,C2_secondary_scorer_z,0.03510425267701245
+NBA,C1_primary_scorer_z,0.032288369807680545
+WNBA,usage_concentration_z,2.3297099127217886
+WNBA,arch_share::On-ball creator_z,1.2962185069254861
+WNBA,rim_protector_share_z,0.6973317665236752
+WNBA,arch_share::Secondary guard_z,0.6030703630690954
+WNBA,arch_share::Hub big / point forward_z,0.5309779150654994
+WNBA,team_rim_diet_z2,0.45519321406185204
+WNBA,team_three_diet_z,0.4433152360517589
+WNBA,usage_concentration_z2,0.4421367204982605
+WNBA,C3_spacing_big_share_z,0.43489658429247124
+WNBA,team_rim_diet_z,0.4341777406265895
+WNBA,C4_perimeter_d_share_z,0.4113505542749099
+WNBA,shooter_share_z,0.3948345139302586
+WNBA,n_high_usage_z,0.3628231444268574
+WNBA,arch_share::Rim-running big_z,0.33261780115586365
+WNBA,C1_primary_scorer_z,0.3180829386185562
+WNBA,arch_share::Spot-up 3-and-D wing_z,0.3069446834074122
+WNBA,team_three_diet_z2,0.22739215662316503
+WNBA,C2_secondary_scorer_z,0.12901097157441566
