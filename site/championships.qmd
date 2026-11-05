@@ -24,7 +24,7 @@ playoffs. Each league is shown on its own.
 ```{python}
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-from IPython.display import Markdown
+from _viz import md
 from _viz import show, read, SERIES, end_labels
 z = read("step5_playoff_zone_by_season.csv")
 zones = ["three", "rim", "paint / short mid", "long mid"]
@@ -46,7 +46,7 @@ r["95% interval"] = [f"{lo:+.3f} to {hi:+.3f}" for lo, hi in zip(r.lo95, r.hi95)
 r["seasons worse in playoffs"] = r.seasons_worse_in_playoffs.map(lambda x: f"{x:.0%}")
 r["avg change"] = r.pps_change.map(lambda x: f"{x:+.3f}")
 for lg in ["NBA", "WNBA"]:
-    display(Markdown(f"**{lg}**\n\n" + r[r.league == lg][["zone", "seasons", "avg change", "95% interval", "seasons worse in playoffs"]].to_markdown(index=False)))
+    md(f"**{lg}**\n\n" + r[r.league == lg][["zone", "seasons", "avg change", "95% interval", "seasons worse in playoffs"]].to_markdown(index=False))
 ```
 
 ## Which era is each league in?
@@ -100,7 +100,7 @@ for lg in ["NBA", "WNBA"]:
     g = c[c.league == lg].groupby("era", observed=True)
     t = (g[list(cols)].mean() * 100).round(1).rename(columns=cols)
     t.insert(0, "champions", g.size())
-    display(Markdown(f"**{lg}**\n\n" + t.reset_index().to_markdown(index=False)))
+    md(f"**{lg}**\n\n" + t.reset_index().to_markdown(index=False))
 ```
 
 ## Champion identity: offense, defense, and archetype mix
@@ -137,7 +137,7 @@ for lg in ["NBA", "WNBA"]:
     g = ci[ci.league == lg].groupby("era", observed=True)
     t = (g[arch].mean() * 100).round(1).rename(columns=lambda c: c.split("::")[1])
     t.insert(0, "identity mix", g.identity.agg(lambda s: ", ".join(f"{k} {v}" for k, v in s.value_counts().items())))
-    display(Markdown(f"**{lg}**\n\n" + t.reset_index().to_markdown(index=False)))
+    md(f"**{lg}**\n\n" + t.reset_index().to_markdown(index=False))
 ```
 
 ## Champion ingredients by era
@@ -149,7 +149,7 @@ e = read("step5_champions_by_era.csv")
 cols = {"C1_primary_scorer": "primary scorer", "C2_secondary_scorer": "secondary scorer", "C3_spacing_big": "spacing big",
         "C4_perimeter_d": "perimeter defender", "n_high_usage": "high-usage players"}
 for lg in ["NBA", "WNBA"]:
-    display(Markdown(f"**{lg}**\n\n" + e[e.league == lg][["era", *cols]].rename(columns=cols).round(2).to_markdown(index=False)))
+    md(f"**{lg}**\n\n" + e[e.league == lg][["era", *cols]].rename(columns=cols).round(2).to_markdown(index=False))
 ```
 
 ## Does roster mix predict titles better than team strength?
@@ -162,7 +162,7 @@ t = read("step5_B_title_cv.csv")
 t = t[["league", "model", "test_seasons", "mean_loglik_champion", "uniform_baseline_loglik", "mean_prob_on_champion"]]
 t.columns = ["league", "model", "test seasons", "log-lik (champion)", "log-lik (random pick)", "avg prob. on champion"]
 for lg in ["NBA", "WNBA"]:
-    display(Markdown(f"**{lg}**\n\n" + t[t.league == lg].drop(columns="league").round(3).to_markdown(index=False)))
+    md(f"**{lg}**\n\n" + t[t.league == lg].drop(columns="league").round(3).to_markdown(index=False))
 ```
 
 ## Can roster composition alone pick champions?
@@ -175,7 +175,7 @@ nn = read("step5_title_no_net_cv.csv")
 nn = nn[["league", "model", "mean_prob_on_champion", "champion_ranked_1st", "champion_in_top3"]]
 nn.columns = ["league", "model", "avg prob. on champion", "champion ranked 1st", "champion in top 3"]
 for lg in ["NBA", "WNBA"]:
-    display(Markdown(f"**{lg}**\n\n" + nn[nn.league == lg].drop(columns="league").round(2).to_markdown(index=False)))
+    md(f"**{lg}**\n\n" + nn[nn.league == lg].drop(columns="league").round(2).to_markdown(index=False))
 ```
 
 Roster-only models beat a random pick but not net rating yet. The strongest one counts only players available

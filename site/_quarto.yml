@@ -35,10 +35,13 @@ format:
     code-fold: true
     code-summary: "Show code"
     include-in-header:
-      - text: '<script src="js/plotly.min.js"></script>'
+      # Quarto also loads require.js; with it present plotly.js registers as an AMD module and never sets
+      # window.Plotly, so the charts fail. Hide `define` while plotly.js loads, then restore it.
+      - text: '<script>window.__amd_define = window.define; window.define = undefined;</script><script src="js/plotly.min.js"></script><script>window.define = window.__amd_define;</script>'
     include-after-body: plotly-theme.html
 
 execute:
+  output: asis      # cells print raw HTML / markdown (see _viz.show)
   freeze: auto      # outputs are rendered locally (with the data) and committed; CI never needs the raw data
   echo: false
   warning: false

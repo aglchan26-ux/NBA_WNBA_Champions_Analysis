@@ -30,10 +30,19 @@ def line(fig: go.Figure, x, y, name: str, color: str, **kw) -> None:
                     marker=dict(size=8, color=color, line=dict(width=2, color="rgba(252,252,251,1)")), **kw)
 
 
-def show(fig: go.Figure):
-    """Embed a chart as plain HTML; plotly.js is served from the site (js/plotly.min.js)."""
-    from IPython.display import HTML
-    return HTML(fig.to_html(full_html=False, include_plotlyjs=False, config={"displaylogo": False, "responsive": True}))
+def show(fig: go.Figure) -> None:
+    """Print a chart as a raw HTML block (cells run with `output: asis`). Emitting it as Jupyter HTML would
+    make Quarto add require.js, which stops plotly.js (and Quarto's search) from setting their globals."""
+    html = fig.to_html(full_html=False, include_plotlyjs=False, config={"displaylogo": False, "responsive": True})
+    print("\n```{=html}\n" + html + "\n```\n")
+
+
+def raw_html(html: str) -> None:
+    print("\n```{=html}\n" + html + "\n```\n")
+
+
+def md(text: str) -> None:
+    print("\n" + text + "\n")
 
 
 def end_labels(fig: go.Figure, ends: dict, x, min_gap: float) -> None:

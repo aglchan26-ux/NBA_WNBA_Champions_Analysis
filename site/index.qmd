@@ -9,8 +9,8 @@ from _viz import read
 c = read("data_completeness_by_season.csv")
 p = read("participation_summary.csv").set_index("league")
 nba_seasons = (c.league == "NBA").sum(); wnba_seasons = (c.league == "WNBA").sum()
-from IPython.display import HTML
-HTML(f"""<div class="stat-row">
+from _viz import raw_html
+raw_html(f"""<div class="stat-row">
 <div class="stat"><div class="num">{nba_seasons}</div><div class="lbl">NBA seasons</div></div>
 <div class="stat"><div class="num">{wnba_seasons}</div><div class="lbl">WNBA seasons</div></div>
 <div class="stat"><div class="num">{int(p.player_seasons.sum()):,}</div><div class="lbl">player-seasons</div></div>

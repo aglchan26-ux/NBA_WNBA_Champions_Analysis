@@ -34,8 +34,8 @@ show(fig)
 ## How trustworthy are the labels?
 
 ```{python}
-from IPython.display import Markdown
+from _viz import md
 v = read("step3_validation_summary.csv")
 v["estimate"] = v.estimate.round(2); v["95% range"] = [("" if lo != lo else f"{lo:.2f} to {hi:.2f}") for lo, hi in zip(v.lo95, v.hi95)]
-Markdown(v[["check", "estimate", "95% range", "how_to_read"]].to_markdown(index=False))
+md(v[["check", "estimate", "95% range", "how_to_read"]].to_markdown(index=False))
 ```

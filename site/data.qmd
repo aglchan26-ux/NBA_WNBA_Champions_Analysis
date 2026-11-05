@@ -47,12 +47,12 @@ the data but do not shape the archetypes, labels or value rankings. Players who 
 are not counted on their team's playoff roster.
 
 ```{python}
-from IPython.display import Markdown
+from _viz import md
 p = read("participation_summary.csv")
 p = p.rename(columns={"player_seasons": "player-seasons", "not_counted": "not counted", "injury_exempt": "kept by injury rule",
                       "likely_season_ending": "likely season-ending", "absent_playoffs": "missed playoffs",
                       "minutes_not_counted_pct": "% minutes not counted"})
-Markdown(p.to_markdown(index=False))
+md(p.to_markdown(index=False))
 ```
 
 ## Sources

@@ -19,16 +19,16 @@ Split-half test: fit on one half of a player's season, predict the other half. D
 (negative = better).
 
 ```{python}
-from IPython.display import Markdown
+from _viz import md
 from _viz import read
 v = read("step2_validation.csv")
 v = v[(v.test == "split_half")].groupby(["league", "method"]).vs_raw_pct.median().unstack().round(1)
-Markdown(v.to_markdown())
+md(v.to_markdown())
 ```
 
 ## Net rating from roster mix (out-of-time R²)
 
 ```{python}
 n = read("step5_A_netrating_cv.csv")
-Markdown(n[["league", "features", "model", "test_seasons", "r2_out_of_time", "rmse"]].round(3).to_markdown(index=False))
+md(n[["league", "features", "model", "test_seasons", "r2_out_of_time", "rmse"]].round(3).to_markdown(index=False))
 ```
