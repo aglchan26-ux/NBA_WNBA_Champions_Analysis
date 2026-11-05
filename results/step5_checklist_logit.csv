@@ -4,14 +4,14 @@ NBA,champ ~ net_rating + checklist_score,net_rating,1.4784538568600498,1.0706198
 NBA,champ ~ net_rating + checklist_score,checklist_score,1.9316970489949066,0.7056589332719642,5.287899455610677,92,16,16
 NBA,champ ~ net_rating + n_high_usage,net_rating,1.4892030086773467,1.0887230423511918,2.0369970275124247,92,16,16
 NBA,champ ~ net_rating + n_high_usage,n_high_usage,1.6126542887006075,0.6802645874066958,3.8230034357347233,92,16,16
-NBA,champ ~ net_rating + C3_spacing_big_share + C4_perimeter_d_share,net_rating,1.4338918174197146,1.0253948597000806,2.005125854311956,92,16,16
-NBA,champ ~ net_rating + C3_spacing_big_share + C4_perimeter_d_share,C3_spacing_big_share,162.961094049067,0.06787379251859628,391260.2668606277,92,16,16
-NBA,champ ~ net_rating + C3_spacing_big_share + C4_perimeter_d_share,C4_perimeter_d_share,723.7340703984555,1.0577379600261416,495199.21232908306,92,16,16
+NBA,champ ~ net_rating + C3_spacing_big_share + C4_perimeter_d_share,net_rating,1.4536007037289942,1.0433794428559642,2.025106992809629,92,16,16
+NBA,champ ~ net_rating + C3_spacing_big_share + C4_perimeter_d_share,C3_spacing_big_share,89.54444445220582,0.033802333563957315,237208.69794634,92,16,16
+NBA,champ ~ net_rating + C3_spacing_big_share + C4_perimeter_d_share,C4_perimeter_d_share,334.7715757310117,0.7255678348951258,154461.10277700427,92,16,16
 WNBA,champ ~ net_rating,net_rating,1.5178633095874001,1.2182126499415866,1.8912207377768473,72,16,16
-WNBA,champ ~ net_rating + checklist_score,net_rating,1.5033803585533811,1.2069986957608219,1.8725393079728425,72,16,16
-WNBA,champ ~ net_rating + checklist_score,checklist_score,1.4489920908045102,0.6341635772836637,3.310783139276504,72,16,16
+WNBA,champ ~ net_rating + checklist_score,net_rating,1.5025997681295344,1.2060281239549075,1.8721006735555596,72,16,16
+WNBA,champ ~ net_rating + checklist_score,checklist_score,1.6569482046225439,0.6909811036917867,3.973303087643474,72,16,16
 WNBA,champ ~ net_rating + n_high_usage,net_rating,1.5375253234024133,1.2296766073220162,1.9224437596255235,72,16,16
 WNBA,champ ~ net_rating + n_high_usage,n_high_usage,1.7194474717343458,0.6281042920748626,4.707020227942104,72,16,16
-WNBA,champ ~ net_rating + C3_spacing_big_share + C4_perimeter_d_share,net_rating,1.521205638472124,1.2150331044300886,1.904529667613291,72,16,16
-WNBA,champ ~ net_rating + C3_spacing_big_share + C4_perimeter_d_share,C3_spacing_big_share,46.402998704249555,0.01966201069366254,109512.61914635308,72,16,16
-WNBA,champ ~ net_rating + C3_spacing_big_share + C4_perimeter_d_share,C4_perimeter_d_share,11.081662695336057,0.022880300602404337,5367.204313753559,72,16,16
+WNBA,champ ~ net_rating + C3_spacing_big_share + C4_perimeter_d_share,net_rating,1.5277333075754316,1.2201189609218823,1.9129028675301438,72,16,16
+WNBA,champ ~ net_rating + C3_spacing_big_share + C4_perimeter_d_share,C3_spacing_big_share,142.38198177365425,0.05559501510109173,364648.3177840723,72,16,16
+WNBA,champ ~ net_rating + C3_spacing_big_share + C4_perimeter_d_share,C4_perimeter_d_share,12.22429969943856,0.024480587563725124,6104.16325803885,72,16,16

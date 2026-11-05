@@ -1,11 +1,11 @@
 check,estimate,lo95,hi95,n,how_to_read
-"Base archetype stability (bootstrap ARI, 10 resamples)",0.9533915052898179,0.9241208279763392,0.9760860025554093,14374,1 = identical clusters on resampled data; >0.9 is very stable
-"Sub-type stability (bootstrap ARI, range over 6 archetypes)",0.8845353791391213,0.7879011605347714,0.9497741294260597,15,lo/hi = weakest and strongest archetype split
-"NBA: same archetype next season (same team, 1000+ min both years)",0.7974413646055437,0.78259162679186,0.8122911024192274,2814,roles persist but can evolve; ~0.6-0.8 is healthy
-"WNBA: same archetype next season (same team, 1000+ min both years)",0.7479674796747967,0.6712360721464516,0.8246988872031418,123,roles persist but can evolve; ~0.6-0.8 is healthy
-"NBA: pooled model vs NBA-only model (ARI, 500+ min)",0.9729159395818019,,,7993,1 = the joint model sorts players exactly as a league-only model
-"WNBA: pooled model vs WNBA-only model (ARI, 500+ min)",0.5526952302694378,,,1521,1 = the joint model sorts players exactly as a league-only model
-"Drift: early-seasons model applied to later seasons vs full model (ARI, 500+ min)",0.8623274328181618,,,5117,"early = NBA <=2013-14, WNBA <=2017; high = archetype definitions stable over time"
+"Base archetype stability (bootstrap ARI, 10 resamples)",0.953786949446679,0.9142041993871238,0.975255926096684,14374,1 = identical clusters on resampled data; >0.9 is very stable
+"Sub-type stability (bootstrap ARI, range over 6 archetypes)",0.8940875015048075,0.6973104103202725,0.945942361327039,15,lo/hi = weakest and strongest archetype split
+"NBA: same archetype next season (same team, 1000+ min both years)",0.7953091684434968,0.7804014488770371,0.8102168880099564,2814,roles persist but can evolve; ~0.6-0.8 is healthy
+"WNBA: same archetype next season (same team, 1000+ min both years)",0.7560975609756098,0.680204773245062,0.8319903487061575,123,roles persist but can evolve; ~0.6-0.8 is healthy
+"NBA: pooled model vs NBA-only model (ARI, 500+ min)",0.9656487144601187,,,7993,1 = the joint model sorts players exactly as a league-only model
+"WNBA: pooled model vs WNBA-only model (ARI, 500+ min)",0.45076209549567214,,,1521,1 = the joint model sorts players exactly as a league-only model
+"Drift: early-seasons model applied to later seasons vs full model (ARI, 500+ min)",0.8517481497686664,,,5117,"early = NBA <=2013-14, WNBA <=2017; high = archetype definitions stable over time"
 "Hand labels v1 - archetype agreement, all (TUNING set)",0.5211267605633803,0.40492602723739457,0.6373274938893659,71,chance ~0.17; kappa 0.41; top-2 0.59
 "Hand labels v1 - archetype agreement, NBA (TUNING set)",0.5945945945945946,0.43639314624245384,0.7527960429467354,37,chance ~0.17; kappa 0.50; top-2 0.62
 "Hand labels v1 - archetype agreement, WNBA (TUNING set)",0.4411764705882353,0.2742750144182945,0.6080779267581761,34,chance ~0.17; kappa 0.31; top-2 0.56
@@ -16,12 +16,12 @@ check,estimate,lo95,hi95,n,how_to_read
 "Hand labels v2 - archetype agreement, WNBA (UNTOUCHED check)",0.25,0.08960985067654562,0.4103901493234544,28,chance ~0.17; kappa 0.11; top-2 0.39
 "Hand labels v2 - archetype agreement, defined players (UNTOUCHED check)",0.4516129032258064,0.276425849356399,0.6267999570952137,31,chance ~0.17; kappa 0.34; top-2 0.55
 "Hand labels v2 - archetype agreement, blended players (UNTOUCHED check)",0.2631578947368421,0.06515356367607467,0.4611622257976095,19,chance ~0.17; kappa 0.09; top-2 0.42
-"NBA: archetype changes, same team, half 1 vs 2",0.1686311488291686,0.1594310840879713,0.1778312135703659,6363,trades should change roles more often than the same-team baseline
-"NBA: archetype changes, after trade",0.2798013245033112,0.2440008614301243,0.3156017875764981,604,trades should change roles more often than the same-team baseline
-"WNBA: archetype changes, same team, half 1 vs 2",0.2481617647058823,0.2224949921456271,0.2738285372661375,1088,trades should change roles more often than the same-team baseline
+"NBA: archetype changes, same team, half 1 vs 2",0.1698884174131699,0.160661104852228,0.1791157299741117,6363,trades should change roles more often than the same-team baseline
+"NBA: archetype changes, after trade",0.2764900662251656,0.2408203530212385,0.3121597794290927,604,trades should change roles more often than the same-team baseline
+"WNBA: archetype changes, same team, half 1 vs 2",0.2417279411764706,0.2162879136533004,0.2671679686996407,1088,trades should change roles more often than the same-team baseline
 "WNBA: archetype changes, after trade",0.4545454545454545,0.1602878664116818,0.7488030426792273,11,trades should change roles more often than the same-team baseline
 "NBA: odds ratio of archetype change, trade vs same team (adjusted for segment minutes)",1.85727450595357,1.530836345932133,2.253322897402649,6967,>1 means trades change roles beyond sampling noise
-NBA hustle check: Perimeter stopper forward - deflections (z vs league),0.42,,,244,independent NBA.com data (2017-18+); >0 supports a defensive label
-NBA hustle check: Defensive / connector guard - deflections (z vs league),0.45,,,371,independent NBA.com data (2017-18+); >0 supports a defensive label
-NBA hustle check: Low-usage rim protector - contested 2s (z vs league),1.8,,,148,independent NBA.com data (2017-18+); >0 supports a defensive label
-NBA hustle check: Catch-and-shoot wing - deflections (z vs league),-0.74,,,104,independent NBA.com data (2017-18+); >0 supports a defensive label
+NBA hustle check: Perimeter stopper forward - deflections (z vs league),0.39,,,238,independent NBA.com data (2017-18+); >0 supports a defensive label
+NBA hustle check: Defensive / connector guard - deflections (z vs league),0.44,,,369,independent NBA.com data (2017-18+); >0 supports a defensive label
+NBA hustle check: Low-usage rim protector - contested 2s (z vs league),1.79,,,146,independent NBA.com data (2017-18+); >0 supports a defensive label
+NBA hustle check: Catch-and-shoot wing - deflections (z vs league),-0.75,,,103,independent NBA.com data (2017-18+); >0 supports a defensive label

@@ -1,17 +1,17 @@
 subtype,deflections_z,contest2_z,contest3_z,charges_z,stl_pass_z,blk_rim_z,n
-Floor general,0.62,-0.68,-0.24,0.03,0.61,-0.56,224
-Defensive / connector guard,0.45,-0.64,-0.28,0.13,0.46,-0.57,371
-Perimeter stopper forward,0.42,-0.03,0.44,0.15,0.34,-0.04,244
-Low-usage glue defender,0.18,-0.21,0.2,-0.04,0.19,-0.27,253
-Rebounding / rim-running forward,0.03,0.33,0.5,0.11,0.0,0.35,261
-Alpha scorer,0.03,-0.36,-0.32,-0.11,0.18,-0.14,415
-Shot-making scorer,-0.12,-0.76,-0.34,-0.03,-0.04,-0.7,131
-Interior hub big,-0.2,0.8,0.28,-0.12,-0.2,0.66,149
-Low-usage rim protector,-0.22,1.8,0.32,-0.24,-0.33,1.78,148
-Microwave scoring guard,-0.23,-0.73,-0.41,-0.12,-0.11,-0.7,298
-Movement shooter,-0.31,-0.63,-0.35,0.17,-0.3,-0.67,162
-Scoring stretch forward,-0.36,0.31,0.36,-0.08,-0.37,0.16,239
-Rim-running finisher,-0.4,1.76,-0.08,-0.06,-0.56,1.59,207
+Floor general,0.61,-0.68,-0.25,0.02,0.61,-0.56,232
+Defensive / connector guard,0.44,-0.65,-0.28,0.12,0.46,-0.58,369
+Perimeter stopper forward,0.39,-0.02,0.45,0.17,0.28,-0.05,238
+Low-usage glue defender,0.22,-0.21,0.18,-0.03,0.24,-0.25,271
+Rebounding / rim-running forward,0.04,0.36,0.53,0.09,-0.0,0.38,253
+Alpha scorer,0.02,-0.35,-0.32,-0.1,0.17,-0.14,406
+Shot-making scorer,-0.12,-0.76,-0.35,-0.03,-0.03,-0.7,132
+Interior hub big,-0.2,0.79,0.29,-0.16,-0.19,0.67,146
+Low-usage rim protector,-0.22,1.79,0.3,-0.27,-0.34,1.79,146
+Microwave scoring guard,-0.22,-0.74,-0.42,-0.13,-0.1,-0.7,298
+Movement shooter,-0.3,-0.62,-0.35,0.17,-0.3,-0.67,162
+Scoring stretch forward,-0.37,0.31,0.36,-0.04,-0.37,0.15,241
+Rim-running finisher,-0.4,1.75,-0.08,-0.03,-0.55,1.58,210
 Stretch / skilled big,-0.47,0.92,-0.03,0.09,-0.61,0.81,56
-Catch-and-shoot wing,-0.74,-0.2,-0.01,-0.1,-0.73,-0.41,104
-Stretch big (spot-up),-0.91,1.34,1.87,-0.42,-1.06,0.48,6
+Catch-and-shoot wing,-0.75,-0.19,0.0,-0.13,-0.74,-0.41,103
+Stretch big (spot-up),-0.87,1.32,2.0,-0.39,-0.94,0.46,5

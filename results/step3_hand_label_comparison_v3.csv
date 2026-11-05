@@ -1,31 +1,31 @@
 sample_id,league,season_num,player,position,minutes,role_tier,definition,hand_subtype,hand_archetype,confidence,confidence_source,hand_notes,archetype,subtype,model_top2_archetype,own_membership,agree_archetype,agree_subtype,hand_in_top2
-S001,WNBA,2026,A'ja Wilson,C,1313.0,starter,defined,Alpha scorer,On-ball creator,3.0,owner,,Hub big / point forward,Alpha scorer,Rim-running big,0.9999996916404235,False,True,False
+S001,WNBA,2026,A'ja Wilson,C,1313.0,starter,defined,Alpha scorer,On-ball creator,3.0,owner,,Hub big / point forward,Alpha scorer,Rim-running big,0.9999407093875353,False,True,False
 S002,WNBA,2025,Sonia Citron,G,1415.0,starter,defined,Microwave scoring guard,Secondary guard,3.0,owner,,Secondary guard,Microwave scoring guard,Connector forward,1.0,True,True,True
 S003,WNBA,2025,Jewell Loyd,G,1244.0,starter,blended,Microwave scoring guard,Secondary guard,3.0,owner,,Spot-up 3-and-D wing,Movement shooter,Connector forward,0.0,False,False,False
 S004,WNBA,2026,Gianna Kneepkens,G,368.0,deep_bench,defined,Defensive / connector guard,Secondary guard,2.0,owner,,Secondary guard,Defensive / connector guard,Connector forward,1.0,True,True,True
-S005,WNBA,2025,Bridget Carleton,F,1258.0,starter,blended,Scoring stretch forward,Connector forward,3.0,owner,also movement shooter,Spot-up 3-and-D wing,Catch-and-shoot wing,On-ball creator,7.287394719127657e-194,False,False,False
+S005,WNBA,2025,Bridget Carleton,F,1258.0,starter,blended,Scoring stretch forward,Connector forward,3.0,owner,also movement shooter,Spot-up 3-and-D wing,Catch-and-shoot wing,On-ball creator,4.55344059783112e-114,False,False,False
 S006,WNBA,2026,Arike Ogunbowale,G,1324.0,starter,defined,Shot-making scorer,On-ball creator,3.0,owner,,Secondary guard,Microwave scoring guard,Connector forward,1.0,False,False,False
 S007,WNBA,2026,Jessica Shepard,F,1334.0,starter,blended,Interior hub big,Hub big / point forward,3.0,owner,Also jumbo playmaking either or,Hub big / point forward,Interior hub big,On-ball creator,0.0,True,True,True
 S008,WNBA,2025,Allisha Gray,G,1452.0,starter,defined,Alpha scorer,On-ball creator,3.0,owner,,Secondary guard,Microwave scoring guard,Connector forward,1.0,False,False,False
-S009,WNBA,2025,Courtney Williams,G,1296.0,starter,blended,Floor general,On-ball creator,3.0,owner,,On-ball creator,Shot-making scorer,Connector forward,0.0,True,False,True
-S010,WNBA,2026,Rhyne Howard,G,1472.0,starter,defined,Shot-making scorer,On-ball creator,3.0,owner,,Secondary guard,Microwave scoring guard,Connector forward,1.0,False,False,False
-S011,WNBA,2026,Shakira Austin,C,1264.0,starter,defined,Interior hub big,Hub big / point forward,3.0,owner,anchor but also scoring rim runner,Hub big / point forward,Alpha scorer,Rim-running big,0.7805598099831487,True,False,True
-S012,WNBA,2026,Marine Johannes,G,848.0,rotation,defined,Movement shooter,Spot-up 3-and-D wing,2.0,owner,,Secondary guard,Microwave scoring guard,Connector forward,1.0,False,False,False
+S009,WNBA,2025,Courtney Williams,G,1296.0,starter,blended,Floor general,On-ball creator,3.0,owner,,On-ball creator,Shot-making scorer,Spot-up 3-and-D wing,0.0,True,False,True
+S010,WNBA,2026,Rhyne Howard,G,1472.0,starter,defined,Shot-making scorer,On-ball creator,3.0,owner,,Secondary guard,Microwave scoring guard,Spot-up 3-and-D wing,1.0,False,False,False
+S011,WNBA,2026,Shakira Austin,C,1264.0,starter,defined,Interior hub big,Hub big / point forward,3.0,owner,anchor but also scoring rim runner,Hub big / point forward,Alpha scorer,Rim-running big,0.6257456225543955,True,False,True
+S012,WNBA,2026,Marine Johannes,G,848.0,rotation,defined,Movement shooter,Spot-up 3-and-D wing,2.0,owner,,Secondary guard,Microwave scoring guard,Spot-up 3-and-D wing,1.0,False,False,True
 S013,WNBA,2026,Alyssa Thomas,F,1393.0,starter,blended,Jumbo playmaker,Hub big / point forward,3.0,owner,also fllor general,Hub big / point forward,Interior hub big,On-ball creator,0.0,True,False,True
 S014,WNBA,2026,Angel Reese,F,1336.0,starter,blended,Interior hub big,Hub big / point forward,3.0,owner,also rim running,Hub big / point forward,Interior hub big,On-ball creator,0.0,True,True,True
 S015,WNBA,2026,Breanna Stewart,F,1420.0,starter,blended,Alpha scorer,On-ball creator,3.0,owner,also scoring stretch,Hub big / point forward,Alpha scorer,On-ball creator,0.0,False,True,True
-S016,WNBA,2026,Olivia Miles,G,1241.0,starter,blended,Floor general,On-ball creator,3.0,owner,floor mainly slight shot making,On-ball creator,Alpha scorer,Connector forward,0.0,True,False,True
+S016,WNBA,2026,Olivia Miles,G,1241.0,starter,blended,Floor general,On-ball creator,3.0,owner,floor mainly slight shot making,On-ball creator,Alpha scorer,Spot-up 3-and-D wing,0.0,True,False,True
 S017,WNBA,2026,Kayla McBride,G,1406.0,starter,defined,Movement shooter,Spot-up 3-and-D wing,3.0,owner,mixed with catch and shoot wing,Secondary guard,Microwave scoring guard,Connector forward,1.0,False,False,False
 S018,WNBA,2026,Jonquel Jones,C,1246.0,starter,defined,Stretch / skilled big,Hub big / point forward,3.0,owner,mixed with defensive more stretch,Hub big / point forward,Stretch / skilled big,Rim-running big,1.0,True,True,True
-S019,WNBA,2025,Aliyah Boston,C,1365.0,starter,defined,Interior hub big,Hub big / point forward,3.0,owner,,Hub big / point forward,Interior hub big,Rim-running big,0.991227188945467,True,True,True
-S020,WNBA,2026,Jordin Canada,G,1339.0,starter,blended,Floor general,On-ball creator,3.0,owner,also defensive ,On-ball creator,Floor general,Connector forward,0.0,True,True,True
+S019,WNBA,2025,Aliyah Boston,C,1365.0,starter,defined,Interior hub big,Hub big / point forward,3.0,owner,,Hub big / point forward,Interior hub big,Rim-running big,0.9785257247496438,True,True,True
+S020,WNBA,2026,Jordin Canada,G,1339.0,starter,blended,Floor general,On-ball creator,3.0,owner,also defensive ,On-ball creator,Floor general,Spot-up 3-and-D wing,0.0,True,True,True
 S021,WNBA,2025,JJ Quinerly,G,541.0,rotation,blended,Microwave scoring guard,Secondary guard,2.0,owner,,On-ball creator,Floor general,Connector forward,0.0,False,False,False
 S022,WNBA,2026,Natasha Howard,F,1250.0,starter,blended,Rebounding / rim-running forward,Connector forward,3.0,owner,,Hub big / point forward,Interior hub big,On-ball creator,0.0,False,False,False
-S023,WNBA,2026,Caitlin Clark,G,1245.0,starter,blended,Alpha scorer,On-ball creator,3.0,owner,mixed with floor general but I count alpha scorer as best scorers and combine playmaking,On-ball creator,Alpha scorer,Connector forward,0.0,True,True,True
-S024,WNBA,2025,Kelsey Plum,G,1508.0,starter,blended,Alpha scorer,On-ball creator,3.0,owner,,On-ball creator,Shot-making scorer,Connector forward,0.0,True,False,True
+S023,WNBA,2026,Caitlin Clark,G,1245.0,starter,blended,Alpha scorer,On-ball creator,3.0,owner,mixed with floor general but I count alpha scorer as best scorers and combine playmaking,On-ball creator,Alpha scorer,Spot-up 3-and-D wing,0.0,True,True,True
+S024,WNBA,2025,Kelsey Plum,G,1508.0,starter,blended,Alpha scorer,On-ball creator,3.0,owner,,On-ball creator,Shot-making scorer,Spot-up 3-and-D wing,0.0,True,False,True
 S025,WNBA,2026,Paige Bueckers,G,1375.0,starter,blended,Alpha scorer,On-ball creator,3.0,owner,,On-ball creator,Alpha scorer,Connector forward,0.0,True,True,True
-S026,WNBA,2025,Alysha Clark,F,828.0,rotation,blended,Interior hub big,Hub big / point forward,3.0,owner,2,Spot-up 3-and-D wing,Low-usage glue defender,On-ball creator,4.3222361838605153e-94,False,False,False
+S026,WNBA,2025,Alysha Clark,F,828.0,rotation,blended,Interior hub big,Hub big / point forward,3.0,owner,2,Spot-up 3-and-D wing,Low-usage glue defender,On-ball creator,8.681538724434167e-35,False,False,False
 S027,WNBA,2026,Jackie Young,G,1424.0,starter,blended,Alpha scorer,On-ball creator,3.0,owner,,On-ball creator,Shot-making scorer,Connector forward,0.0,True,False,True
-S028,WNBA,2025,Haley Peters,F,382.0,deep_bench,defined,Perimeter stopper forward,Connector forward,1.0,owner,,Connector forward,Rebounding / rim-running forward,On-ball creator,0.999130191811735,True,False,True
+S028,WNBA,2025,Haley Peters,F,382.0,deep_bench,defined,Perimeter stopper forward,Connector forward,1.0,owner,,Connector forward,Rebounding / rim-running forward,On-ball creator,0.9993358828375275,True,False,True
 S029,WNBA,2026,Sophie Cunningham,G,957.0,rotation,blended,Catch-and-shoot wing,Spot-up 3-and-D wing,3.0,owner,,Spot-up 3-and-D wing,Movement shooter,Connector forward,0.0,True,False,True
 S030,WNBA,2025,Skylar Diggins,G,1346.0,starter,blended,Floor general,On-ball creator,2.0,owner,mixed with shot makjing ,On-ball creator,Shot-making scorer,Connector forward,0.0,True,False,True
