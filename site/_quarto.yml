@@ -18,6 +18,8 @@ website:
         text: Archetypes
       - href: championships.qmd
         text: Championships
+      - href: impact.qmd
+        text: Player impact
       - href: salary.qmd
         text: Salary value
       - href: methods.qmd

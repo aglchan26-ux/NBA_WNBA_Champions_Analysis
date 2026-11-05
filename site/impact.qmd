@@ -1,0 +1,104 @@
+---
+title: "Player impact from lineups"
+---
+
+::: {.callout-note appearance="simple"}
+## Takeaways
+- **Lineups rebuilt for every game since 2003-04 (NBA) and 2009 (WNBA).** In every season they account for at least 95%
+  of points and possessions (98-100% in most).
+- **Player impact predicts next season better than the team's own results.** Last season's player impact,
+  weighted by who actually plays this season, explains 50% of next-season NBA team net rating (36% WNBA), against 35% (24% WNBA)
+  for the team's own net rating last season.
+- **Adding player impact to net rating predicts playoff series better.** Over 210 NBA series, adding
+  impact from players available for the playoffs beats net rating alone (one-sided p = 0.03; the 95% interval
+  just touches zero). In the WNBA (62 series) the gain points the same way but is not significant.
+- **Weighting the archetype mix by player quality did not beat quality alone.** Who is good matters more than which
+  role they play.
+:::
+
+## How it is measured
+
+Every stretch of play with the same ten players on the floor (a *stint*) is one observation. A ridge regression
+gives each player an **offense** and a **defense** effect in points per 100 possessions, holding the other
+nine players fixed. The ridge penalty pulls small samples toward average, and each season starts from the player's
+previous-season estimate. Defense counts as much as offense here, unlike box-score measures.
+
+**Avoiding leakage:** this season's impact, summed across a roster, rebuilds this season's net rating. So
+every roster-based prediction below uses **last season's** player impact applied to this season's roster.
+
+## Top players (latest two seasons)
+
+At least 800 minutes. Impact = offense + defense, points per 100 possessions vs an average player.
+
+```{python}
+from _viz import read, md, show, LEAGUE
+t = read("top_player_impact.csv")
+for lg in ["NBA", "WNBA"]:
+    for s in sorted(t[t.league == lg].season.unique(), reverse=True):
+        d = t[(t.league == lg) & (t.season == s)][["player", "o_impact", "d_impact", "impact", "minutes"]]
+        d.columns = ["player", "offense", "defense", "impact", "minutes"]
+        md(f"**{lg} {s}**\n\n" + d.to_markdown(index=False))
+```
+
+## Does player impact predict next season?
+
+Share of next-season team net rating explained (R²). Each bar uses only information from the season before.
+
+```{python}
+import plotly.graph_objects as go
+v = read("player_impact_validation.csv")
+v = v[v.test == "B next-season team net rating"]
+models = {"last season team net rating": "Team's own net rating last season",
+          "prior-season player impact (prior-informed)": "Players' impact last season"}
+fig = go.Figure()
+for lg, col in LEAGUE.items():
+    d = v[(v.league == lg) & v.model.isin(models)].set_index("model").reindex(list(models))
+    fig.add_bar(x=[models[m] for m in d.index], y=d.r2, name=lg, marker=dict(color=col, line=dict(width=2, color="#fcfcfb")),
+                text=[f"{x:.2f}" for x in d.r2], textposition="outside",
+                hovertemplate=lg + ": R² %{y:.2f}<extra></extra>")
+fig.update_layout(height=360, barmode="group", yaxis=dict(range=[0, 0.62], title="R² (next-season net rating)"),
+                  hovermode="closest", legend=dict(y=1.12))
+show(fig)
+```
+
+## Picking champions
+
+Forward-chained: each season is predicted from models trained only on earlier seasons. Playoff teams only.
+
+```{python}
+c = read("step5_title_impact_cv.csv")
+c = c[["league", "model", "mean_prob_on_champion", "champion_ranked_1st", "champion_in_top3"]]
+c.columns = ["league", "model", "avg prob. on champion", "champion ranked 1st", "champion in top 3"]
+for lg in ["NBA", "WNBA"]:
+    md(f"**{lg}**\n\n" + c[c.league == lg].drop(columns="league").round(2).to_markdown(index=False))
+```
+
+## Every playoff series
+
+The same features, predicting the winner of every playoff series, not only the champion.
+Log-loss: lower is better; a coin flip scores 0.693.
+
+```{python}
+s = read("step5_series_cv.csv")
+s = s[["league", "model", "series_tested", "mean_logloss", "accuracy"]]
+s.columns = ["league", "model", "series", "log-loss", "accuracy"]
+for lg in ["NBA", "WNBA"]:
+    md(f"**{lg}**\n\n" + s[s.league == lg].drop(columns="league").round(3).to_markdown(index=False))
+```
+
+**Is the gain over net rating real?** Gain in log-likelihood per series compared with net rating alone, with a 95%
+interval from resampling whole seasons (above zero = better than net rating).
+
+```{python}
+g = read("step5_series_significance.csv")
+g["95% interval"] = [f"{lo:+.3f} to {hi:+.3f}" for lo, hi in zip(g.lo95, g.hi95)]
+g["gain"] = g.loglik_gain_per_series.map(lambda x: f"{x:+.3f}")
+g["chance gain is not real"] = g.p_gain_le_0.map(lambda x: f"{x:.2f}")
+for lg in ["NBA", "WNBA"]:
+    md(f"**{lg}**\n\n" + g[g.league == lg][["model", "gain", "95% interval", "chance gain is not real"]].to_markdown(index=False))
+```
+
+::: {.caveat}
+Association, not causation. Plus-minus effects for players who always share the floor are hard to separate, and the
+WNBA's 12-15 teams leave wide intervals.
+:::
