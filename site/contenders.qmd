@@ -6,8 +6,8 @@ title: "2026-27 NBA contenders"
 ## Takeaways
 - **Built only from players:** each team's current roster (ESPN, November 2026), each player's 2025-26 offense and
   defense impact from lineups, and his 2025-26 minutes as a rough projection. No 2026-27 results are used.
-- **Its track record, tested forward in time over 14 seasons:** an average 16% on the eventual champion among all 30 teams
-  (a random pick gives 3%), with the champion in its top three half the time.
+- **Its track record, tested forward in time over 13 seasons:** an average 17% on the eventual champion among all 30 teams
+  (a random pick gives 3%), with the champion in its top three in 6 of 13 seasons.
 - Odds are a starting point before any games are played, not a prediction of injuries, trades or development.
 :::
 

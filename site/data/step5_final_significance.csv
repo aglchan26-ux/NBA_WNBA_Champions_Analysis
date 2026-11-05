@@ -1,0 +1,7 @@
+league,model,loglik_gain_per_series,lo95,hi95,p_gain_le_0
+NBA,availability-adjusted strength only,0.022593718670983212,-0.004076511707445197,0.04931855258583937,0.0505
+NBA,"net + availability-adjusted (offense, defense) + archetype x quality + age",0.005068909750333476,-0.044753454339231794,0.04956629650021753,0.3995
+NBA,net rating + availability-adjusted strength,0.019868392975669263,-0.0006181814439280358,0.040306712477386146,0.0295
+WNBA,availability-adjusted strength only,0.012421153750781493,-0.019698437987427944,0.055273170807178,0.2565
+WNBA,"net + availability-adjusted (offense, defense) + archetype x quality + age",0.008429677748527594,-0.10482025411387648,0.11041727930260196,0.443
+WNBA,net rating + availability-adjusted strength,0.008314536133699266,-0.0018774780567597672,0.01804527759232014,0.052

@@ -98,7 +98,7 @@ def identity_text(lg):
     n = d.identity.value_counts()
     rec = d[d.season >= 2022].sort_values("season")
     recent = "; ".join(f"{r.team} {r.season}: {r.identity}" for r in rec.itertuples())
-    return (f"**What this shows:** each dot is a {lg} champion. Right = better offense than the league that season, "
+    return (f"**What this shows:** each dot is {'an' if lg == 'NBA' else 'a'} {lg} champion. Right = better offense than the league that season, "
             f"up = better defense. A champion is *offense-led* when its offensive edge beats its defensive edge by 3+ points per "
             f"100 possessions, *defense-led* the reverse, otherwise *balanced*. Of {len(d)} {lg} champions, "
             f"{n.get('balanced', 0)} were balanced, {n.get('offense-led', 0)} offense-led and {n.get('defense-led', 0)} defense-led "
@@ -211,10 +211,10 @@ md(zone_text("NBA", s))
 ```{python}
 show(identity_chart("NBA"))
 md(identity_text("NBA"))
+md(HOW_TO_READ)
 shot, arch = champ_tables("NBA")
 md("**How NBA champions' shots differed from the league** (percentage points; + = more of that shot than the league)\n\n" + shot.to_markdown(index=False))
 md("**NBA champions' archetype minutes minus the league average** (percentage points)\n\n" + arch.to_markdown(index=False))
-md(HOW_TO_READ)
 md("**NBA champions' minutes by listed position, minus the league average** (percentage points)\n\n" + position_table("NBA").to_markdown(index=False))
 md("**Team composition, era by era:**\n\n" + composition_text("NBA", arch))
 ```
@@ -245,10 +245,10 @@ md(zone_text("WNBA", s))
 ```{python}
 show(identity_chart("WNBA"))
 md(identity_text("WNBA"))
+md(HOW_TO_READ)
 shot, arch = champ_tables("WNBA")
 md("**How WNBA champions' shots differed from the league** (percentage points)\n\n" + shot.to_markdown(index=False))
 md("**WNBA champions' archetype minutes minus the league average** (percentage points)\n\n" + arch.to_markdown(index=False))
-md(HOW_TO_READ)
 md("**WNBA champions' minutes by listed position, minus the league average** (percentage points)\n\n" + position_table("WNBA").to_markdown(index=False))
 md("**Team composition, era by era:**\n\n" + composition_text("WNBA", arch))
 ```

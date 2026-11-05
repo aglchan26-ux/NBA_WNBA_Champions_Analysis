@@ -1,0 +1,9 @@
+league,model,series_tested,mean_logloss,accuracy
+NBA,net rating only (reference),195,0.5614107916434035,0.6974358974358974
+NBA,availability-adjusted strength only,195,0.5388170729724203,0.7435897435897436
+NBA,net rating + availability-adjusted strength,195,0.5415423986677342,0.7384615384615385
+NBA,"net + availability-adjusted (offense, defense) + archetype x quality + age",195,0.55634188189307,0.7076923076923077
+WNBA,net rating only (reference),69,0.5636130314805025,0.7101449275362319
+WNBA,availability-adjusted strength only,69,0.551191877729721,0.6956521739130435
+WNBA,net rating + availability-adjusted strength,69,0.5552984953468033,0.7101449275362319
+WNBA,"net + availability-adjusted (offense, defense) + archetype x quality + age",69,0.5551833537319749,0.6956521739130435

@@ -5,7 +5,8 @@ title: "Player impact from lineups"
 ```{python}
 #| label: takeaways
 from _viz import read, md
-v = read("player_impact_validation.csv").set_index(["league", "model"])
+v = read("player_impact_validation.csv")
+v = v[v.test == "B next-season team net rating"].set_index(["league", "model"])
 r2 = lambda lg, m: v.loc[(lg, m), "r2"]
 sig = read("step5_final_significance.csv").set_index(["league", "model"])
 sr = read("step5_final_series_cv.csv").set_index(["league", "model"])
@@ -27,6 +28,52 @@ md(f"""::: {{.callout-note appearance="simple"}}
   role they play.
 :::""")
 ```
+
+## The model we settled on, and why
+
+```{python}
+import pandas as pd
+ft = read("step5_final_title_cv.csv").set_index(["league", "model"])
+fs = read("step5_final_series_cv.csv").set_index(["league", "model"])
+fg = read("step5_final_significance.csv").set_index(["league", "model"])
+fw = read("step5_final_weights.csv").set_index(["league", "variable"])
+names = {"net rating only (reference)": "Net rating alone (baseline)",
+         "availability-adjusted strength only": "Availability-adjusted strength alone (ours)",
+         "net rating + availability-adjusted strength": "**Net rating + availability-adjusted strength (chosen)**",
+         "net + availability-adjusted (offense, defense) + archetype x quality + age": "Net + ours split offense/defense + archetype x quality + age"}
+rows = []
+for lg in ["NBA", "WNBA"]:
+    for m, nm in names.items():
+        rows.append({"league": lg, "model": nm,
+                     "series called correctly": f"{fs.loc[(lg, m), 'accuracy']:.0%}",
+                     "avg chance on eventual champion": f"{ft.loc[(lg, m), 'mean_prob_on_champion']:.0%}",
+                     "champion in top 3": f"{ft.loc[(lg, m), 'champion_in_top3']:.0%}",
+                     "gain over net rating (p)": "" if m.startswith("net rating only") else f"p = {fg.loc[(lg, m), 'p_gain_le_0']:.2f}"})
+md(pd.DataFrame(rows).to_markdown(index=False))
+g = fg.loc[("NBA", "net rating + availability-adjusted strength")]
+md(f"""**Why this one.** *Availability-adjusted strength* is our variable: each team rebuilt from this season's lineup-based
+player impact, counting only the players available for the playoffs, so a team that lost its best player late in the
+season is rated on the roster it will actually play with. Net rating can't see that.
+
+- **It beats net rating.** In the NBA it calls more playoff series correctly and puts more probability on the eventual
+  champion; the gain over net rating alone is statistically reliable (one-sided p = {g.p_gain_le_0:.2f}).
+- **In the NBA, our variable carries the most weight.** In the combined NBA model it holds {fw.loc[('NBA', 'avail_now'), 'share_of_total_weight']:.0%}
+  of the weight against {fw.loc[('NBA', 'net'), 'share_of_total_weight']:.0%} for net rating ({fw.loc[('WNBA', 'avail_now'), 'share_of_total_weight']:.0%}
+  vs {fw.loc[('WNBA', 'net'), 'share_of_total_weight']:.0%} in the WNBA).
+- **Why keep net rating in it.** Our variable alone is about as good at calling series but less steady at picking
+  champions in some seasons; net rating captures things our lineup estimates miss (team scheme and coaching, and
+players with too few minutes to estimate well). Together they are the most accurate and the most stable in both leagues.
+- **Why not the bigger model.** Splitting offense and defense and adding archetype x quality and age did not improve
+  on the two-variable model in the NBA; with only 13-20 test seasons, extra variables add noise faster than signal.
+  In the WNBA it edges ahead on titles but not on series, so the simpler model is the one we use for both leagues.
+- **How it is trained.** Season by season, using only earlier seasons, with recent seasons weighted more heavily
+  (the weighting is chosen from past seasons only).""")
+```
+
+## Other approaches we tested
+
+Everything below led to the chosen model. Roster-only versions use **last season's** player impact so that no
+information from the season being predicted leaks in; they show how much roster quality alone can do.
 
 ## How it is measured
 
@@ -73,7 +120,7 @@ fig.update_layout(height=360, barmode="group", yaxis=dict(range=[0, 0.62], title
 show(fig)
 ```
 
-## Picking champions
+## Picking champions (earlier versions)
 
 Forward-chained: each season is predicted from models trained only on earlier seasons. Playoff teams only.
 
@@ -85,7 +132,7 @@ for lg in ["NBA", "WNBA"]:
     md(f"**{lg}**\n\n" + c[c.league == lg].drop(columns="league").round(2).to_markdown(index=False))
 ```
 
-## Every playoff series
+## Every playoff series (earlier versions)
 
 The same features, predicting the winner of every playoff series, not only the champion.
 Log-loss: lower is better; a coin flip scores 0.693.
