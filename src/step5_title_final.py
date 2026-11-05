@@ -7,6 +7,8 @@ New variable, availability-adjusted strength:
               the playoffs (absent_playoffs in participation.py) and re-weights the rest.
   avail_o_now, avail_d_now  the same, offense and defense separately.
   Also used: archetype x quality (available players), roster age.
+Star features: avail_star = impact of the best available player (1,000+ minutes); avail_top2 = top two.
+Penalty: the L2 strength (2, 10, 30) is chosen in-chain together with the half-life.
 Time-series training: forward-chained (season s predicted from seasons < s). Training seasons get weight
   0.5 ** ((s - 1 - season) / half_life): recent seasons count more as the game drifts. The half-life is chosen
   inside the forward chain (each test season uses the half-life that did best on the seasons before it), so the
@@ -31,6 +33,8 @@ from step5_title_impact import ARCH, paired_bootstrap, series_table, zscore
 
 warnings.filterwarnings("ignore")
 HALF_LIVES = [None, 12, 8, 5]
+LAMS = [2.0, 10.0, 30.0]          # L2 penalty: chosen in-chain, like the half-life
+GRID = [(h, l) for h in HALF_LIVES for l in LAMS]
 
 
 def avail_now() -> pd.DataFrame:
@@ -45,7 +49,10 @@ def avail_now() -> pd.DataFrame:
 
     def team(g):
         s = 5 * g.minutes / g.minutes.sum()
-        out = {"avail_now": (s * g.impact).sum(), "avail_o_now": (s * g.o_impact).sum(), "avail_d_now": (s * g.d_impact).sum()}
+        big = g[g.minutes >= 1000].impact.sort_values(ascending=False)
+        out = {"avail_now": (s * g.impact).sum(), "avail_o_now": (s * g.o_impact).sum(), "avail_d_now": (s * g.d_impact).sum(),
+               "avail_star": big.iloc[0] if len(big) else 0.0,                 # best available player (1,000+ min)
+               "avail_top2": big.iloc[:2].sum() if len(big) else 0.0}
         for a in ARCH:
             m = g.archetype == a
             out[f"availq_now::{a}"] = (s[m] * g.impact[m]).sum()
@@ -86,20 +93,23 @@ def run_title(T, sets):
     for lg, D in T[T.made_playoffs].groupby("league"):
         seasons = sorted(D.season.unique())
         for name, cols in sets.items():
-            res, hist = [], {hl: [] for hl in HALF_LIVES}
+            res, hist = [], {g: [] for g in GRID}
             for s in seasons[MIN_TRAIN:]:
                 tr, te = D[D.season < s], D[D.season == s]
                 if te.champion.sum() != 1:
                     continue
-                # pick half-life from past test seasons only (default: no decay)
-                hl = min(HALF_LIVES, key=lambda h: -np.mean(hist[h]) if hist[h] else (0 if h is None else 1))
-                for h in HALF_LIVES:
-                    bh = wclogit_fit(tr, cols, weights(seasons, s, h))
-                    hist[h].append(title_ll(te, cols, bh)[0])
-                b = wclogit_fit(tr, cols, weights(seasons, s, hl))
+                # choose (half-life, penalty) from past test seasons only (default: no decay, lam 2)
+                pick = max(GRID, key=lambda g: np.mean(hist[g]) if hist[g] else (0 if g == (None, 2.0) else -1))
+                fits = {}
+                for g in GRID:
+                    bg = wclogit_fit(tr, cols, weights(seasons, s, g[0]), lam=g[1])
+                    fits[g] = bg
+                    hist[g].append(title_ll(te, cols, bg)[0])
+                b = fits[pick]
+                hl = pick
                 ll, pc, rank = title_ll(te, cols, b)
                 res.append((ll, pc, rank))
-                per.append({"league": lg, "season": s, "model": name, "half_life": hl, "champion_prob": pc, "champion_rank": rank})
+                per.append({"league": lg, "season": s, "model": name, "half_life": hl[0], "lam": hl[1], "champion_prob": pc, "champion_rank": rank})
             r = np.array(res)
             rows.append({"league": lg, "model": name, "test_seasons": len(r), "mean_loglik_champion": r[:, 0].mean(),
                          "mean_prob_on_champion": r[:, 1].mean(), "champion_ranked_1st": (r[:, 2] == 1).mean(),
@@ -122,20 +132,20 @@ def run_series(T, sets):
             Xb = TT.reindex(pd.MultiIndex.from_arrays([D.season, D.team_b]))[cols].to_numpy()
             X, y, ss = np.nan_to_num(Xa - Xb), D.a_won.to_numpy(), D.season.to_numpy()
             ll, acc = [], []
-            hist = {hl: [] for hl in HALF_LIVES}
+            hist = {g: [] for g in GRID}
             for s in seasons[MIN_TRAIN:]:
                 tr, te = ss < s, ss == s
                 if te.sum() == 0:
                     continue
-                hl = min(HALF_LIVES, key=lambda h: -np.mean(hist[h]) if hist[h] else (0 if h is None else 1))
+                hl = max(GRID, key=lambda g: np.mean(hist[g]) if hist[g] else (0 if g == (None, 2.0) else -1))
                 preds = {}
-                for h in HALF_LIVES:
-                    w = np.array([1.0 if h is None else 0.5 ** ((s - 1 - x) / h) for x in ss[tr]])
-                    m = LogisticRegression(C=0.5, fit_intercept=False).fit(np.r_[X[tr], -X[tr]], np.r_[y[tr], 1 - y[tr]],
-                                                                         sample_weight=np.r_[w, w])
+                for g in GRID:
+                    w = np.array([1.0 if g[0] is None else 0.5 ** ((s - 1 - x) / g[0]) for x in ss[tr]])
+                    m = LogisticRegression(C=1.0 / g[1], fit_intercept=False).fit(np.r_[X[tr], -X[tr]], np.r_[y[tr], 1 - y[tr]],
+                                                                                 sample_weight=np.r_[w, w])
                     p = np.clip(m.predict_proba(X[te])[:, 1], 1e-6, 1 - 1e-6)
-                    preds[h] = p
-                    hist[h].append(np.mean(y[te] * np.log(p) + (1 - y[te]) * np.log(1 - p)))
+                    preds[g] = p
+                    hist[g].append(np.mean(y[te] * np.log(p) + (1 - y[te]) * np.log(1 - p)))
                 p = preds[hl]
                 l = y[te] * np.log(p) + (1 - y[te]) * np.log(1 - p)
                 ll += list(l)
@@ -148,7 +158,7 @@ def run_series(T, sets):
 def main():
     T = load()
     T = T.merge(avail_now(), on=["league", "season", "team_id"], how="left")
-    ours = zscore(T, ["avail_now", "avail_o_now", "avail_d_now"])
+    ours = zscore(T, ["avail_now", "avail_o_now", "avail_d_now", "avail_star", "avail_top2"])
     aq = zscore(T, [f"availq_now::{a}" for a in ARCH])
     from step5_title_no_net import roster_extras
     T = T.merge(roster_extras(T)[["league", "season", "team_id", "age_w"]], on=["league", "season", "team_id"], how="left")
@@ -157,6 +167,9 @@ def main():
         "net rating only (reference)": ["net_z"],
         "availability-adjusted strength only": ["avail_now_z"],
         "net rating + availability-adjusted strength": ["net_z", "avail_now_z"],
+        "net + availability-adjusted strength + star": ["net_z", "avail_now_z", "avail_star_z"],
+        "net + availability-adjusted strength + star + archetype x quality":
+            ["net_z", "avail_now_z", "avail_star_z"] + aq,
         "net + availability-adjusted (offense, defense) + archetype x quality + age":
             ["net_z", "avail_o_now_z", "avail_d_now_z"] + aq + age,
     }

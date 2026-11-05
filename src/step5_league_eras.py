@@ -56,8 +56,8 @@ def lag_by_feature(lg: pd.DataFrame) -> pd.DataFrame:
 
 def champion_identity(ts: pd.DataFrame) -> pd.DataFrame:
     """Where each champion sat on offense and defense relative to its own league that regular season.
-    identity: offense-led / defense-led when one side's edge exceeds the other's by >= 3 points per 100
-    possessions; otherwise balanced. Ranks are within the league-season (1 = best)."""
+    identity (gap = defense edge - offense edge, points per 100): >= 5 defense-first, 2-5 defense-leaning,
+    within 2 balanced, -2 to -5 offense-leaning, <= -5 offense-first. Ranks are within the league-season (1 = best)."""
     ts = ts.copy()
     g = ts.groupby(["league", "season"])
     ts["off_edge"] = ts.ortg - g.ortg.transform("mean")          # + = better offense
@@ -66,8 +66,10 @@ def champion_identity(ts: pd.DataFrame) -> pd.DataFrame:
     ts["def_rank"] = g.drtg.rank(ascending=True, method="min")
     ts["n_teams"] = g.team_id.transform("count")
     c = ts[ts.champion == 1].copy()
-    gap = c.off_edge - c.def_edge
-    c["identity"] = np.select([gap >= 3, gap <= -3], ["offense-led", "defense-led"], "balanced")
+    gap = c.def_edge - c.off_edge          # + = defense carries more of the team's edge
+    # five levels (points per 100 possessions): |gap| < 2 balanced, 2-5 leaning, >= 5 first
+    c["identity"] = np.select([gap >= 5, gap >= 2, gap <= -5, gap <= -2],
+                              ["defense-first", "defense-leaning", "offense-first", "offense-leaning"], "balanced")
     arch = [x for x in ts.columns if x.startswith("arch_share::")]
     lg_arch = g[arch].transform("mean")
     for a in arch:

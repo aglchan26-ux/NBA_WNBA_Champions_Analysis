@@ -5,7 +5,7 @@ No scraping needed: every play already has a text description ("Pullup Jump Shot
 credited to that player:
   * as the actor (athlete_id_1): the play type, words joined into one token, plus outcome for shots
     (e.g. pullup_jump_shot__three__made, driving_layup_shot__miss, defensive_rebound, bad_pass_turnover)
-  * as the second player: assist / block / steal (from "assists", "blocks", "steals" in the text)
+  * as the second player: assist__three / assist__rim / assist__mid (what the pass set up), block, steal
 Seasons used: NBA 2017-18 onward and WNBA 2019 onward, where ESPN's play text names shot types (earlier text is
 mostly "two point shot"). Player-seasons: regular season, counted by the participation rule, >= 500 minutes.
 
@@ -45,13 +45,16 @@ SEED = 3
 # Zero-shot descriptions: written from basketball knowledge before any text result was looked at.
 # Keywords are matched against play tokens (substring match).
 DESCRIPTIONS = {
-    "On-ball creator": "pullup step_back fade_away driving floating assist free_throw turnaround",
-    "Secondary guard": "pullup jump_shot three assist steal bad_pass running",
-    "Spot-up 3-and-D wing": "jump_shot three steal",
+    "On-ball creator": "pullup step_back fade_away driving floating assist__three assist__rim free_throw",
+    "Secondary guard": "pullup jump_shot__three assist__mid steal bad_pass running",
+    "Spot-up 3-and-D wing": "jump_shot__three steal block",
     "Connector forward": "defensive_rebound cutting running jump_shot block",
-    "Hub big / point forward": "hook turnaround post assist offensive_rebound driving free_throw",
+    "Hub big / point forward": "assist__three assist__rim assist__mid hook post offensive_rebound defensive_rebound",
     "Rim-running big": "dunk alley_oop putback tip offensive_rebound block cutting layup",
 }
+# position cross-check: a zero-shot label must fit the player's listed position
+COMPAT = {"On-ball creator": {"G", "F"}, "Secondary guard": {"G"}, "Spot-up 3-and-D wing": {"G", "F"},
+          "Connector forward": {"F"}, "Hub big / point forward": {"F", "C"}, "Rim-running big": {"F", "C"}}
 
 
 def tokens_for_season(lg: str, y: int) -> pd.DataFrame:
@@ -63,19 +66,25 @@ def tokens_for_season(lg: str, y: int) -> pd.DataFrame:
     tt = p.type_text.fillna("").str.lower().str.replace(r"[^a-z0-9 ]", " ", regex=True).str.split().str.join("_")
     shot = p.shooting_play.astype(str) == "True"
     ft = tt.str.startswith("free_throw")
-    made = p.scoring_play.astype(str) == "True"
-    three = p.text.fillna("").str.lower().str.contains("three point|3-pt|3pt")   # works in every season's files
-    tok = np.where(ft, np.where(made, "free_throw__made", "free_throw__miss"),
-          np.where(shot, tt + np.where(three, "__three", "") + np.where(made, "__made", "__miss"), tt))
-    a = pd.DataFrame({"athlete_id": p.athlete_id_1.to_numpy(), "token": tok})
+    made = (p.scoring_play.astype(str) == "True").to_numpy()
     txt = p.text.fillna("").str.lower()
+    three = txt.str.contains("three point|3-pt|3pt")   # works in every season's files
+    # one token per shot TYPE (made and missed together); a make counts twice, a miss once, so shooters who take
+    # and make a shot weigh more than players who take it and miss
+    tok = np.where(ft, "free_throw", np.where(shot, tt + np.where(three, "__three", ""), tt))
+    tok = np.where(pd.Series(tok).str.contains("turnover|traveling|palming|double_dribble"), "turnover", tok)  # one turnover token
+    wt = np.where(shot.to_numpy() | ft.to_numpy(), 1 + made.astype(int), 1)
+    a = pd.DataFrame({"athlete_id": p.athlete_id_1.to_numpy(), "token": tok, "w": wt})
+    rim = tt.str.contains("layup|dunk|tip|alley")
+    fam = np.where(three, "three", np.where(rim, "rim", "mid"))
     extra = []
     for word, token in (("assists", "assist"), ("blocks", "block"), ("steals", "steal")):
         m = txt.str.contains(word) & p.athlete_id_2.notna()
-        extra.append(pd.DataFrame({"athlete_id": p.athlete_id_2[m].to_numpy(), "token": token}))
+        t = (token + "__" + pd.Series(fam, index=p.index)[m]) if token == "assist" else token   # what the pass set up
+        extra.append(pd.DataFrame({"athlete_id": p.athlete_id_2[m].to_numpy(), "token": t, "w": 1}))
     d = pd.concat([a] + extra)
     d = d[d.token != ""]
-    c = d.groupby(["athlete_id", "token"]).size().rename("n").reset_index()
+    c = d.groupby(["athlete_id", "token"]).w.sum().rename("n").reset_index()
     c.insert(0, "season", y)
     c.insert(0, "league", lg)
     return c
@@ -106,9 +115,17 @@ def main() -> None:
     mean_all = np.asarray(X.mean(0)).ravel()
     rows = []
     for (lg, a), g in docs.groupby(["league", "archetype"]):
-        diff = np.asarray(X[g.index].mean(0)).ravel() - np.asarray(X[docs.index[docs.league == lg]].mean(0)).ravel()
-        for j in np.argsort(-diff)[:8]:
-            rows.append({"league": lg, "archetype": a, "token": vocab[j], "tfidf_lift": diff[j]})
+        # compared with players of the SAME listed positions (position cross-check), not the whole league
+        same = docs.index[(docs.league == lg) & docs.position.isin(g.position.unique()) & (docs.archetype != a)]
+        diff = np.asarray(X[g.index].mean(0)).ravel() - np.asarray(X[same].mean(0)).ravel()
+        # two lists: shot types, and playmaking & defense (assists by type, blocks, steals, rebounds, turnovers),
+        # so common-but-defining actions like passing are not crowded out by rare shot types
+        nonshot = np.array([t.startswith(("assist", "block", "steal")) or "rebound" in t or "turnover" in t for t in vocab])
+        for cat, mask in (("shots", ~nonshot), ("playmaking & defense", nonshot)):
+            idx = np.where(mask)[0]
+            for j in idx[np.argsort(-diff[idx])][:4]:
+                if diff[j] > 0:
+                    rows.append({"league": lg, "archetype": a, "category": cat, "token": vocab[j], "tfidf_lift": diff[j]})
     pd.DataFrame(rows).to_csv(RESULTS / "step4_archetype_tokens.csv", index=False)
 
     # topic model
@@ -132,7 +149,8 @@ def main() -> None:
     comp = []
     for lg in ["NBA", "WNBA", "both"]:
         m = (docs.league == lg).to_numpy() if lg != "both" else np.ones(len(docs), bool)
-        lab = KMeans(6, n_init=20, random_state=SEED).fit_predict(E[m])
+        posv = docs.position.map({"G": -1.0, "F": 0.0, "C": 1.0}).fillna(0).to_numpy()[:, None] * 0.5
+        lab = KMeans(6, n_init=20, random_state=SEED).fit_predict(np.c_[E, posv][m])   # text + position
         if lg == "both":
             docs["text_cluster"] = lab
         comp.append({"league": lg, "method": "text clustering (K-Means on LSA, k=6)", "n": int(m.sum()),
@@ -153,8 +171,11 @@ def main() -> None:
         for kw in desc.split():
             Q[i] += np.array([kw in t for t in vocab], float)
     Q = normalize(Q * np.log1p(1 / (mean_all + 1e-3)))     # rarer play types weigh more, as in IDF
-    S = X @ Q.T
-    docs["zero_shot"] = np.array(list(DESCRIPTIONS))[np.asarray(S).argmax(1)]
+    S = np.asarray((X @ Q.T).todense()) if sparse.issparse(X @ Q.T) else np.asarray(X @ Q.T)
+    ok = np.array([[docs.position.iat[i] in COMPAT[a] if docs.position.iat[i] in ("G", "F", "C") else True
+                    for a in DESCRIPTIONS] for i in range(len(docs))])
+    S = np.where(ok, S, -np.inf)
+    docs["zero_shot"] = np.array(list(DESCRIPTIONS))[S.argmax(1)]
     for lg in ["NBA", "WNBA", "both"]:
         m = (docs.league == lg) if lg != "both" else pd.Series(True, index=docs.index)
         comp.append({"league": lg, "method": "zero-shot from written descriptions", "n": int(m.sum()),

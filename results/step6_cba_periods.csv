@@ -1,0 +1,9 @@
+cohort6,period,player_seasons,underpaid,overpaid,median_surplus,median_cap_share
+max_scale,2016-17 to 2022-23 (old CBA),201,0.0,0.0,-0.526,0.259
+max_scale,2023-24 to 2025-26 (2023 CBA),124,0.0,0.0,-0.38,0.253
+minimum_scale,2016-17 to 2022-23 (old CBA),612,0.435,0.0,0.89,0.011
+minimum_scale,2023-24 to 2025-26 (2023 CBA),263,0.517,0.0,1.049,0.011
+rookie_scale,2016-17 to 2022-23 (old CBA),643,0.039,0.048,-0.065,0.03
+rookie_scale,2023-24 to 2025-26 (2023 CBA),329,0.04,0.036,0.017,0.027
+veteran,2016-17 to 2022-23 (old CBA),1610,0.068,0.057,0.008,0.066
+veteran,2023-24 to 2025-26 (2023 CBA),646,0.068,0.015,0.083,0.059

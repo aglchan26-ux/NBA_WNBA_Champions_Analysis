@@ -1,97 +1,86 @@
-league,archetype,token,tfidf_lift
-NBA,Connector forward,cutting_dunk_shot__made,0.03677910020291901
-NBA,Connector forward,dunk_shot__made,0.02582703992148333
-NBA,Connector forward,tip_shot__miss,0.024063596171696927
-NBA,Connector forward,tip_shot__made,0.021955376154605133
-NBA,Connector forward,running_dunk_shot__made,0.021579250475426498
-NBA,Connector forward,layup_shot_putback__made,0.020299104250442873
-NBA,Connector forward,tip_dunk_shot__made,0.02006583509771275
-NBA,Connector forward,layup_shot_putback__miss,0.019884154674222408
-NBA,Hub big / point forward,turnaround_hook_shot__made,0.06691713253821022
-NBA,Hub big / point forward,turnaround_hook_shot__miss,0.0610830099172861
-NBA,Hub big / point forward,hook_shot__made,0.0599837533068531
-NBA,Hub big / point forward,hook_shot__miss,0.05461566911143616
-NBA,Hub big / point forward,driving_hook_shot__made,0.04677662096700691
-NBA,Hub big / point forward,dunk_shot__made,0.0449341920615796
-NBA,Hub big / point forward,turnaround_jump_shot__made,0.04470146559168753
-NBA,Hub big / point forward,turnaround_fade_away_jump_shot__made,0.04310995909302316
-NBA,On-ball creator,step_back_jump_shot__made,0.04622229588753478
-NBA,On-ball creator,pullup_jump_shot__three__made,0.041091670202808045
-NBA,On-ball creator,step_back_jump_shot__miss,0.039591818553437186
-NBA,On-ball creator,pullup_jump_shot__made,0.03825534091909928
-NBA,On-ball creator,pullup_jump_shot__three__miss,0.03803947370503466
-NBA,On-ball creator,fade_away_jump_shot__made,0.0377352650487337
-NBA,On-ball creator,driving_finger_roll_layup__miss,0.03571123968798068
-NBA,On-ball creator,driving_finger_roll_layup__made,0.03453910128509795
-NBA,Rim-running big,alley_oop_dunk_shot__made,0.12422938254217081
-NBA,Rim-running big,dunk_shot__made,0.10728503257169408
-NBA,Rim-running big,hook_shot__made,0.09942333765734922
-NBA,Rim-running big,hook_shot__miss,0.08819481241340148
-NBA,Rim-running big,putback_dunk_shot__made,0.08662354049252867
-NBA,Rim-running big,tip_dunk_shot__made,0.08207982105105222
-NBA,Rim-running big,alley_oop_dunk_shot__miss,0.0749976582675773
-NBA,Rim-running big,cutting_dunk_shot__made,0.07498482250322171
-NBA,Secondary guard,pullup_jump_shot__three__miss,0.044578699253735365
-NBA,Secondary guard,pullup_jump_shot__three__made,0.042338683125446835
-NBA,Secondary guard,pullup_jump_shot__made,0.03774041189081266
-NBA,Secondary guard,pullup_jump_shot__miss,0.036553580331472824
-NBA,Secondary guard,step_back_jump_shot__made,0.030908447976473782
-NBA,Secondary guard,step_back_jump_shot__miss,0.02984672624097999
-NBA,Secondary guard,driving_floating_jump_shot__miss,0.029074358087362445
-NBA,Secondary guard,driving_floating_jump_shot__made,0.028234455948538517
-NBA,Spot-up 3-and-D wing,jump_shot__three__made,0.05797023413839278
-NBA,Spot-up 3-and-D wing,jump_shot__three__miss,0.05680451048445945
-NBA,Spot-up 3-and-D wing,running_jump_shot__three__made,0.040435606579567546
-NBA,Spot-up 3-and-D wing,running_jump_shot__three__miss,0.03794928131993548
-NBA,Spot-up 3-and-D wing,defensive_rebound,0.03111348990420648
-NBA,Spot-up 3-and-D wing,shooting_foul,0.030926383567774107
-NBA,Spot-up 3-and-D wing,personal_foul,0.029676849801027777
-NBA,Spot-up 3-and-D wing,steal,0.02542277541991847
-WNBA,Connector forward,layup_shot_putback__made,0.03795539355373537
-WNBA,Connector forward,layup_shot__made,0.028372187086754763
-WNBA,Connector forward,cutting_layup_shot__made,0.027135411174274898
-WNBA,Connector forward,layup_shot_putback__miss,0.026790494403938728
-WNBA,Connector forward,turnaround_jump_shot__miss,0.02497938707813714
-WNBA,Connector forward,offensive_rebound,0.023950831436048342
-WNBA,Connector forward,layup_shot__miss,0.02186008243109777
-WNBA,Connector forward,block,0.020911079409616812
-WNBA,Hub big / point forward,turnaround_hook_shot__miss,0.05880489041574695
-WNBA,Hub big / point forward,turnaround_jump_shot__made,0.057299547882367546
-WNBA,Hub big / point forward,turnaround_hook_shot__made,0.05677747863810354
-WNBA,Hub big / point forward,hook_shot__made,0.05469067550339764
-WNBA,Hub big / point forward,hook_shot__miss,0.053426980844491545
-WNBA,Hub big / point forward,turnaround_fade_away_jump_shot__made,0.052698339545657794
-WNBA,Hub big / point forward,layup_shot_putback__made,0.051602453055924716
-WNBA,Hub big / point forward,turnaround_fade_away_jump_shot__miss,0.05142302215741285
-WNBA,On-ball creator,pullup_jump_shot__three__miss,0.044191174108348205
-WNBA,On-ball creator,pullup_jump_shot__made,0.04309960803606504
-WNBA,On-ball creator,pullup_jump_shot__three__made,0.04159427365396125
-WNBA,On-ball creator,running_pullup_jump_shot__made,0.041167112140886766
-WNBA,On-ball creator,step_back_jump_shot__three__miss,0.035907257060563025
-WNBA,On-ball creator,pullup_jump_shot__miss,0.0345165250360219
-WNBA,On-ball creator,driving_finger_roll_layup__made,0.0335806400173998
-WNBA,On-ball creator,running_pullup_jump_shot__miss,0.03249119534877107
-WNBA,Rim-running big,layup_shot_putback__made,0.07845477224981827
-WNBA,Rim-running big,turnaround_hook_shot__made,0.07259816120347412
-WNBA,Rim-running big,layup_shot_putback__miss,0.07133558270652943
-WNBA,Rim-running big,hook_shot__made,0.0699366073012302
-WNBA,Rim-running big,layup_shot__made,0.06829829952746
-WNBA,Rim-running big,turnaround_hook_shot__miss,0.06824015121266727
-WNBA,Rim-running big,3_second_turnover,0.06797885684062221
-WNBA,Rim-running big,hook_shot__miss,0.06402540513803165
-WNBA,Secondary guard,pullup_jump_shot__three__miss,0.04641830731030165
-WNBA,Secondary guard,pullup_jump_shot__three__made,0.04187644862393322
-WNBA,Secondary guard,pullup_jump_shot__made,0.03658586933143386
-WNBA,Secondary guard,pullup_jump_shot__miss,0.033697373826707566
-WNBA,Secondary guard,jump_shot__three__made,0.03230385337243874
-WNBA,Secondary guard,running_pullup_jump_shot__miss,0.02907999566832664
-WNBA,Secondary guard,running_pullup_jump_shot__made,0.028362287736541245
-WNBA,Secondary guard,jump_shot__three__miss,0.02813184630045698
-WNBA,Spot-up 3-and-D wing,jump_shot__three__made,0.06289254040778769
-WNBA,Spot-up 3-and-D wing,jump_shot__three__miss,0.0618922621417097
-WNBA,Spot-up 3-and-D wing,running_jump_shot__three__miss,0.044094752411963097
-WNBA,Spot-up 3-and-D wing,running_jump_shot__three__made,0.03859931248938761
-WNBA,Spot-up 3-and-D wing,shooting_foul,0.03196616735342625
-WNBA,Spot-up 3-and-D wing,defensive_rebound,0.03100450456222925
-WNBA,Spot-up 3-and-D wing,personal_foul,0.03062880349737762
-WNBA,Spot-up 3-and-D wing,steal,0.02404689341547503
+league,archetype,category,token,tfidf_lift
+NBA,Connector forward,shots,cutting_dunk_shot,0.056820472176533035
+NBA,Connector forward,shots,dunk_shot,0.047026258396475215
+NBA,Connector forward,shots,tip_dunk_shot,0.038287127830922064
+NBA,Connector forward,shots,tip_shot,0.03307484869494261
+NBA,Connector forward,playmaking & defense,offensive_rebound,0.01252861465901789
+NBA,Connector forward,playmaking & defense,block,0.01134387729045322
+NBA,Connector forward,playmaking & defense,defensive_rebound,0.004230748154723352
+NBA,Hub big / point forward,shots,turnaround_fade_away_jump_shot,0.05451555347162507
+NBA,Hub big / point forward,shots,turnaround_hook_shot,0.05065202030474081
+NBA,Hub big / point forward,shots,turnaround_bank_jump_shot,0.04839646928259027
+NBA,Hub big / point forward,shots,hook_turnaround_bank,0.044150808780691185
+NBA,On-ball creator,shots,pullup_bank_jump_shot,0.051195086494728016
+NBA,On-ball creator,shots,step_back_jump_shot,0.04381105280272275
+NBA,On-ball creator,shots,fade_away_jump_shot,0.04182150053208318
+NBA,On-ball creator,shots,driving_jump_shot_bank,0.03782953655777681
+NBA,On-ball creator,playmaking & defense,assist__rim,0.010680144200426123
+NBA,On-ball creator,playmaking & defense,assist__mid,0.009896928126794602
+NBA,On-ball creator,playmaking & defense,assist__three,0.0067756135266061335
+NBA,On-ball creator,playmaking & defense,turnover,0.001010394303437967
+NBA,Rim-running big,shots,alley_oop_dunk_shot,0.1331922434819618
+NBA,Rim-running big,shots,dunk_shot,0.09789544184921092
+NBA,Rim-running big,shots,putback_dunk_shot,0.09713337568388619
+NBA,Rim-running big,shots,hook_shot,0.09138493894578949
+NBA,Rim-running big,playmaking & defense,offensive_rebound,0.01753847982748516
+NBA,Rim-running big,playmaking & defense,block,0.015223519387646989
+NBA,Secondary guard,shots,pullup_jump_shot__three,0.045728399248672974
+NBA,Secondary guard,shots,pullup_jump_shot,0.03890479902535007
+NBA,Secondary guard,shots,step_back_jump_shot,0.033294330879851786
+NBA,Secondary guard,shots,running_pullup_jump_shot,0.030137148068040007
+NBA,Secondary guard,playmaking & defense,assist__rim,0.020324008639174856
+NBA,Secondary guard,playmaking & defense,assist__mid,0.019816045259310355
+NBA,Secondary guard,playmaking & defense,assist__three,0.018353683187319864
+NBA,Secondary guard,playmaking & defense,turnover,0.012458378738424258
+NBA,Spot-up 3-and-D wing,shots,jump_shot__three,0.07204280746033995
+NBA,Spot-up 3-and-D wing,shots,running_jump_shot__three,0.05829234132376909
+NBA,Spot-up 3-and-D wing,shots,shooting_foul,0.03266609185894312
+NBA,Spot-up 3-and-D wing,shots,personal_foul,0.03154897715442684
+NBA,Spot-up 3-and-D wing,playmaking & defense,defensive_rebound,0.03157758648905032
+NBA,Spot-up 3-and-D wing,playmaking & defense,steal,0.02611178881605447
+NBA,Spot-up 3-and-D wing,playmaking & defense,offensive_rebound,0.016305968950574845
+NBA,Spot-up 3-and-D wing,playmaking & defense,block,0.013835797743541017
+WNBA,Connector forward,shots,layup_shot_putback,0.055628202168659324
+WNBA,Connector forward,shots,cutting_layup_shot,0.03514205782084165
+WNBA,Connector forward,shots,layup_shot,0.03487134674857942
+WNBA,Connector forward,shots,turnaround_jump_shot,0.030894503292997297
+WNBA,Connector forward,playmaking & defense,offensive_rebound,0.028181474806523693
+WNBA,Connector forward,playmaking & defense,block,0.024744091218186437
+WNBA,Connector forward,playmaking & defense,defensive_rebound,0.01750042904145388
+WNBA,Connector forward,playmaking & defense,steal,0.0030132566035062924
+WNBA,Hub big / point forward,shots,turnaround_bank_jump_shot,0.05699171776522846
+WNBA,Hub big / point forward,shots,turnaround_fade_away_jump_shot,0.053187670240636975
+WNBA,Hub big / point forward,shots,fade_away_jump_shot,0.04614947695355706
+WNBA,Hub big / point forward,shots,step_back_jump_shot,0.04348309782898541
+WNBA,On-ball creator,shots,pullup_jump_shot__three,0.05089816812416502
+WNBA,On-ball creator,shots,running_pullup_jump_shot,0.05022778901315589
+WNBA,On-ball creator,shots,step_back_jump_shot__three,0.046019060997865985
+WNBA,On-ball creator,shots,driving_finger_roll_layup,0.04034617949824876
+WNBA,On-ball creator,playmaking & defense,assist__rim,0.0126832637995751
+WNBA,On-ball creator,playmaking & defense,assist__three,0.011149815213277015
+WNBA,On-ball creator,playmaking & defense,assist__mid,0.010730148754115515
+WNBA,On-ball creator,playmaking & defense,turnover,0.0008269791038810759
+WNBA,Rim-running big,shots,turnaround_hook_shot,0.06867391353317295
+WNBA,Rim-running big,shots,hook_shot,0.0630037744793949
+WNBA,Rim-running big,shots,layup_shot_putback,0.045503940455888126
+WNBA,Rim-running big,shots,tip_shot,0.03990417746570786
+WNBA,Rim-running big,playmaking & defense,block,0.02480643597790802
+WNBA,Rim-running big,playmaking & defense,offensive_rebound,0.02102165155496516
+WNBA,Rim-running big,playmaking & defense,defensive_rebound,0.005949594264692937
+WNBA,Rim-running big,playmaking & defense,turnover,0.000487247632252108
+WNBA,Secondary guard,shots,pullup_jump_shot__three,0.06159378097042158
+WNBA,Secondary guard,shots,running_pullup_jump_shot,0.04783964815962395
+WNBA,Secondary guard,shots,pullup_jump_shot,0.039528349354966796
+WNBA,Secondary guard,shots,step_back_jump_shot__three,0.034873787788517824
+WNBA,Secondary guard,playmaking & defense,assist__mid,0.019559713038735604
+WNBA,Secondary guard,playmaking & defense,assist__rim,0.017143586282654805
+WNBA,Secondary guard,playmaking & defense,assist__three,0.010420221453832784
+WNBA,Secondary guard,playmaking & defense,turnover,0.0076368458061945865
+WNBA,Spot-up 3-and-D wing,shots,jump_shot__three,0.07675905787761153
+WNBA,Spot-up 3-and-D wing,shots,running_jump_shot__three,0.05780302969152992
+WNBA,Spot-up 3-and-D wing,shots,shooting_foul,0.0320892107131642
+WNBA,Spot-up 3-and-D wing,shots,personal_foul,0.030767134259790774
+WNBA,Spot-up 3-and-D wing,playmaking & defense,defensive_rebound,0.029540227083882348
+WNBA,Spot-up 3-and-D wing,playmaking & defense,steal,0.022931793835511916
+WNBA,Spot-up 3-and-D wing,playmaking & defense,offensive_rebound,0.017804023215131387
+WNBA,Spot-up 3-and-D wing,playmaking & defense,assist__three,0.013829289272520778

@@ -2,54 +2,76 @@
 title: "Text: what the play-by-play says about each player"
 ---
 
-::: {.callout-note appearance="simple"}
+```{python}
+#| label: takeaways
+import pandas as pd
+from _viz import read, md
+r = read("step4_text_vs_archetypes.csv")
+zs = r[(r.league == "both") & (r.method == "zero-shot from written descriptions")].iloc[0]
+hz = r[r.method.str.startswith("zero-shot") & r.method.str.contains("hand")].accuracy_vs_hand_labels.iloc[0]
+hs = r[r.method.str.startswith("stat archetype")].accuracy_vs_hand_labels.iloc[0]
+tc = r[r.method.str.startswith("text clustering")].set_index("league")
+md(f"""::: {{.callout-note appearance="simple"}}
 ## Takeaways
 - **Every play already has a written description**, e.g. "Pullup Jump Shot", "Cutting Dunk Shot", "(X assists)",
   "X blocks Y's shot". Treating each player-season's plays as a document gives a text layer with no scraping.
-- **Topics found from text alone match recognizable roles:** rim finishers, hook-shot bigs, step-back and
-  fade-away creators, pull-up shooters.
-- **Text groups partly agree with the stat archetypes** (ARI 0.22 NBA, 0.26 WNBA). The text sees *how* players score,
-  while the stat model also sees rebounding, defense and usage.
-- **Zero-shot labels** (from written role descriptions, no training labels) agree with the stat archetypes 27% of the time
-  (chance is about 17%) and with the blind hand labels 29% of the time, against 48% for the stat archetypes.
-:::
+- **Topics found from text alone match recognizable roles:** rim finishers, post scorers, pull-up shooters and
+  spot-up shooters.
+- **Text groups partly agree with the stat archetypes** (ARI {tc.loc['NBA', 'ari_vs_stat_archetype']:.2f} NBA,
+  {tc.loc['WNBA', 'ari_vs_stat_archetype']:.2f} WNBA). The text sees *how* players score and pass; the stat model also sees
+  usage, rebounding rates and defense.
+- **Zero-shot labels** (from written role descriptions, checked against the player's position) agree with the stat
+  archetypes {zs.accuracy_vs_stat_archetype:.0%} of the time (chance is about 17%), and with the blind hand labels
+  {hz:.0%} of the time, close to the stat archetypes' {hs:.0%}.
+:::""")
+```
 
 ## How it works
 
 - **Documents:** one per player-season (NBA 2017-18 onward and WNBA 2019 onward, where the play text names shot
-  types; at least 500 minutes). Tokens are play types credited to the player, with *made* / *miss* and *three* tags,
-  plus *assist*, *block* and *steal*.
-- **Preprocessing:** lower-casing, punctuation stripped, one token per play type, administrative events
-  (substitutions, timeouts) removed, play types used by fewer than 20 players dropped.
-- **TF-IDF:** sublinear term frequency times inverse document frequency, so a rare play type like *alley-oop
-  dunk* weighs more than a common *defensive rebound*.
-- **Embeddings:** LSA, a 50-dimension compression of the TF-IDF matrix that places related play types together. It
-  covers one weakness of TF-IDF, which treats every token as unrelated. (A pretrained sentence-embedding model needs a
-  download that this build environment blocks.)
-- **Topic model:** non-negative matrix factorization, 8 topics.
-- **Text clustering:** K-Means (k = 6) on the embeddings, compared with the stat archetypes.
-- **Zero-shot labeling:** each archetype was described in words before any results were seen; each player gets the
-  description most similar to their document. The hand labels were only used to score the result.
+  types; at least 500 minutes).
+- **Tokens:**
+  - **Shot type** (e.g. *pullup jump shot three*). A made shot and a missed shot of the same type are the **same
+    token**, weighted: each attempt counts once and each make counts again. A movement shooter who takes and makes
+    many threes scores high on *jump shot three*; a defender who takes them and misses still shows the shot, with less weight.
+  - **Playmaking:** each assist records what the pass set up: *assist to a three*, *to the rim* or *to the mid-range*.
+  - **Defense and possession:** blocks, steals, rebounds, and all turnover types merged into one *turnover* token.
+- **Preprocessing:** lower-casing, punctuation stripped, one token per play type, administrative events (substitutions,
+  timeouts) removed, play types used by fewer than 20 players dropped.
+- **TF-IDF:** term frequency (dampened) times inverse document frequency, so a rare play like an *alley-oop dunk* weighs
+  more than a common *defensive rebound*.
+- **Position cross-check:** the distinctive plays of each archetype are measured against players **at the same
+  listed position**; text clustering uses the text plus the player's position; a zero-shot label must fit the position
+  (a center can't be labeled a secondary guard).
+- **Embeddings:** LSA, a 50-dimension compression of TF-IDF that places related play types together (no download needed).
+- **Topic model:** non-negative matrix factorization, 8 topics. **Text clustering:** K-Means (k = 6).
+- **Zero-shot labeling:** each archetype was described in words before results were seen; each player gets the most
+  similar description that fits their position. The hand labels were only used to score the result.
 
-## Topics found in the text
+## Plays that set each archetype apart
 
-```{python}
-from _viz import read, md
-t = read("step4_topics.csv")
-t["top_tokens"] = t.top_tokens.str.replace("__", " ", regex=False).str.replace("_", " ", regex=False)
-md(t.rename(columns={"top_tokens": "most important play types"}).to_markdown(index=False))
-```
-
-## Words that set each archetype apart
-
-The four play types most over-represented in each stat archetype (TF-IDF lift vs the league average).
+The plays most over-represented in each archetype compared with players **at the same position**, split into shots and
+playmaking & defense, so common but defining actions like passing aren't crowded out by rare shot types.
 
 ```{python}
 a = read("step4_archetype_tokens.csv")
 a["token"] = a.token.str.replace("__", " ", regex=False).str.replace("_", " ", regex=False)
 for lg in ["NBA", "WNBA"]:
-    g = a[a.league == lg].groupby("archetype").head(4).groupby("archetype").token.agg(", ".join).reset_index()
-    md(f"**{lg}**\n\n" + g.rename(columns={"token": "distinctive play types"}).to_markdown(index=False))
+    t = a[a.league == lg].groupby(["archetype", "category"]).token.agg(", ".join).unstack().reindex(columns=["shots", "playmaking & defense"])
+    md(f"**{lg}**\n\n" + t.fillna("(nothing above same-position players)").reset_index().to_markdown(index=False))
+md("**What this shows:** creators and secondary guards stand out for pull-ups, step-backs and assists of every kind; "
+   "spot-up 3-and-D wings for catch-and-shoot threes, steals and rebounds; rim-running bigs for dunks, putbacks and "
+   "blocks. One finding to note: **hub bigs / point forwards do not pass more than other forwards and centers** in this "
+   "data. The group is defined more by post scoring (turnaround hooks and fades) than by playmaking, so its true "
+   "point-forward passers (Jokić-type players) are better identified by their sub-type and assist rates than by the group name.")
+```
+
+## Topics found in the text
+
+```{python}
+t = read("step4_topics.csv")
+t["top_tokens"] = t.top_tokens.str.replace("__", " ", regex=False).str.replace("_", " ", regex=False)
+md(t.rename(columns={"top_tokens": "most important play types"}).to_markdown(index=False))
 ```
 
 ## How well text matches the stat archetypes
@@ -57,11 +79,10 @@ for lg in ["NBA", "WNBA"]:
 ARI and NMI: 0 = no agreement, 1 = identical groupings.
 
 ```{python}
-r = read("step4_text_vs_archetypes.csv")
-r = r.rename(columns={"ari_vs_stat_archetype": "ARI", "nmi_vs_stat_archetype": "NMI",
-                      "accuracy_vs_stat_archetype": "accuracy vs stat archetype",
-                      "accuracy_vs_hand_labels": "accuracy vs hand labels"})
-md(r.round(3).fillna("").to_markdown(index=False))
+r2 = r.rename(columns={"ari_vs_stat_archetype": "ARI", "nmi_vs_stat_archetype": "NMI",
+                       "accuracy_vs_stat_archetype": "accuracy vs stat archetype",
+                       "accuracy_vs_hand_labels": "accuracy vs hand labels"})
+md(r2.round(3).fillna("").to_markdown(index=False))
 ```
 
 Text clusters (rows, named by their three most distinctive play types) against stat archetypes (columns), both leagues:
@@ -70,6 +91,9 @@ Text clusters (rows, named by their three most distinctive play types) against s
 c = read("step4_text_cluster_vs_archetype.csv").set_index("text_cluster_name")
 c.index = c.index.str.replace("__", " ", regex=False).str.replace("_", " ", regex=False)
 md(c.to_markdown())
+md("**What this shows:** each row is a group the text found on its own; the numbers are how many player-seasons of each "
+   "stat archetype landed in it. Rows dominated by one column (e.g. the pull-up row by creators and secondary guards) "
+   "mean the text and the stats agree; spread-out rows are roles the text alone can't separate.")
 ```
 
 ## Reputation text (next step)

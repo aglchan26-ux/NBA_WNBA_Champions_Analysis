@@ -32,36 +32,77 @@ title: "Salary value: who is over- or underpaid?"
 - **Contract cohorts:** rookie scale (draft history, plus inferred for 2024+ draftees), minimum scale (identical low
   amounts paid to many players, or prorated deals), max scale (identical top-tier amounts), veteran.
 
-## Old rule vs new rule
+## Who is clearly over- or underpaid, by contract type
 
-Share of player-seasons labeled over- or underpaid.
+Each bar is the share of player-seasons the model is confident about: **underpaid to the right, overpaid to the left**.
+Everyone else (the large majority) is paid within what the model can tell apart.
 
 ```{python}
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from _viz import read, md, show
 c = read("step6_counts.csv")
-c = c[c.cohort.isin(["veteran", "rookie_scale", "minimum_scale", "max_scale"])]
-c["old"] = c.old_rule_underpaid + c.old_rule_overpaid
-c["new"] = c.new_rule_underpaid + c.new_rule_overpaid
-fig = make_subplots(rows=1, cols=2, subplot_titles=("NBA", "WNBA"), shared_yaxes=True, horizontal_spacing=0.06)
+order = ["veteran", "rookie_scale", "minimum_scale", "max_scale"]
+c = c[c.cohort.isin(order)]
+fig = make_subplots(rows=1, cols=2, subplot_titles=("NBA (2009-10 onward)", "WNBA (2021 onward)"), shared_yaxes=True,
+                    horizontal_spacing=0.08)
 for j, lg in enumerate(["NBA", "WNBA"], 1):
-    d = c[c.league == lg].set_index("cohort").reindex(["veteran", "rookie_scale", "minimum_scale", "max_scale"]).reset_index()
-    labels = d.cohort.str.replace("_", " ")
-    for col, nm, colr in (("old", "old ratio rule", "#8a8984"), ("new", "new interval rule", "#2a78d6")):
-        fig.add_bar(y=labels, x=d[col], orientation="h", name=nm, legendgroup=nm, showlegend=(j == 1),
-                    marker=dict(color=colr, line=dict(width=2, color="#fcfcfb")),
-                    text=[f"{v:.0%}" for v in d[col]], textposition="outside",
-                    hovertemplate=f"{lg} %{{y}}, {nm}: %{{x:.0%}}<extra></extra>", row=1, col=j)
-fig.update_xaxes(tickformat=".0%", range=[0, 1.12])
-fig.update_layout(height=380, barmode="group", hovermode="closest", legend=dict(y=1.15), yaxis=dict(autorange="reversed"))
+    d = c[c.league == lg].set_index("cohort").reindex(order).reset_index()
+    lab = d.cohort.str.replace("_", " ")
+    fig.add_bar(y=lab, x=-d.new_rule_overpaid, orientation="h", name="clearly overpaid", legendgroup="o", showlegend=(j == 1),
+                marker=dict(color="#eb6834", line=dict(width=2, color="#fcfcfb")), text=[f"{v:.0%}" for v in d.new_rule_overpaid],
+                textposition="outside", customdata=d.new_rule_overpaid, hovertemplate="%{y}: %{customdata:.0%} overpaid<extra></extra>", row=1, col=j)
+    fig.add_bar(y=lab, x=d.new_rule_underpaid, orientation="h", name="clearly underpaid", legendgroup="u", showlegend=(j == 1),
+                marker=dict(color="#2a78d6", line=dict(width=2, color="#fcfcfb")), text=[f"{v:.0%}" for v in d.new_rule_underpaid],
+                textposition="outside", hovertemplate="%{y}: %{x:.0%} underpaid<extra></extra>", row=1, col=j)
+    fig.add_vline(x=0, line=dict(color="#8a8984", width=1), row=1, col=j)
+fig.update_xaxes(tickformat=".0%", range=[-0.3, 0.8])
+fig.update_layout(height=340, barmode="relative", hovermode="closest", legend=dict(y=1.18), yaxis=dict(autorange="reversed"))
 show(fig)
+md("**What this shows:** minimum-contract players are the most often underpaid (their pay is set by the league's "
+   "minimum, not by how good they are). Veterans and rookies are mostly paid about right: only around one in twenty is "
+   "clearly off in either direction. Max contracts show no bars because their pay is capped by rule, so they are judged "
+   "by value delivered instead (table further down).")
+c["cohort"] = c.cohort.str.replace("_", " ")
+t = c[["league", "cohort", "player_seasons", "old_rule_underpaid", "old_rule_overpaid", "new_rule_underpaid", "new_rule_overpaid"]].copy()
+for col in t.columns[3:]:
+    t[col] = t[col].map(lambda x: f"{x:.0%}")
+t.columns = ["league", "contract type", "player-seasons", "old rule: under", "old rule: over", "new rule: under", "new rule: over"]
+md("**Old ratio rule vs the new interval rule.** The old rule (predicted ÷ actual pay above 1.2 or below 0.8) flags far "
+   "more players because it ignores uncertainty:\n\n" + t.to_markdown(index=False))
 ```
 
-**What this shows:** the gray bars are how many players the notebook's ratio rule flagged; the blue bars are how many
-the new rule flags once uncertainty is counted. For veterans, the old rule flagged roughly three in four players;
-most of those flags were noise, because a 20% gap between predicted and actual pay is well inside what the model
-cannot tell apart. The players who survive the new rule are the cases worth writing about.
+## Has the 2023 CBA (second apron) changed who is overpaid?
+
+The 2023 CBA took effect on July 1, 2023 (the 2023-24 season) and added a **second apron**, a payroll line above the
+luxury tax. Teams over it lose tools to add or keep players: no taxpayer mid-level exception, no aggregating salaries in
+trades, no using older trade exceptions, no sending cash in trades. The restrictions phased in over two seasons and were
+fully in force from 2024-25 ([Hoops Rumors glossary](https://www.hoopsrumors.com/2025/01/hoops-rumors-glossary-tax-aprons-2.html);
+[theScore](https://www.thescore.com/nba/news/2940429)).
+
+```{python}
+cb = read("step6_cba_periods.csv")
+cb = cb[cb.cohort6.isin(["veteran", "max_scale", "minimum_scale", "rookie_scale"])].copy()
+cb["cohort6"] = cb.cohort6.str.replace("_", " ")
+for col in ["underpaid", "overpaid"]:
+    cb[col] = cb[col].map(lambda x: f"{x:.1%}")
+cb["median_surplus"] = cb.median_surplus.map(lambda x: f"{x:+.2f}")
+cb["median_cap_share"] = cb.median_cap_share.map(lambda x: f"{x:.1%}")
+cb.columns = ["contract type", "period", "player-seasons", "clearly underpaid", "clearly overpaid",
+              "typical surplus (log)", "typical pay (share of avg payroll)"]
+md(cb.to_markdown(index=False))
+v = read("step6_cba_periods.csv").set_index(["cohort6", "period"])
+old, new = "2016-17 to 2022-23 (old CBA)", "2023-24 to 2025-26 (2023 CBA)"
+md(f"""**What this shows:** the new CBA has *not* led to more overpaid role players; if anything the opposite. Since 2023-24,
+the share of veterans clearly overpaid fell from {v.loc[('veteran', old), 'overpaid']:.1%} to {v.loc[('veteran', new), 'overpaid']:.1%},
+and the typical veteran now delivers about {100 * (2.718 ** v.loc[('veteran', new), 'median_surplus'] - 1):.0f}% more value than
+his pay (about even before), while veterans' typical pay fell from {v.loc[('veteran', old), 'median_cap_share']:.1%} to
+{v.loc[('veteran', new), 'median_cap_share']:.1%} of an average payroll. Minimum-contract players are underpaid more often
+({v.loc[('minimum_scale', old), 'underpaid']:.0%} → {v.loc[('minimum_scale', new), 'underpaid']:.0%}), and max players' typical shortfall
+narrowed ({v.loc[('max_scale', old), 'median_surplus']:+.2f} → {v.loc[('max_scale', new), 'median_surplus']:+.2f}). That fits teams
+near the aprons squeezing the middle of the salary scale and filling rosters with cheaper contracts. It is three seasons of
+data and an association, not proof that the apron caused it.""")
+```
 
 ## Clearly over- or underpaid veterans, latest season
 

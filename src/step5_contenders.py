@@ -21,7 +21,7 @@ import pandas as pd
 from common import MODEL_START, PROC, RAW, RESULTS
 from step5_models import clogit_fit, clogit_ll
 
-FEATS = ["o_prev_z", "d_prev_z", "age_w_z"]
+FEATS = ["o_prev_z", "d_prev_z", "star_z", "age_w_z"]   # star: best player (1,000+ projected min)
 NEW_MIN = 500.0
 
 
@@ -39,10 +39,12 @@ def roster_features(roster: pd.DataFrame, season: int) -> pd.DataFrame:
 
     def team(g):
         s = 5 * g.proj_min / g.proj_min.sum()
+        big = g[g.proj_min >= 1000].impact
         return pd.Series({"o_prev": (s * g.o_impact).sum(), "d_prev": (s * g.d_impact).sum(),
+                          "star": big.max() if len(big) else 0.0,
                           "age_w": np.average(g.age.fillna(g.age.median()), weights=g.proj_min)})
     t = d.groupby("team_id").apply(team).reset_index()
-    for c in ["o_prev", "d_prev", "age_w"]:
+    for c in ["o_prev", "d_prev", "star", "age_w"]:
         t[c + "_z"] = (t[c] - t[c].mean()) / t[c].std(ddof=0)
     return t, d
 
@@ -109,14 +111,14 @@ def main() -> None:
 
     def summary(g):
         g = g.sort_values("proj_min", ascending=False)
-        top = g.head(3)
+        top = g[g.proj_min >= 800].sort_values("impact", ascending=False).head(3)   # most impactful, not most minutes
         arr = g[g.changed_team & (g.proj_min >= 1000)]
         return pd.Series({"top_players": ", ".join(f"{p} ({i:+.1f})" for p, i in zip(top.player, top.impact)),
                           "key_arrivals": ", ".join(arr.player.head(4)),
                           "main_roles": ", ".join(g.head(8).subtype.dropna().value_counts().head(3).index)})
     sm = d.groupby("team_id").apply(summary).reset_index()
     t = t.merge(sm, on="team_id").sort_values("title_prob", ascending=False)
-    out = t[["team_display_name", "title_prob", "o_prev", "d_prev", "age_w", "top_players", "key_arrivals", "main_roles"]]
+    out = t[["team_display_name", "title_prob", "o_prev", "d_prev", "star", "age_w", "top_players", "key_arrivals", "main_roles"]]
     out.round(4).to_csv(RESULTS / "step5_contenders_2027.csv", index=False)
     d[["team_abbreviation", "player", "proj_min", "o_impact", "d_impact", "impact", "archetype", "subtype", "changed_team",
        "new_to_nba_data"]].round(2).to_csv(RESULTS / "step5_contenders_2027_players.csv", index=False)

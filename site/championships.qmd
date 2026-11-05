@@ -98,11 +98,12 @@ def identity_text(lg):
     n = d.identity.value_counts()
     rec = d[d.season >= 2022].sort_values("season")
     recent = "; ".join(f"{r.team} {r.season}: {r.identity}" for r in rec.itertuples())
-    return (f"**What this shows:** each dot is {'an' if lg == 'NBA' else 'a'} {lg} champion. Right = better offense than the league that season, "
-            f"up = better defense. A champion is *offense-led* when its offensive edge beats its defensive edge by 3+ points per "
-            f"100 possessions, *defense-led* the reverse, otherwise *balanced*. Of {len(d)} {lg} champions, "
-            f"{n.get('balanced', 0)} were balanced, {n.get('offense-led', 0)} offense-led and {n.get('defense-led', 0)} defense-led "
-            f"(these are counts of teams). Recent champions: {recent}.")
+    order = ["defense-first", "defense-leaning", "balanced", "offense-leaning", "offense-first"]
+    counts = ", ".join(f"{n.get(k, 0)} {k}" for k in order)
+    return (f"**What this shows:** each dot is {'an' if lg == 'NBA' else 'a'} {lg} champion. Right = better offense than the league "
+            f"that season, up = better defense. Identity comes from the gap between the two edges (points per 100 possessions): "
+            f"within 2 = *balanced*, 2-5 = *defense-* or *offense-leaning*, 5 or more = *defense-* or *offense-first*. "
+            f"Counts of {lg} champions: {counts}. Recent champions: {recent}.")
 
 
 def champ_tables(lg):
@@ -148,6 +149,67 @@ def composition_text(lg, arch):
                      f"({row[up]:+.1f} points vs the league), fewest to **{down}** ({row[down]:+.1f}); by listed position, "
                      f"{pu} got the most extra minutes ({pr[pu]:+.1f}).")
     return "\n".join(lines)
+
+
+prof_ch = read("champion_profiles.csv")
+prof_ch = prof_ch[prof_ch.season >= prof_ch.league.map(START)]
+SHORT = {"Spot-up 3-and-D wing": "3-and-D wings", "Rim-running big": "rim-running bigs", "Connector forward": "connector forwards",
+         "Secondary guard": "secondary guards", "On-ball creator": "extra creators", "Hub big / point forward": "hub bigs"}
+
+
+def era_lines(lg, arch):
+    """5-8 words per era, built from what differs between eras: offense/defense lean of the champions, their shot mix
+    vs the league, how star-led they were, and the role that grew most vs the era before."""
+    a = arch.set_index("era")
+    pc = prof_ch[prof_ch.league == lg].copy()
+    pc["era"] = pd.cut(pc.season, *ERAS[lg][:1], labels=ERAS[lg][1])
+    sh = cv[cv.league == lg].copy()
+    sh["era"] = pd.cut(sh.season, *ERAS[lg][:1], labels=ERAS[lg][1])
+    sh = sh.groupby("era", observed=True)[["three_share_vs_league", "rim_share_vs_league", "mid_share_vs_league"]].mean() * 100
+    out, prev = [], None
+    for era in a.index:
+        g = pc[pc.era == era]
+        gap = (g.def_edge - g.off_edge).mean()
+        lean = ("defense-first" if gap >= 5 else "defense-leaning" if gap >= 2 else "offense-first" if gap <= -5 else
+                "offense-leaning" if gap <= -2 else "two-way" if (g.def_edge.mean() > 3 and g.off_edge.mean() > 3) else "balanced")
+        x = sh.loc[era]
+        shots = ("three-heavy" if x.three_share_vs_league > 2 else "paint-leaning" if x.rim_share_vs_league > 1
+                 else "mid-range-leaning" if x.mid_share_vs_league > 1 else "league-typical shots")
+        alpha = (g.role.isin(["alpha engine", "playmaking hub", "shot-maker"])).mean()
+        star = "star-engine" if alpha >= 0.6 else "committee"
+        row = a.loc[era]
+        grow = row.drop("Spot-up 3-and-D wing").idxmax() if prev is None else (row - prev).idxmax()
+        out.append(f"- **{era}:** {lean}, {shots}, {star}, {'leaning' if prev is None else 'more'} {SHORT[grow]}")
+        prev = row
+    return "\n".join(out)
+
+
+def three_trend(lg):
+    """League three-point share (line) and each champion's (dots), with the recent five-season average gap."""
+    L = prof[(prof.league == lg) & (prof.season >= START[lg])][["season", "three_share"]]
+    C = cv[cv.league == lg][["season", "three_share_vs_league"]].merge(L, on="season")
+    C["champ"] = C.three_share + C.three_share_vs_league
+    fig = go.Figure()
+    fig.add_scatter(x=L.season, y=L.three_share, name=f"{lg} league", mode="lines", line=dict(color="#8a8984", width=2.5),
+                    hovertemplate="league: %{y:.1%}<extra></extra>")
+    fig.add_scatter(x=C.season, y=C.champ, name="champion", mode="markers",
+                    marker=dict(size=10, color=LEAGUE[lg], line=dict(width=2, color="#fcfcfb")),
+                    hovertemplate="champion: %{y:.1%}<extra></extra>")
+    fig.update_layout(height=320, yaxis=dict(tickformat=".0%", title="share of shots from three"), hovermode="x unified",
+                      legend=dict(y=1.15))
+    rec = C[C.season >= C.season.max() - 4].three_share_vs_league.mean() * 100
+    early = C[C.season < C.season.max() - 4].three_share_vs_league.mean() * 100
+    above = (C[C.season >= C.season.max() - 4].three_share_vs_league > 0).sum()
+    txt = (f"**What this shows:** the gray line is the share of {lg} shots that were threes each season; the dots are that "
+           f"season's champion. Over the last five seasons, {above} of 5 champions took more threes than the league, by "
+           f"{rec:+.1f} points on average, against {early:+.1f} in the seasons before. ")
+    return fig, txt
+
+
+def champ_list(lg):
+    d = prof_ch[prof_ch.league == lg].sort_values("season", ascending=False)[["season", "team", "summary"]]
+    d.columns = ["season", "champion", "in a few words"]
+    return d.to_markdown(index=False)
 
 
 HOW_TO_READ = (
@@ -206,6 +268,14 @@ show(fig)
 md(zone_text("NBA", s))
 ```
 
+## NBA: are champions leaning toward threes?
+
+```{python}
+fig, txt = three_trend("NBA")
+show(fig)
+md(txt)
+```
+
 ## NBA: champion identity
 
 ```{python}
@@ -217,6 +287,11 @@ md("**How NBA champions' shots differed from the league** (percentage points; + 
 md("**NBA champions' archetype minutes minus the league average** (percentage points)\n\n" + arch.to_markdown(index=False))
 md("**NBA champions' minutes by listed position, minus the league average** (percentage points)\n\n" + position_table("NBA").to_markdown(index=False))
 md("**Team composition, era by era:**\n\n" + composition_text("NBA", arch))
+md("**Each era in a few words:** the champions' average identity, their shots compared with the league, whether they "
+   "were built around a star engine or a committee, and the role that grew most compared with the era before "
+   "(3-and-D wings lead in every era, so eras are told apart by what changed):\n\n" + era_lines("NBA", arch))
+md("**Every NBA champion in a few words** (identity from offense/defense ranks, the best player by lineup impact and "
+   "his or her role, and the role the team leaned on most compared with the league):\n\n" + champ_list("NBA"))
 ```
 
 ## NBA: picking champions and series
@@ -240,6 +315,14 @@ show(fig)
 md(zone_text("WNBA", s))
 ```
 
+## WNBA: are champions leaning toward threes?
+
+```{python}
+fig, txt = three_trend("WNBA")
+show(fig)
+md(txt + ("The WNBA play-by-play has the same shot locations as the NBA's, but the league has fewer teams and playoff games, so single seasons move a lot; the five-season averages are the steadier read."))
+```
+
 ## WNBA: champion identity
 
 ```{python}
@@ -251,6 +334,11 @@ md("**How WNBA champions' shots differed from the league** (percentage points)\n
 md("**WNBA champions' archetype minutes minus the league average** (percentage points)\n\n" + arch.to_markdown(index=False))
 md("**WNBA champions' minutes by listed position, minus the league average** (percentage points)\n\n" + position_table("WNBA").to_markdown(index=False))
 md("**Team composition, era by era:**\n\n" + composition_text("WNBA", arch))
+md("**Each era in a few words:** the champions' average identity, their shots compared with the league, whether they "
+   "were built around a star engine or a committee, and the role that grew most compared with the era before "
+   "(3-and-D wings lead in every era, so eras are told apart by what changed):\n\n" + era_lines("WNBA", arch))
+md("**Every WNBA champion in a few words** (identity from offense/defense ranks, the best player by lineup impact and "
+   "his or her role, and the role the team leaned on most compared with the league):\n\n" + champ_list("WNBA"))
 ```
 
 ## WNBA: picking champions and series
@@ -295,6 +383,20 @@ for s in range(2019, int(yb.wnba_season.max()) + 1):
                  "NBA champion then": f"{nb.team} ({nb.identity})" if nb is not None else "",
                  "WNBA champion": f"{wb.team} ({wb.identity})" if wb is not None else ""})
 md(pd.DataFrame(rows).to_markdown(index=False))
+eras_n = ERAS["NBA"]
+m3 = yb[(yb.feature == "three_share") & yb.nba_equivalent_season.notna()].copy()
+m3["wnba_era"] = pd.cut(m3.wnba_season, ERAS["WNBA"][0], labels=ERAS["WNBA"][1])
+med = m3.groupby("wnba_era", observed=True).nba_equivalent_season.median()
+nba_era = lambda yr: pd.cut([yr], eras_n[0], labels=eras_n[1])[0]
+med = med.round()
+steps = "; ".join(f"in {e} it looked like the NBA of about {int(v) - 1}-{str(int(v))[-2:]} (the NBA's {nba_era(v)} era)" for e, v in med.items())
+recent = m3[m3.wnba_season >= m3.wnba_season.max() - 6]
+slope = np.polyfit(recent.wnba_season, recent.nba_equivalent_season, 1)[0]
+md(f"""**Is the WNBA standing still in one NBA era, or moving through them?** It is moving. On three-point share, {steps}.
+Over the last seven WNBA seasons the matching NBA season has advanced about **{slope:.1f} NBA seasons per WNBA season**:
+slower than one-for-one, so the WNBA is moving through the NBA's eras rather than standing still in one, while the
+NBA keeps moving too. Its champions are already ahead of it: recent WNBA champions took more threes and gave more minutes to
+3-and-D wings than their league, the way NBA champions did before the NBA's shift.""")
 md("**What this shows:** both lines rise together: as the WNBA has taken more threes and fewer mid-range shots, the NBA "
    "season it resembles has moved forward too, and by 2026 it matches the NBA of about 2019-20 on threes. The table pairs "
    "each recent WNBA season with its closest NBA season and both champions. Where the identities line up (for example "

@@ -1,7 +1,7 @@
 text_cluster_name,Connector forward,Hub big / point forward,On-ball creator,Rim-running big,Secondary guard,Spot-up 3-and-D wing
-alley_oop_dunk_shot__made / dunk_shot__made / hook_shot__made,158,157,5,359,1,4
-cutting_dunk_shot__made / running_dunk_shot__made / tip_shot__miss,305,19,16,0,47,218
-fade_away_jump_shot__made / turnaround_fade_away_jump_shot__made / step_back_jump_shot__made,144,115,308,0,122,21
-layup_shot__made / jump_shot__made / layup_shot_putback__made,128,119,8,75,9,48
-pullup_jump_shot__three__miss / pullup_jump_shot__three__made / pullup_jump_shot__miss,47,5,248,0,486,242
-step_back_jump_shot__three__miss / step_back_jump_shot__three__made / running_jump_shot__miss,70,22,180,0,189,92
+dunk_shot / alley_oop_dunk_shot / cutting_dunk_shot,399,166,22,60,0,69
+hook_shot / alley_oop_dunk_shot / turnaround_hook_shot,67,143,0,342,0,11
+jump_shot__three / cutting_layup_shot / defensive_rebound,327,128,57,32,32,258
+pullup_jump_shot / pullup_jump_shot__three / step_back_jump_shot,11,0,232,0,375,110
+running_dunk_shot / driving_dunk_shot / step_back_jump_shot,36,0,283,0,251,97
+step_back_jump_shot__three / heave_jump_shot / running_jump_shot,12,0,171,0,196,80

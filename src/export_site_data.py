@@ -22,7 +22,7 @@ COPY = [
     "step5_A_ridge_coefs.csv", "step5_league_profiles.csv", "step5_wnba_years_behind.csv",
     "step5_champion_vs_league.csv", "step5_champion_identity.csv", "step5_title_no_net_cv.csv",
     "lineups_validation.csv", "player_impact_validation.csv", "step5_title_impact_cv.csv", "step5_series_cv.csv",
-    "step5_series_significance.csv", "shot_distance_calibration.csv", "step3_hand_label_agreement_v3.csv",
+    "step5_series_significance.csv", "shot_distance_calibration.csv", "step6_cba_periods.csv", "step3_hand_label_agreement_v3.csv",
     "step5_final_title_cv.csv", "step5_final_series_cv.csv", "step5_final_significance.csv", "step5_final_weights.csv", "step4_topics.csv", "step4_text_vs_archetypes.csv",
     "step4_text_cluster_vs_archetype.csv", "step4_archetype_tokens.csv", "step6_counts.csv", "step6_model_cv.csv",
     "step6_top_players.csv", "step6_max_contracts.csv", "step6_lambda.csv", "step5_contenders_2027.csv", "step5_contenders_cv.csv", "step5_C_drift_windows.csv", "step5_checklist_by_group.csv",
@@ -80,6 +80,47 @@ def champion_position_share() -> pd.DataFrame:
     return ch[["league", "season", "G", "F", "C", "G_vs_league", "F_vs_league", "C_vs_league"]]
 
 
+ROLE = {"Alpha scorer": "alpha engine", "Playmaking hub": "playmaking hub", "Floor general": "lead playmaker", "Shot-making scorer": "shot-maker",
+        "Interior hub big": "post hub", "Stretch / skilled big": "skilled big", "Rim-running finisher": "rim finisher",
+        "Low-usage rim protector": "rim protector", "Perimeter stopper forward": "perimeter stopper",
+        "Scoring stretch forward": "scoring forward", "Microwave scoring guard": "scoring guard",
+        "Defensive / connector guard": "two-way guard", "Catch-and-shoot wing": "shooter", "Movement shooter": "shooter",
+        "Low-usage glue defender": "glue defender", "Rebounding / rim-running forward": "rebounding forward"}
+DEPTH = {"Spot-up 3-and-D wing": "3-and-D wings", "Rim-running big": "rim-running bigs", "Connector forward": "connector forwards",
+         "Secondary guard": "secondary guards", "On-ball creator": "extra creators", "Hub big / point forward": "hub bigs"}
+
+
+def champion_profiles() -> pd.DataFrame:
+    """One line per champion: identity, best player (lineup impact) and role, and the role it leaned on most."""
+    ci = pd.read_csv(RES / "step5_champion_identity.csv")
+    P = pd.read_parquet(PROC / "player_impact.parquet")[["league", "season", "athlete_id", "impact"]]
+    pt = pd.read_parquet(PROC / "player_team_season.parquet")
+    pt = pt[pt.season_type == "regular"][["league", "season", "athlete_id", "team_id", "minutes"]]
+    A = pd.read_parquet(PROC / "archetypes_detailed.parquet", columns=["league", "season", "athlete_id", "player", "subtype", "archetype"])
+    ts = pd.read_parquet(PROC / "team_seasons.parquet")[["league", "season", "team_id", "team", "champion"]]
+    ch = ts[ts.champion.astype(bool)]
+    d = pt.merge(ch[["league", "season", "team_id", "team"]]).merge(P).merge(A)
+    d = d[d.minutes >= d.league.map({"NBA": 1000, "WNBA": 500})]           # WNBA seasons are 34-44 games
+    d = d.sort_values("impact", ascending=False).groupby(["league", "season"]).head(1)
+    # an alpha scorer who plays as a hub big (e.g. Jokic) is a playmaking hub, not a scoring guard-type engine
+    d.loc[(d.subtype == "Alpha scorer") & (d.archetype == "Hub big / point forward"), "subtype"] = "Playmaking hub"
+    out = ci.merge(d[["league", "season", "player", "subtype", "impact"]], on=["league", "season"], how="left")
+    arch = [c for c in ci.columns if c.startswith("arch_vs_league::")]
+    rows = []
+    for r in out.itertuples():
+        lead = r.identity.capitalize()
+        if r.identity == "balanced" and r.off_edge >= 4 and r.def_edge >= 4:
+            lead = "Two-way"
+        star = f"{str(r.player).split(' ', 1)[-1]} {ROLE.get(r.subtype, str(r.subtype).lower())}" if isinstance(r.player, str) else "deep roster"
+        top = max(arch, key=lambda c: out.loc[r.Index, c])
+        rows.append({"league": r.league, "season": r.season, "team": r.team, "identity": r.identity,
+                     "role": ROLE.get(r.subtype, str(r.subtype).lower()) if isinstance(r.player, str) else "deep roster",
+                     "off_edge": r.off_edge, "def_edge": r.def_edge,
+                     "best_player": r.player, "best_player_impact": r.impact, "lean": top.split("::")[1],
+                     "summary": f"{lead}, {star}, deep {DEPTH[top.split('::')[1]]}"})
+    return pd.DataFrame(rows)
+
+
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     for f in COPY:
@@ -87,6 +128,7 @@ def main() -> None:
     (ROOT / "site" / "figures").mkdir(exist_ok=True)
     shutil.copy(ROOT / "figures" / "step3_archetype_profiles.png", ROOT / "site" / "figures")
     champion_position_share().to_csv(OUT / "champion_position_share.csv", index=False)
+    champion_profiles().to_csv(OUT / "champion_profiles.csv", index=False)
     champion_arch_share().to_csv(OUT / "champion_arch_share.csv", index=False)
     top_impact().to_csv(OUT / "top_player_impact.csv", index=False)
     archetype_share_by_season().to_csv(OUT / "archetype_share_by_season.csv", index=False)

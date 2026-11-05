@@ -6,8 +6,10 @@ title: "2026-27 NBA contenders"
 ## Takeaways
 - **Built only from players:** each team's current roster (ESPN, November 2026), each player's 2025-26 offense and
   defense impact from lineups, and his 2025-26 minutes as a rough projection. No 2026-27 results are used.
-- **Its track record, tested forward in time over 13 seasons:** an average 17% on the eventual champion among all 30 teams
-  (a random pick gives 3%), with the champion in its top three in 6 of 13 seasons.
+- **Stars count.** Besides overall roster strength, the model weighs each team's best player (lineup-based impact,
+  1,000+ projected minutes), so Gilgeous-Alexander, Jokić and Wembanyama lift their teams directly.
+- **Its track record, tested forward in time over 13 seasons:** an average 18% on the eventual champion among all 30 teams
+  (a random pick gives 3%), with the champion in its top three in 7 of 13 seasons.
 - Odds are a starting point before any games are played, not a prediction of injuries, trades or development.
 :::
 
@@ -34,8 +36,8 @@ so roles for arrivals are less certain: Dončić kept his role after his trade, 
 
 ```{python}
 d = read("step5_contenders_2027.csv").head(16)
-d = d[["team_display_name", "title_prob", "o_prev", "d_prev", "age_w", "top_players", "key_arrivals", "main_roles"]]
-d.columns = ["team", "title odds", "offense", "defense", "avg age", "top players (impact)", "arrivals", "main roles"]
+d = d[["team_display_name", "title_prob", "o_prev", "d_prev", "star", "age_w", "top_players", "key_arrivals", "main_roles"]]
+d.columns = ["team", "title odds", "offense", "defense", "best player impact", "avg age", "most impactful players", "arrivals", "main roles"]
 d["title odds"] = d["title odds"].map(lambda x: f"{x:.1%}")
 md(d.round(1).fillna("").to_markdown(index=False))
 ```

@@ -40,6 +40,8 @@ fw = read("step5_final_weights.csv").set_index(["league", "variable"])
 names = {"net rating only (reference)": "Net rating alone (baseline)",
          "availability-adjusted strength only": "Availability-adjusted strength alone (ours)",
          "net rating + availability-adjusted strength": "**Net rating + availability-adjusted strength (chosen)**",
+         "net + availability-adjusted strength + star": "Net + ours + star player",
+         "net + availability-adjusted strength + star + archetype x quality": "Net + ours + star + archetype x quality",
          "net + availability-adjusted (offense, defense) + archetype x quality + age": "Net + ours split offense/defense + archetype x quality + age"}
 rows = []
 for lg in ["NBA", "WNBA"]:
@@ -63,9 +65,12 @@ season is rated on the roster it will actually play with. Net rating can't see t
 - **Why keep net rating in it.** Our variable alone is about as good at calling series but less steady at picking
   champions in some seasons; net rating captures things our lineup estimates miss (team scheme and coaching, and
 players with too few minutes to estimate well). Together they are the most accurate and the most stable in both leagues.
-- **Why not the bigger model.** Splitting offense and defense and adding archetype x quality and age did not improve
-  on the two-variable model in the NBA; with only 13-20 test seasons, extra variables add noise faster than signal.
-  In the WNBA it edges ahead on titles but not on series, so the simpler model is the one we use for both leagues.
+- **Star players.** Adding the best available player's impact ("star") gives the best NBA title picker and the best
+  series log-loss, so star power is used in the 2026-27 forecast (Jokić, Gilgeous-Alexander and Wembanyama drive
+  their teams' ratings). It adds nothing in the WNBA, so the two-variable model stays the main one for both leagues.
+- **Archetype x quality.** Tuning its penalty inside the season-by-season test lifted it to about the chosen model's level
+  (NBA ~18% on the champion, WNBA ~36%), but not above it: with 13-20 test seasons, six extra role variables add noise
+  about as fast as signal. Who is good still explains more than which role they play.
 - **How it is trained.** Season by season, using only earlier seasons, with recent seasons weighted more heavily
   (the weighting is chosen from past seasons only).""")
 ```
