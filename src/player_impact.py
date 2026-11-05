@@ -92,56 +92,109 @@ def choose_alpha(lg: str) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+BOX = ["usage_eb", "pts_eb", "ast_eb", "orb_eb", "drb_eb", "stl_eb", "blk_eb", "tov_eb", "pf_eb", "fta_rate_eb",
+       "fg3_rate_eb", "assisted_eb", "fg3_pct_eb", "ft_pct_eb", "rim_pct_eb", "mid_pct_eb"]
+# prior = BOX_W * box-score prior + PREV_W * last season's estimate (prev decays toward 0 when PREV_W < 1)
+CONFIGS = {"A prev x1.0 (old)": (0.0, 1.0), "B prev x0.5": (0.0, 0.5), "C box-score prior": (1.0, 0.0),
+           "D box 0.5 + prev 0.5": (0.5, 0.5)}
+
+
+def box_prior(single: pd.DataFrame) -> pd.DataFrame:
+    """Box-score prior: ridge of single-season RAPM (offense, defense) on shrunk box-score rates (z within
+    league-season, plus scoring per usage), fitted leave-one-season-out so a season's prior never uses its own RAPM."""
+    d = pd.read_parquet(PROC / "player_season_shrunk.parquet")
+    d = d[d.season_type == "regular"][["league", "season", "athlete_id"] + BOX].copy()
+    d["eff"] = d.pts_eb / d.usage_eb.clip(lower=1e-3)
+    feats = BOX + ["eff"]
+    for c in feats:
+        d[c] = d.groupby(["league", "season"])[c].transform(lambda v: (v - v.mean()) / (v.std(ddof=0) or 1))
+    d = d.merge(single, on=["league", "season", "athlete_id"], how="left")
+    out = []
+    for lg, g in d.groupby("league"):
+        for s_ in g.season.unique():
+            tr = g[(g.season != s_) & g.o_single.notna() & (g.poss >= 1000)]
+            te = g[g.season == s_]
+            X = tr[feats].fillna(0).to_numpy()
+            pr = {}
+            for side in ("o", "d"):
+                m = Ridge(alpha=50.0).fit(X, tr[f"{side}_single"], sample_weight=tr.poss)
+                pr[f"{side}_box"] = m.predict(te[feats].fillna(0).to_numpy())
+            out.append(pd.DataFrame({"league": lg, "season": s_, "athlete_id": te.athlete_id.to_numpy(), **pr}))
+    return pd.concat(out, ignore_index=True)
+
+
+def holdout_r2(X, yy, w, first, alpha, prior):
+    bh, muh = fit(X[first], yy[first], w[first], alpha, prior=prior)
+    p = muh + X[~first] @ bh
+    return wr2(yy[~first], p, w[~first], muh)
+
+
 def main() -> None:
-    out, val, alph = [], [], []
+    gd = pd.read_parquet(PROC / "player_game.parquet", columns=["league", "season", "game_id", "game_date"]).drop_duplicates("game_id")
+    data, alph, single_rows = {}, [], []
     for lg in ["NBA", "WNBA"]:
         A = choose_alpha(lg)
         alph.append(A)
         alpha = int(A.groupby("alpha").cv_r2.mean().idxmax())
-        print(f"{lg}: alpha {alpha}", A.groupby("alpha").cv_r2.mean().round(4).to_dict(), file=sys.stderr)
-        prev = None
+        print(f"{lg}: alpha {alpha}", file=sys.stderr)
         for y in SEASONS[lg.lower()]:
             d = load(lg, y)
             X, yy, w, players = design(d)
+            b0, _ = fit(X, yy, w, alpha)
             m = len(players)
-            b0, mu = fit(X, yy, w, alpha)
-            prior = np.zeros(X.shape[1])
-            if prev is not None:
-                po = prev.set_index("athlete_id")
-                prior[:m] = po.o_impact.reindex(players).fillna(0).to_numpy()
-                prior[m:2 * m] = po.d_impact.reindex(players).fillna(0).to_numpy()
-            b1, _ = fit(X, yy, w, alpha, prior=prior)
             offs = d[[f"off_{k}" for k in range(1, 6)]].to_numpy().ravel()
-            defs = d[[f"def_{k}" for k in range(1, 6)]].to_numpy().ravel()
-            po_ = pd.Series(np.repeat(d.poss.to_numpy(), 5)).groupby(offs).sum()
-            pd_ = pd.Series(np.repeat(d.poss.to_numpy(), 5)).groupby(defs).sum()
-            res = pd.DataFrame({"league": lg, "season": y, "athlete_id": players,
-                                "o_impact_single": b0[:m], "d_impact_single": b0[m:2 * m],
-                                "o_impact": b1[:m], "d_impact": b1[m:2 * m],
-                                "poss_off": po_.reindex(players).fillna(0).to_numpy(),
-                                "poss_def": pd_.reindex(players).fillna(0).to_numpy()})
-            res["impact"] = res.o_impact + res.d_impact
-            res["impact_single"] = res.o_impact_single + res.d_impact_single
-            out.append(res)
-            # A. within-season holdout: first half of games -> second half
-            gd = pd.read_parquet(PROC / "player_game.parquet", columns=["league", "season", "game_id", "game_date"])
-            gd = gd[(gd.league == lg) & (gd.season == y)].drop_duplicates("game_id").set_index("game_id").game_date
-            dates = gd.reindex(d.game_id).to_numpy()
-            cut = np.nanmedian(pd.to_datetime(pd.Series(dates)).astype("int64").to_numpy()) if len(dates) else 0
-            first = pd.to_datetime(pd.Series(dates)).astype("int64").to_numpy() <= cut
-            for nm, pri in (("single-season", None), ("prior-informed", prior)):
-                bh, muh = fit(X[first], yy[first], w[first], alpha, prior=pri)
-                p = muh + X[~first] @ bh
-                val.append({"league": lg, "season": y, "test": "A within-season holdout", "model": nm,
-                            "r2": wr2(yy[~first], p, w[~first], muh)})
-            prev = res[["athlete_id", "o_impact", "d_impact"]]
-    P = pd.concat(out, ignore_index=True)
+            poss = pd.Series(np.repeat(d.poss.to_numpy(), 5)).groupby(offs).sum().reindex(players).fillna(0).to_numpy()
+            dates = pd.to_datetime(gd.set_index("game_id").game_date.reindex(d.game_id)).astype("int64").to_numpy()
+            first = dates <= np.median(dates)
+            data[(lg, y)] = (d, X, yy, w, players, alpha, first)
+            single_rows.append(pd.DataFrame({"league": lg, "season": y, "athlete_id": players, "o_single": b0[:m],
+                                             "d_single": b0[m:2 * m], "poss": poss}))
+    single = pd.concat(single_rows, ignore_index=True)
+    BP = box_prior(single[["league", "season", "athlete_id", "o_single", "d_single", "poss"]])
+
+    results, val = {}, []
+    for name, (bw, pw) in CONFIGS.items():
+        est = []
+        for lg in ["NBA", "WNBA"]:
+            prev = None
+            for y in SEASONS[lg.lower()]:
+                d, X, yy, w, players, alpha, first = data[(lg, y)]
+                m = len(players)
+                bp = BP[(BP.league == lg) & (BP.season == y)].set_index("athlete_id")
+                prior = np.zeros(X.shape[1])
+                for side, sl in (("o", slice(0, m)), ("d", slice(m, 2 * m))):
+                    box = bp[f"{side}_box"].reindex(players).fillna(0).to_numpy()
+                    pv = prev.set_index("athlete_id")[f"{side}_impact"].reindex(players).fillna(0).to_numpy() if prev is not None else 0
+                    prior[sl] = bw * box + pw * pv
+                b1, _ = fit(X, yy, w, alpha, prior=prior)
+                res = pd.DataFrame({"league": lg, "season": y, "athlete_id": players, "o_impact": b1[:m], "d_impact": b1[m:2 * m]})
+                est.append(res)
+                val.append({"league": lg, "season": y, "test": "A within-season holdout", "model": name,
+                            "r2": holdout_r2(X, yy, w, first, alpha, prior)})
+                prev = res
+        results[name] = pd.concat(est, ignore_index=True)
+    V = pd.DataFrame(val)
+    score = V.groupby(["league", "model"]).r2.mean().unstack(0)
+    print(score.round(5).to_string(), file=sys.stderr)
+    best = score.mean(1).idxmax()          # one method for both leagues: best average holdout fit
+    print("chosen:", best, file=sys.stderr)
+    P = results[best].merge(single.rename(columns={"o_single": "o_impact_single", "d_single": "d_impact_single", "poss": "poss_off"}),
+                            on=["league", "season", "athlete_id"], how="left")
+    P["impact"] = P.o_impact + P.d_impact
+    P["impact_single"] = P.o_impact_single + P.d_impact_single
+    P["method"] = best
     P.to_parquet(PROC / "player_impact.parquet", index=False)
     pd.concat(alph).to_csv(RESULTS / "player_impact_alpha.csv", index=False)
-    V = pd.DataFrame(val)
-    V = pd.concat([V, next_season_test(P)], ignore_index=True)
+    score.reset_index().to_csv(RESULTS / "player_impact_prior_comparison.csv", index=False)
+    nxt = []
+    for name, R in results.items():
+        R = R.assign(impact=R.o_impact + R.d_impact, impact_single=0.0)
+        t = next_season_test(R)
+        t = t[t.model.str.startswith("prior-season player impact (prior")].assign(model=f"prior-season player impact: {name}")
+        nxt.append(t)
+    V = pd.concat([V[V.model == best].assign(model="prior-informed"), next_season_test(P), pd.concat(nxt)], ignore_index=True)
     V.to_csv(RESULTS / "player_impact_validation.csv", index=False)
-    print(V.groupby(["league", "test", "model"]).r2.agg(["mean", "count"]).round(3).to_string(), file=sys.stderr)
+    print(V[V.test.str.startswith("B")].round(3).to_string(index=False), file=sys.stderr)
 
 
 def next_season_test(P: pd.DataFrame) -> pd.DataFrame:
