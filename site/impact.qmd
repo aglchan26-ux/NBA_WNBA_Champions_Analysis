@@ -82,10 +82,29 @@ information from the season being predicted leaks in; they show how much roster 
 
 ## How it is measured
 
-Every stretch of play with the same ten players on the floor (a *stint*) is one observation. A ridge regression
-gives each player an **offense** and a **defense** effect in points per 100 possessions, holding the other
-nine players fixed. The ridge penalty pulls small samples toward average, and each season starts from the player's
-previous-season estimate. Defense counts as much as offense here, unlike box-score measures.
+Every stretch of play with the same ten players on the floor (a *stint*) is one observation, **regular season only**.
+A ridge regression gives each player an **offense** and a **defense** effect in points per 100 possessions, holding the
+other nine players fixed. The ridge penalty pulls every estimate toward a **prior**: what we would expect from the player's
+box-score production (usage, scoring and efficiency, playmaking, rebounding, steals, blocks, turnovers), learned from
+other seasons. Lineup evidence moves a player away from that prior only as far as the data supports, which keeps role
+players who share the floor with stars from soaking up the stars' credit.
+
+**Which prior?** Four versions were tested on games the model didn't see (first half of each season fitted, second half
+predicted) and on predicting next season's team results. The box-score prior won both tests and is the one used everywhere.
+
+```{python}
+pc = read("player_impact_prior_comparison.csv").rename(columns={"model": "prior"})
+vv = read("player_impact_validation.csv")
+vv = vv[vv.model.str.startswith("prior-season player impact: ")].copy()
+vv["prior"] = vv.model.str.replace("prior-season player impact: ", "", regex=False)
+nx = vv.pivot_table(index="prior", columns="league", values="r2").add_prefix("next-season R², ").reset_index()
+t = pc.merge(nx, on="prior").rename(columns={"NBA": "held-out fit, NBA", "WNBA": "held-out fit, WNBA"})
+md(t.round(4).to_markdown(index=False))
+md("*Held-out fit* is the share of scoring variation explained in unseen stints (single stints are very noisy, so these are "
+   "small numbers; what matters is the comparison). *Next-season R²* is how well last season's estimates, applied to this "
+   "season's rosters, explain this season's team net rating. The old method (A) let last season's estimate carry over in full, "
+   "which allowed some role players' numbers to build up year after year.")
+```
 
 **Avoiding leakage:** this season's impact, summed across a roster, rebuilds this season's net rating. So
 every roster-based prediction below uses **last season's** player impact applied to this season's roster.

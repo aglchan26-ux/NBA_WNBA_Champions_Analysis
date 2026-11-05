@@ -22,7 +22,7 @@ COPY = [
     "step5_A_ridge_coefs.csv", "step5_league_profiles.csv", "step5_wnba_years_behind.csv",
     "step5_champion_vs_league.csv", "step5_champion_identity.csv", "step5_title_no_net_cv.csv",
     "lineups_validation.csv", "player_impact_validation.csv", "step5_title_impact_cv.csv", "step5_series_cv.csv",
-    "step5_series_significance.csv", "shot_distance_calibration.csv", "step6_cba_periods.csv", "step3_hand_label_agreement_v3.csv",
+    "step5_series_significance.csv", "shot_distance_calibration.csv", "step6_cba_periods.csv", "player_impact_prior_comparison.csv", "step3_hand_label_agreement_v3.csv",
     "step5_final_title_cv.csv", "step5_final_series_cv.csv", "step5_final_significance.csv", "step5_final_weights.csv", "step4_topics.csv", "step4_text_vs_archetypes.csv",
     "step4_text_cluster_vs_archetype.csv", "step4_archetype_tokens.csv", "step6_counts.csv", "step6_model_cv.csv",
     "step6_top_players.csv", "step6_max_contracts.csv", "step6_lambda.csv", "step5_contenders_2027.csv", "step5_contenders_cv.csv", "step5_C_drift_windows.csv", "step5_checklist_by_group.csv",
