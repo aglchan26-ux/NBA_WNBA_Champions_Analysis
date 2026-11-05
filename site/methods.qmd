@@ -11,7 +11,9 @@ title: "Methods and validation"
 | Time-aware cross-validation | forward-chained seasons for net rating and title models |
 | Gradient boosting + SHAP | net-rating model and feature importance |
 | Calibration, uncertainty | bootstrap intervals; probability on the eventual champion |
-| Text preprocessing, TF-IDF, embeddings, topic models, zero-shot labels | *Step 4, in progress* |
+| Text preprocessing, TF-IDF, embeddings (LSA), topic models, text clustering, zero-shot labels | play-by-play text layer (Text page) |
+| Calibration, conformal intervals | salary-value intervals calibrated on held-out seasons |
+| Ridge regression on sparse lineup data | player impact from lineups (Player impact page) |
 
 ## Small-sample adjustment beats per-36
 

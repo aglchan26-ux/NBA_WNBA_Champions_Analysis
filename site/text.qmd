@@ -1,0 +1,80 @@
+---
+title: "Text: what the play-by-play says about each player"
+---
+
+::: {.callout-note appearance="simple"}
+## Takeaways
+- **Every play already has a written description**, e.g. "Pullup Jump Shot", "Cutting Dunk Shot", "(X assists)",
+  "X blocks Y's shot". Treating each player-season's plays as a document gives a text layer with no scraping.
+- **Topics found from text alone match recognizable roles:** rim finishers, hook-shot bigs, step-back and
+  fade-away creators, pull-up shooters.
+- **Text groups partly agree with the stat archetypes** (ARI 0.22 NBA, 0.26 WNBA). The text sees *how* players score,
+  while the stat model also sees rebounding, defense and usage.
+- **Zero-shot labels** (from written role descriptions, no training labels) agree with the stat archetypes 27% of the time
+  (chance is about 17%) and with the blind hand labels 29% of the time, against 48% for the stat archetypes.
+:::
+
+## How it works
+
+- **Documents:** one per player-season (NBA 2017-18 onward and WNBA 2019 onward, where the play text names shot
+  types; at least 500 minutes). Tokens are play types credited to the player, with *made* / *miss* and *three* tags,
+  plus *assist*, *block* and *steal*.
+- **Preprocessing:** lower-casing, punctuation stripped, one token per play type, administrative events
+  (substitutions, timeouts) removed, play types used by fewer than 20 players dropped.
+- **TF-IDF:** sublinear term frequency times inverse document frequency, so a rare play type like *alley-oop
+  dunk* weighs more than a common *defensive rebound*.
+- **Embeddings:** LSA, a 50-dimension compression of the TF-IDF matrix that places related play types together. It
+  covers one weakness of TF-IDF, which treats every token as unrelated. (A pretrained sentence-embedding model needs a
+  download that this build environment blocks.)
+- **Topic model:** non-negative matrix factorization, 8 topics.
+- **Text clustering:** K-Means (k = 6) on the embeddings, compared with the stat archetypes.
+- **Zero-shot labeling:** each archetype was described in words before any results were seen; each player gets the
+  description most similar to their document. The hand labels were only used to score the result.
+
+## Topics found in the text
+
+```{python}
+from _viz import read, md
+t = read("step4_topics.csv")
+t["top_tokens"] = t.top_tokens.str.replace("__", " ", regex=False).str.replace("_", " ", regex=False)
+md(t.rename(columns={"top_tokens": "most important play types"}).to_markdown(index=False))
+```
+
+## Words that set each archetype apart
+
+The four play types most over-represented in each stat archetype (TF-IDF lift vs the league average).
+
+```{python}
+a = read("step4_archetype_tokens.csv")
+a["token"] = a.token.str.replace("__", " ", regex=False).str.replace("_", " ", regex=False)
+for lg in ["NBA", "WNBA"]:
+    g = a[a.league == lg].groupby("archetype").head(4).groupby("archetype").token.agg(", ".join).reset_index()
+    md(f"**{lg}**\n\n" + g.rename(columns={"token": "distinctive play types"}).to_markdown(index=False))
+```
+
+## How well text matches the stat archetypes
+
+ARI and NMI: 0 = no agreement, 1 = identical groupings.
+
+```{python}
+r = read("step4_text_vs_archetypes.csv")
+r = r.rename(columns={"ari_vs_stat_archetype": "ARI", "nmi_vs_stat_archetype": "NMI",
+                      "accuracy_vs_stat_archetype": "accuracy vs stat archetype",
+                      "accuracy_vs_hand_labels": "accuracy vs hand labels"})
+md(r.round(3).fillna("").to_markdown(index=False))
+```
+
+Text clusters (rows, named by their three most distinctive play types) against stat archetypes (columns), both leagues:
+
+```{python}
+c = read("step4_text_cluster_vs_archetype.csv").set_index("text_cluster_name")
+c.index = c.index.str.replace("__", " ", regex=False).str.replace("_", " ", regex=False)
+md(c.to_markdown())
+```
+
+## Reputation text (next step)
+
+How teams are *described* (offense-first, defense-first) can be compared with how they *played*. The program
+`scripts/fetch_team_text.py` downloads team-season articles from Wikipedia's official API (rate-limited, cached
+locally, not republished), and `src/step4_reputation.py` scores offense/defense emphasis and sentiment with TF-IDF
+and word lists, then compares them with measured team identity. It has to run on a computer that can reach Wikipedia.

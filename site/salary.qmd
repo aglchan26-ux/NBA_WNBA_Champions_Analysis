@@ -1,24 +1,116 @@
 ---
-title: "Salary value"
+title: "Salary value: who is over- or underpaid?"
 ---
 
-::: {.callout-note}
-**In progress (Step 6).** This page will show salary as a share of the cap against on-court value, compared
-within contract types, with intervals and an injury-availability adjustment.
+::: {.callout-note appearance="simple"}
+## Takeaways
+- **The old ratio rule labeled most players.** The notebook's rule (predicted ÷ actual salary above 1.2 or below 0.8)
+  called 38% of NBA veterans underpaid and 36% overpaid. With 90% intervals, only 5% and 5% are clearly
+  over- or underpaid; for everyone else the difference is within the model's uncertainty.
+- **Max contracts can't be judged against the market.** The old rule called 69% of NBA max-contract players overpaid,
+  but max pay is capped by the league's rules, so their market value is never observed. They're shown by value
+  delivered instead.
+- **Minimum contracts are underpaid by design**, especially late-season prorated deals.
+- **Injuries:** each overpay is split into a part from games missed and a part from performance.
 :::
+
+## How it works
+
+- **Pay scale:** salary as a share of an average team payroll in that league-season. This puts the NBA, WNBA and
+  every season on one scale without typing in salary-cap figures.
+- **Seasons:** NBA 2009-10 onward, WNBA 2021 onward (when salary data is complete).
+- **Fair pay:** a gradient-boosting model of pay, trained only on **veteran** contracts, because rookie-scale,
+  minimum and max salaries are set by rules. Inputs: lineup-based offense and defense impact (this season and last),
+  minutes (this season and last), availability, age, position and archetype. More impact, minutes or availability never lowers fair pay.
+  Each player's own season is held out when predicting him.
+- **Surplus:** log(fair pay) − log(actual pay); above 0 = underpaid. Never a ratio.
+- **Interval:** a 90% band for fair pay, calibrated on held-out seasons (it covers 90% of NBA and WNBA veteran
+  contracts). A player is labeled only when the whole band is on one side of zero.
+- **Low-salary shrinkage:** the surplus on cheap contracts was shrunk by a factor tuned with cross-validation
+  (does the shrunk surplus predict the pay change at a player's next contract?). The tuning chose **no shrinkage**,
+  so cheap contracts are instead kept in their own cohort.
+- **Contract cohorts:** rookie scale (draft history, plus inferred for 2024+ draftees), minimum scale (identical low
+  amounts paid to many players, or prorated deals), max scale (identical top-tier amounts), veteran.
+
+## Old rule vs new rule
+
+Share of player-seasons labeled over- or underpaid.
+
+```{python}
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+from _viz import read, md, show
+c = read("step6_counts.csv")
+c = c[c.cohort.isin(["veteran", "rookie_scale", "minimum_scale", "max_scale"])]
+c["old"] = c.old_rule_underpaid + c.old_rule_overpaid
+c["new"] = c.new_rule_underpaid + c.new_rule_overpaid
+fig = make_subplots(rows=1, cols=2, subplot_titles=("NBA", "WNBA"), shared_yaxes=True, horizontal_spacing=0.06)
+for j, lg in enumerate(["NBA", "WNBA"], 1):
+    d = c[c.league == lg].set_index("cohort").reindex(["veteran", "rookie_scale", "minimum_scale", "max_scale"]).reset_index()
+    labels = d.cohort.str.replace("_", " ")
+    for col, nm, colr in (("old", "old ratio rule", "#8a8984"), ("new", "new interval rule", "#2a78d6")):
+        fig.add_bar(y=labels, x=d[col], orientation="h", name=nm, legendgroup=nm, showlegend=(j == 1),
+                    marker=dict(color=colr, line=dict(width=2, color="#fcfcfb")),
+                    text=[f"{v:.0%}" for v in d[col]], textposition="outside",
+                    hovertemplate=f"{lg} %{{y}}, {nm}: %{{x:.0%}}<extra></extra>", row=1, col=j)
+fig.update_xaxes(tickformat=".0%", range=[0, 1.12])
+fig.update_layout(height=380, barmode="group", hovermode="closest", legend=dict(y=1.15), yaxis=dict(autorange="reversed"))
+show(fig)
+```
+
+## Clearly over- or underpaid veterans, latest season
+
+Only players whose 90% interval excludes zero. *Surplus* is in log units (+0.69 ≈ worth twice the pay; −0.69 ≈ worth half).
+*Injury part* is how much of the surplus comes from games missed (negative = pay lost to injury).
+
+```{python}
+t = read("step6_top_players.csv")
+t = t[["league", "season", "player", "salary_m", "impact", "surplus_shrunk", "surplus_lo_s", "surplus_hi_s", "availability_part", "label"]]
+t["90% interval"] = [f"{lo:+.2f} to {hi:+.2f}" for lo, hi in zip(t.surplus_lo_s, t.surplus_hi_s)]
+t = t.rename(columns={"salary_m": "salary ($M)", "surplus_shrunk": "surplus", "availability_part": "injury part"})
+for lg in ["NBA", "WNBA"]:
+    for lab in ["underpaid", "overpaid"]:
+        d = t[(t.league == lg) & (t.label == lab)][["player", "salary ($M)", "impact", "surplus", "90% interval", "injury part"]]
+        if len(d):
+            md(f"**{lg} {int(t[t.league == lg].season.max())}: {lab}**\n\n" + d.round(2).to_markdown(index=False))
+```
+
+## Max contracts: value delivered, latest season
+
+Pay is capped by the league's rules, so these players are ranked by lineup-based impact instead of labeled.
+
+```{python}
+m = read("step6_max_contracts.csv")
+for lg in ["NBA", "WNBA"]:
+    d = m[m.league == lg][["player", "salary_m", "o_impact", "d_impact", "impact", "minutes", "availability"]].head(15)
+    d.columns = ["player", "salary ($M)", "offense", "defense", "impact", "minutes", "games available"]
+    md(f"**{lg}**\n\n" + d.round(2).to_markdown(index=False))
+```
+
+## How good is the fair-pay model?
+
+```{python}
+f = read("step6_model_cv.csv")
+f.columns = ["league", "veteran contracts", "R² of log pay (held-out seasons)", "90% band coverage"]
+md(f.round(3).to_markdown(index=False))
+```
 
 ## Salary coverage
 
 Share of minutes played by players with a known salary.
 
 ```{python}
-import plotly.graph_objects as go
-from _viz import show, read, LEAGUE, line
+from _viz import LEAGUE, line
 s = read("step1_salary_coverage.csv")
 fig = go.Figure()
 for lg, col in LEAGUE.items():
     d = s[s.league == lg]
     line(fig, d.season, d.minutes_weighted_matched, lg, col, hovertemplate=lg + ": %{y:.0%}<extra></extra>")
-fig.update_layout(height=360, yaxis=dict(tickformat=".0%", range=[0, 1.02]))
+fig.update_layout(height=340, yaxis=dict(tickformat=".0%", range=[0, 1.02]))
 show(fig)
 ```
+
+::: {.caveat}
+Association, not causation. Salaries: owner-supplied NBA files, ESPN's 2025-26 list, Her Hoop Stats and Spotrac for
+the WNBA (not redistributed).
+:::

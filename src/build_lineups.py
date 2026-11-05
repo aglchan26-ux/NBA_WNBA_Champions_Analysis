@@ -103,12 +103,14 @@ def game_stints(g: pd.DataFrame, box: pd.DataFrame) -> tuple[pd.DataFrame, dict]
     tm = g.team_id.to_numpy()
     hs, as_ = g.home_score.ffill().fillna(0).to_numpy(), g.away_score.ffill().fillna(0).to_numpy()
     dh, da = np.diff(np.r_[0, hs]).clip(min=0), np.diff(np.r_[0, as_]).clip(min=0)
-    if abs(dh.sum() - hs.max()) <= 1 and abs(da.sum() - as_.max()) <= 1:
+    sv = np.where(g.scoring_play.astype(str).to_numpy() == "True", pd.to_numeric(g.score_value, errors="coerce").fillna(0).to_numpy(), 0)
+    vh, va = np.where(tm == home, sv, 0), np.where(tm == away, sv, 0)
+    final = hs.max() + as_.max()
+    # whichever source adds up closer to the final score (scoreboard first on ties)
+    if abs(dh.sum() + da.sum() - final) <= abs(vh.sum() + va.sum() - final):
         g["home_pts"], g["away_pts"] = dh, da
     else:
-        sv = np.where(g.scoring_play.astype(str).to_numpy() == "True", pd.to_numeric(g.score_value, errors="coerce").fillna(0).to_numpy(), 0)
-        g["home_pts"] = np.where(tm == home, sv, 0)
-        g["away_pts"] = np.where(tm == away, sv, 0)
+        g["home_pts"], g["away_pts"] = vh, va
     for c in ("fga", "fta", "orb", "tov"):
         g[f"home_{c}"] = cls[c].to_numpy() & (tm == home)
         g[f"away_{c}"] = cls[c].to_numpy() & (tm == away)

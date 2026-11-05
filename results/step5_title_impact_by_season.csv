@@ -13,118 +13,118 @@ NBA,2023,net rating only (reference),DEN,0.06916728611812974,6
 NBA,2024,net rating only (reference),BOS,0.28862244392696484,1
 NBA,2025,net rating only (reference),OKC,0.30236104314227674,1
 NBA,2026,net rating only (reference),NY,0.07640262369305677,5
-NBA,2013,player impact (prev season): overall,MIA,0.13842293361070004,1
-NBA,2014,player impact (prev season): overall,SA,0.07782527002302166,5
-NBA,2015,player impact (prev season): overall,GS,0.09493451598132979,4
-NBA,2016,player impact (prev season): overall,CLE,0.10402836210494845,4
-NBA,2017,player impact (prev season): overall,GS,0.44061667338295485,1
-NBA,2018,player impact (prev season): overall,GS,0.13876299246528934,2
-NBA,2019,player impact (prev season): overall,TOR,0.18875839685708107,1
-NBA,2020,player impact (prev season): overall,LAL,0.12763963873121056,3
-NBA,2021,player impact (prev season): overall,MIL,0.13337674609327016,2
-NBA,2022,player impact (prev season): overall,GS,0.0549038049970925,9
-NBA,2023,player impact (prev season): overall,DEN,0.04475091932179611,10
-NBA,2024,player impact (prev season): overall,BOS,0.37976513756011304,1
-NBA,2025,player impact (prev season): overall,OKC,0.21744825395493766,1
-NBA,2026,player impact (prev season): overall,NY,0.055789252854875335,5
-NBA,2013,player impact (prev season): offense + defense,MIA,0.16199799956100364,1
-NBA,2014,player impact (prev season): offense + defense,SA,0.07805821026031139,4
-NBA,2015,player impact (prev season): offense + defense,GS,0.09721517266620257,4
-NBA,2016,player impact (prev season): offense + defense,CLE,0.09699909149137705,4
-NBA,2017,player impact (prev season): offense + defense,GS,0.5270326575791466,1
-NBA,2018,player impact (prev season): offense + defense,GS,0.14735638853982083,2
-NBA,2019,player impact (prev season): offense + defense,TOR,0.21625805734486375,1
-NBA,2020,player impact (prev season): offense + defense,LAL,0.14075921972924993,3
-NBA,2021,player impact (prev season): offense + defense,MIL,0.1412256096157557,2
-NBA,2022,player impact (prev season): offense + defense,GS,0.040690048511127404,8
-NBA,2023,player impact (prev season): offense + defense,DEN,0.03794180287580811,10
-NBA,2024,player impact (prev season): offense + defense,BOS,0.4313455991471089,1
-NBA,2025,player impact (prev season): offense + defense,OKC,0.23219334833099647,1
-NBA,2026,player impact (prev season): offense + defense,NY,0.06418197379415322,4
-NBA,2013,archetype mix x player quality,MIA,0.16680012264094157,1
-NBA,2014,archetype mix x player quality,SA,0.06413262384333808,6
-NBA,2015,archetype mix x player quality,GS,0.08033495561233021,5
-NBA,2016,archetype mix x player quality,CLE,0.17009338432197485,1
-NBA,2017,archetype mix x player quality,GS,0.2787749461331378,1
-NBA,2018,archetype mix x player quality,GS,0.10264259619405221,4
-NBA,2019,archetype mix x player quality,TOR,0.2619288174647524,1
-NBA,2020,archetype mix x player quality,LAL,0.16520826960886886,2
-NBA,2021,archetype mix x player quality,MIL,0.19765005519712625,1
-NBA,2022,archetype mix x player quality,GS,0.06885126225608677,5
-NBA,2023,archetype mix x player quality,DEN,0.05863468844708867,7
-NBA,2024,archetype mix x player quality,BOS,0.14822600856230986,1
-NBA,2025,archetype mix x player quality,OKC,0.19465053570715746,2
-NBA,2026,archetype mix x player quality,NY,0.035723902277701704,6
-NBA,2013,playoff-available: offense + defense,MIA,0.17434810483384713,1
-NBA,2014,playoff-available: offense + defense,SA,0.07946010346831285,5
-NBA,2015,playoff-available: offense + defense,GS,0.09822501952331286,4
-NBA,2016,playoff-available: offense + defense,CLE,0.09749366327735434,4
-NBA,2017,playoff-available: offense + defense,GS,0.5536047261559569,1
-NBA,2018,playoff-available: offense + defense,GS,0.15021805545026176,2
-NBA,2019,playoff-available: offense + defense,TOR,0.2328960464671461,1
-NBA,2020,playoff-available: offense + defense,LAL,0.15174853178406042,3
-NBA,2021,playoff-available: offense + defense,MIL,0.1393768777330909,2
-NBA,2022,playoff-available: offense + defense,GS,0.04150851755558282,8
-NBA,2023,playoff-available: offense + defense,DEN,0.036750116569151545,11
-NBA,2024,playoff-available: offense + defense,BOS,0.44313572944890783,1
-NBA,2025,playoff-available: offense + defense,OKC,0.23122718576548293,1
-NBA,2026,playoff-available: offense + defense,NY,0.06674287450626516,4
-NBA,2013,playoff-available: archetype x quality,MIA,0.17742986361936178,1
-NBA,2014,playoff-available: archetype x quality,SA,0.06528962745106436,7
-NBA,2015,playoff-available: archetype x quality,GS,0.06958630196106541,6
-NBA,2016,playoff-available: archetype x quality,CLE,0.16368890600399325,1
-NBA,2017,playoff-available: archetype x quality,GS,0.3229922769612835,1
-NBA,2018,playoff-available: archetype x quality,GS,0.11833168514497173,3
-NBA,2019,playoff-available: archetype x quality,TOR,0.2664584744052333,1
-NBA,2020,playoff-available: archetype x quality,LAL,0.1638699992569454,2
-NBA,2021,playoff-available: archetype x quality,MIL,0.20753309185056001,1
-NBA,2022,playoff-available: archetype x quality,GS,0.06966002037702192,5
-NBA,2023,playoff-available: archetype x quality,DEN,0.06138958750471941,8
-NBA,2024,playoff-available: archetype x quality,BOS,0.1407750360094043,2
-NBA,2025,playoff-available: archetype x quality,OKC,0.1854779553238848,2
-NBA,2026,playoff-available: archetype x quality,NY,0.033173751574896826,5
-NBA,2013,playoff-available: impact + archetype x quality + age,MIA,0.2947965273846832,1
-NBA,2014,playoff-available: impact + archetype x quality + age,SA,0.06585724836301504,5
-NBA,2015,playoff-available: impact + archetype x quality + age,GS,0.045696279606365534,8
-NBA,2016,playoff-available: impact + archetype x quality + age,CLE,0.15027343120261857,1
-NBA,2017,playoff-available: impact + archetype x quality + age,GS,0.38331928226044204,1
-NBA,2018,playoff-available: impact + archetype x quality + age,GS,0.1352597840092466,3
-NBA,2019,playoff-available: impact + archetype x quality + age,TOR,0.27645069535979383,1
-NBA,2020,playoff-available: impact + archetype x quality + age,LAL,0.20863157131458207,2
-NBA,2021,playoff-available: impact + archetype x quality + age,MIL,0.22403383421603265,2
-NBA,2022,playoff-available: impact + archetype x quality + age,GS,0.06346731935143529,5
-NBA,2023,playoff-available: impact + archetype x quality + age,DEN,0.04886222888082333,8
-NBA,2024,playoff-available: impact + archetype x quality + age,BOS,0.17750352399147287,2
-NBA,2025,playoff-available: impact + archetype x quality + age,OKC,0.11307457247272598,3
-NBA,2026,playoff-available: impact + archetype x quality + age,NY,0.05115439150978989,4
-NBA,2013,playoff-available: impact + mix + age,MIA,0.5714888318961193,1
-NBA,2014,playoff-available: impact + mix + age,SA,0.08127325048695877,3
-NBA,2015,playoff-available: impact + mix + age,GS,0.06462459903434985,7
-NBA,2016,playoff-available: impact + mix + age,CLE,0.022365882830387245,10
-NBA,2017,playoff-available: impact + mix + age,GS,0.3147572008153705,1
-NBA,2018,playoff-available: impact + mix + age,GS,0.02538007328738752,12
-NBA,2019,playoff-available: impact + mix + age,TOR,0.15378168700898143,2
-NBA,2020,playoff-available: impact + mix + age,LAL,0.11430067798182868,3
-NBA,2021,playoff-available: impact + mix + age,MIL,0.18232864690848818,2
-NBA,2022,playoff-available: impact + mix + age,GS,0.04633674155285171,8
-NBA,2023,playoff-available: impact + mix + age,DEN,0.04993607112766543,8
-NBA,2024,playoff-available: impact + mix + age,BOS,0.2567025781689941,1
-NBA,2025,playoff-available: impact + mix + age,OKC,0.15408955565031163,3
-NBA,2026,playoff-available: impact + mix + age,NY,0.06964988320667215,6
-NBA,2013,net rating + playoff-available impact,MIA,0.22938066366725984,1
-NBA,2014,net rating + playoff-available impact,SA,0.1326571735513188,2
-NBA,2015,net rating + playoff-available impact,GS,0.21070681855706727,1
-NBA,2016,net rating + playoff-available impact,CLE,0.0856634388861261,3
-NBA,2017,net rating + playoff-available impact,GS,0.7385583019921569,1
-NBA,2018,net rating + playoff-available impact,GS,0.15596502333489698,2
-NBA,2019,net rating + playoff-available impact,TOR,0.21093315734570095,1
-NBA,2020,net rating + playoff-available impact,LAL,0.1424369186906258,2
-NBA,2021,net rating + playoff-available impact,MIL,0.1525317504329051,3
-NBA,2022,net rating + playoff-available impact,GS,0.05655910393645807,6
-NBA,2023,net rating + playoff-available impact,DEN,0.04013202408613059,7
-NBA,2024,net rating + playoff-available impact,BOS,0.5938662820227397,1
-NBA,2025,net rating + playoff-available impact,OKC,0.4031361709181696,1
-NBA,2026,net rating + playoff-available impact,NY,0.06646146343039389,4
+NBA,2013,player impact (prev season): overall,MIA,0.13833489748550867,1
+NBA,2014,player impact (prev season): overall,SA,0.07978527481647645,4
+NBA,2015,player impact (prev season): overall,GS,0.09205869797657365,4
+NBA,2016,player impact (prev season): overall,CLE,0.10532090997253042,3
+NBA,2017,player impact (prev season): overall,GS,0.4626846874013104,1
+NBA,2018,player impact (prev season): overall,GS,0.1281262047867057,3
+NBA,2019,player impact (prev season): overall,TOR,0.18546336146775572,1
+NBA,2020,player impact (prev season): overall,LAL,0.13470588923059065,3
+NBA,2021,player impact (prev season): overall,MIL,0.12896371314619645,2
+NBA,2022,player impact (prev season): overall,GS,0.05499464124634404,9
+NBA,2023,player impact (prev season): overall,DEN,0.04551376955446237,10
+NBA,2024,player impact (prev season): overall,BOS,0.3763050654794544,1
+NBA,2025,player impact (prev season): overall,OKC,0.21642296702999983,1
+NBA,2026,player impact (prev season): overall,NY,0.05599662303719166,5
+NBA,2013,player impact (prev season): offense + defense,MIA,0.16194039469875737,1
+NBA,2014,player impact (prev season): offense + defense,SA,0.08244388718471664,3
+NBA,2015,player impact (prev season): offense + defense,GS,0.09215740066455728,4
+NBA,2016,player impact (prev season): offense + defense,CLE,0.10115173880401446,4
+NBA,2017,player impact (prev season): offense + defense,GS,0.5627240407595128,1
+NBA,2018,player impact (prev season): offense + defense,GS,0.13577687806721217,3
+NBA,2019,player impact (prev season): offense + defense,TOR,0.2067319488569111,1
+NBA,2020,player impact (prev season): offense + defense,LAL,0.14766491754161362,3
+NBA,2021,player impact (prev season): offense + defense,MIL,0.13518148985547784,2
+NBA,2022,player impact (prev season): offense + defense,GS,0.04096681013537209,8
+NBA,2023,player impact (prev season): offense + defense,DEN,0.04007418230265594,10
+NBA,2024,player impact (prev season): offense + defense,BOS,0.4302573723323833,1
+NBA,2025,player impact (prev season): offense + defense,OKC,0.22893926175766469,1
+NBA,2026,player impact (prev season): offense + defense,NY,0.06707926529465456,4
+NBA,2013,archetype mix x player quality,MIA,0.1662895550937337,1
+NBA,2014,archetype mix x player quality,SA,0.06887802853656234,6
+NBA,2015,archetype mix x player quality,GS,0.07782051639069332,5
+NBA,2016,archetype mix x player quality,CLE,0.18343475677139892,1
+NBA,2017,archetype mix x player quality,GS,0.29755825107385736,1
+NBA,2018,archetype mix x player quality,GS,0.09054298533282955,4
+NBA,2019,archetype mix x player quality,TOR,0.2673269825897634,1
+NBA,2020,archetype mix x player quality,LAL,0.1769161374944422,2
+NBA,2021,archetype mix x player quality,MIL,0.18755573876253856,1
+NBA,2022,archetype mix x player quality,GS,0.06888644875186974,5
+NBA,2023,archetype mix x player quality,DEN,0.06103742197240438,7
+NBA,2024,archetype mix x player quality,BOS,0.14322334145495577,1
+NBA,2025,archetype mix x player quality,OKC,0.19230648012030258,2
+NBA,2026,archetype mix x player quality,NY,0.0360688230188922,6
+NBA,2013,playoff-available: offense + defense,MIA,0.17428764044973344,1
+NBA,2014,playoff-available: offense + defense,SA,0.0837550385979101,3
+NBA,2015,playoff-available: offense + defense,GS,0.09340442868149185,4
+NBA,2016,playoff-available: offense + defense,CLE,0.10153289316545681,4
+NBA,2017,playoff-available: offense + defense,GS,0.5796935912401764,1
+NBA,2018,playoff-available: offense + defense,GS,0.13813332664179437,2
+NBA,2019,playoff-available: offense + defense,TOR,0.22639797685724153,1
+NBA,2020,playoff-available: offense + defense,LAL,0.1622161257604342,2
+NBA,2021,playoff-available: offense + defense,MIL,0.1334529327354169,2
+NBA,2022,playoff-available: offense + defense,GS,0.041568441981707616,8
+NBA,2023,playoff-available: offense + defense,DEN,0.038513484168894704,11
+NBA,2024,playoff-available: offense + defense,BOS,0.44413209409704363,1
+NBA,2025,playoff-available: offense + defense,OKC,0.2289017324925456,1
+NBA,2026,playoff-available: offense + defense,NY,0.06923410736289254,4
+NBA,2013,playoff-available: archetype x quality,MIA,0.176873760645765,1
+NBA,2014,playoff-available: archetype x quality,SA,0.07042370713533735,6
+NBA,2015,playoff-available: archetype x quality,GS,0.06699589788001498,6
+NBA,2016,playoff-available: archetype x quality,CLE,0.17576695175885101,1
+NBA,2017,playoff-available: archetype x quality,GS,0.3401928204507083,1
+NBA,2018,playoff-available: archetype x quality,GS,0.10427942438676926,4
+NBA,2019,playoff-available: archetype x quality,TOR,0.2718576691924926,1
+NBA,2020,playoff-available: archetype x quality,LAL,0.17647170246537794,2
+NBA,2021,playoff-available: archetype x quality,MIL,0.1978106787895781,1
+NBA,2022,playoff-available: archetype x quality,GS,0.06960942060530813,5
+NBA,2023,playoff-available: archetype x quality,DEN,0.06444284027749272,7
+NBA,2024,playoff-available: archetype x quality,BOS,0.1346737547662835,2
+NBA,2025,playoff-available: archetype x quality,OKC,0.1828409626651964,2
+NBA,2026,playoff-available: archetype x quality,NY,0.03354841324968618,5
+NBA,2013,playoff-available: impact + archetype x quality + age,MIA,0.29423697863191656,1
+NBA,2014,playoff-available: impact + archetype x quality + age,SA,0.07473562641086355,5
+NBA,2015,playoff-available: impact + archetype x quality + age,GS,0.04335710701093093,8
+NBA,2016,playoff-available: impact + archetype x quality + age,CLE,0.1626817377239093,1
+NBA,2017,playoff-available: impact + archetype x quality + age,GS,0.4133772171227975,1
+NBA,2018,playoff-available: impact + archetype x quality + age,GS,0.1192750988327245,3
+NBA,2019,playoff-available: impact + archetype x quality + age,TOR,0.2720341733034172,1
+NBA,2020,playoff-available: impact + archetype x quality + age,LAL,0.22658770022149857,2
+NBA,2021,playoff-available: impact + archetype x quality + age,MIL,0.2148047174327993,2
+NBA,2022,playoff-available: impact + archetype x quality + age,GS,0.06347311389015142,5
+NBA,2023,playoff-available: impact + archetype x quality + age,DEN,0.05208688316987144,8
+NBA,2024,playoff-available: impact + archetype x quality + age,BOS,0.17780572193035157,2
+NBA,2025,playoff-available: impact + archetype x quality + age,OKC,0.10912226763691545,3
+NBA,2026,playoff-available: impact + archetype x quality + age,NY,0.05396117927657922,4
+NBA,2013,playoff-available: impact + mix + age,MIA,0.5713187099543405,1
+NBA,2014,playoff-available: impact + mix + age,SA,0.08685620760749438,2
+NBA,2015,playoff-available: impact + mix + age,GS,0.06273180598048265,7
+NBA,2016,playoff-available: impact + mix + age,CLE,0.023607068741492158,10
+NBA,2017,playoff-available: impact + mix + age,GS,0.3321740829041369,1
+NBA,2018,playoff-available: impact + mix + age,GS,0.024091805308371333,12
+NBA,2019,playoff-available: impact + mix + age,TOR,0.14756817020006593,2
+NBA,2020,playoff-available: impact + mix + age,LAL,0.12189831663366706,3
+NBA,2021,playoff-available: impact + mix + age,MIL,0.17075870493252834,2
+NBA,2022,playoff-available: impact + mix + age,GS,0.04608356547441329,8
+NBA,2023,playoff-available: impact + mix + age,DEN,0.05176985892361015,8
+NBA,2024,playoff-available: impact + mix + age,BOS,0.2620909170992625,1
+NBA,2025,playoff-available: impact + mix + age,OKC,0.14820887970878038,3
+NBA,2026,playoff-available: impact + mix + age,NY,0.07332772182932666,6
+NBA,2013,net rating + playoff-available impact,MIA,0.2293114276461868,1
+NBA,2014,net rating + playoff-available impact,SA,0.13796548967863892,2
+NBA,2015,net rating + playoff-available impact,GS,0.20214562624912386,1
+NBA,2016,net rating + playoff-available impact,CLE,0.08891450821076964,3
+NBA,2017,net rating + playoff-available impact,GS,0.7516513839316151,1
+NBA,2018,net rating + playoff-available impact,GS,0.14814932219216434,2
+NBA,2019,net rating + playoff-available impact,TOR,0.2058744088265811,1
+NBA,2020,net rating + playoff-available impact,LAL,0.148881426432632,2
+NBA,2021,net rating + playoff-available impact,MIL,0.1468384924896542,3
+NBA,2022,net rating + playoff-available impact,GS,0.05669942665444881,6
+NBA,2023,net rating + playoff-available impact,DEN,0.04176935802895153,7
+NBA,2024,net rating + playoff-available impact,BOS,0.5955644931760831,1
+NBA,2025,net rating + playoff-available impact,OKC,0.4000376407818319,1
+NBA,2026,net rating + playoff-available impact,NY,0.06850658094805046,4
 WNBA,2018,net rating only (reference),SEA,0.28087208886186704,1
 WNBA,2019,net rating only (reference),WSH,0.5693412322217165,1
 WNBA,2020,net rating only (reference),SEA,0.36806308600924587,1
@@ -134,75 +134,75 @@ WNBA,2023,net rating only (reference),LV,0.5151789078674841,1
 WNBA,2024,net rating only (reference),NY,0.32697026574954957,1
 WNBA,2025,net rating only (reference),LV,0.07625904172739671,5
 WNBA,2026,net rating only (reference),GS,0.19050106144329257,1
-WNBA,2018,player impact (prev season): overall,SEA,0.08991083391748751,5
-WNBA,2019,player impact (prev season): overall,WSH,0.2657333152869725,2
-WNBA,2020,player impact (prev season): overall,SEA,0.2526437561259393,2
-WNBA,2021,player impact (prev season): overall,CHI,0.3516798236987671,1
-WNBA,2022,player impact (prev season): overall,LV,0.21405193124861255,2
-WNBA,2023,player impact (prev season): overall,LV,0.34156219585767,1
-WNBA,2024,player impact (prev season): overall,NY,0.2677474703387825,2
-WNBA,2025,player impact (prev season): overall,LV,0.1086818895991155,5
-WNBA,2026,player impact (prev season): overall,GS,0.06888909601499714,5
-WNBA,2018,player impact (prev season): offense + defense,SEA,0.09956698621353954,5
-WNBA,2019,player impact (prev season): offense + defense,WSH,0.3406734319391893,1
-WNBA,2020,player impact (prev season): offense + defense,SEA,0.24738892650542565,2
-WNBA,2021,player impact (prev season): offense + defense,CHI,0.37509028840594516,1
-WNBA,2022,player impact (prev season): offense + defense,LV,0.22527251474543855,2
-WNBA,2023,player impact (prev season): offense + defense,LV,0.429281211137015,1
-WNBA,2024,player impact (prev season): offense + defense,NY,0.280269925275669,2
-WNBA,2025,player impact (prev season): offense + defense,LV,0.09909166542110909,6
-WNBA,2026,player impact (prev season): offense + defense,GS,0.05040561144439921,6
-WNBA,2018,archetype mix x player quality,SEA,0.05478479816235108,6
-WNBA,2019,archetype mix x player quality,WSH,0.17914265727105605,2
-WNBA,2020,archetype mix x player quality,SEA,0.2744912617472483,1
-WNBA,2021,archetype mix x player quality,CHI,0.21244068612897218,3
-WNBA,2022,archetype mix x player quality,LV,0.2520508907066195,1
-WNBA,2023,archetype mix x player quality,LV,0.5995781651848416,1
-WNBA,2024,archetype mix x player quality,NY,0.12598800330154464,3
-WNBA,2025,archetype mix x player quality,LV,0.05389250129186413,7
-WNBA,2026,archetype mix x player quality,GS,0.14054388114428418,3
-WNBA,2018,playoff-available: offense + defense,SEA,0.0861903608623109,5
-WNBA,2019,playoff-available: offense + defense,WSH,0.3270443886066384,1
-WNBA,2020,playoff-available: offense + defense,SEA,0.3236445917588708,1
-WNBA,2021,playoff-available: offense + defense,CHI,0.3380386485527713,1
-WNBA,2022,playoff-available: offense + defense,LV,0.2305101446738312,2
-WNBA,2023,playoff-available: offense + defense,LV,0.34370812442435983,1
-WNBA,2024,playoff-available: offense + defense,NY,0.2777436794604509,2
-WNBA,2025,playoff-available: offense + defense,LV,0.09420717551786582,6
-WNBA,2026,playoff-available: offense + defense,GS,0.049781459791288826,6
-WNBA,2018,playoff-available: archetype x quality,SEA,0.05295275166548931,6
-WNBA,2019,playoff-available: archetype x quality,WSH,0.17730789684752138,2
-WNBA,2020,playoff-available: archetype x quality,SEA,0.3339226112528343,1
-WNBA,2021,playoff-available: archetype x quality,CHI,0.21777740039276894,3
-WNBA,2022,playoff-available: archetype x quality,LV,0.3041862075193799,1
-WNBA,2023,playoff-available: archetype x quality,LV,0.34928457440065636,1
-WNBA,2024,playoff-available: archetype x quality,NY,0.1326616767928287,2
-WNBA,2025,playoff-available: archetype x quality,LV,0.05742259205574794,7
-WNBA,2026,playoff-available: archetype x quality,GS,0.1329883721545174,3
-WNBA,2018,playoff-available: impact + archetype x quality + age,SEA,0.02811343964134439,5
-WNBA,2019,playoff-available: impact + archetype x quality + age,WSH,0.3013537924867753,1
-WNBA,2020,playoff-available: impact + archetype x quality + age,SEA,0.39317131650772674,1
-WNBA,2021,playoff-available: impact + archetype x quality + age,CHI,0.340321679104918,1
-WNBA,2022,playoff-available: impact + archetype x quality + age,LV,0.17982394830952694,3
-WNBA,2023,playoff-available: impact + archetype x quality + age,LV,0.5439534200961271,1
-WNBA,2024,playoff-available: impact + archetype x quality + age,NY,0.14410875888908337,2
-WNBA,2025,playoff-available: impact + archetype x quality + age,LV,0.05741555571594174,7
-WNBA,2026,playoff-available: impact + archetype x quality + age,GS,0.07972006899865082,5
-WNBA,2018,playoff-available: impact + mix + age,SEA,0.019449418708153823,5
-WNBA,2019,playoff-available: impact + mix + age,WSH,0.1761995167373213,3
-WNBA,2020,playoff-available: impact + mix + age,SEA,0.2293871474996172,3
-WNBA,2021,playoff-available: impact + mix + age,CHI,0.2975667994047866,2
-WNBA,2022,playoff-available: impact + mix + age,LV,0.1932636976293552,3
-WNBA,2023,playoff-available: impact + mix + age,LV,0.40770385911078993,2
-WNBA,2024,playoff-available: impact + mix + age,NY,0.11480751328530892,2
-WNBA,2025,playoff-available: impact + mix + age,LV,0.16280537202642203,2
-WNBA,2026,playoff-available: impact + mix + age,GS,0.18142131424192362,3
-WNBA,2018,net rating + playoff-available impact,SEA,0.23463436358417525,1
-WNBA,2019,net rating + playoff-available impact,WSH,0.7356548636364303,1
-WNBA,2020,net rating + playoff-available impact,SEA,0.5524240158950634,1
-WNBA,2021,net rating + playoff-available impact,CHI,0.16167768440798125,3
-WNBA,2022,net rating + playoff-available impact,LV,0.2507400280056133,2
-WNBA,2023,net rating + playoff-available impact,LV,0.627700147786683,1
-WNBA,2024,net rating + playoff-available impact,NY,0.425574303594287,1
-WNBA,2025,net rating + playoff-available impact,LV,0.0643459280566463,6
-WNBA,2026,net rating + playoff-available impact,GS,0.08647297258217637,5
+WNBA,2018,player impact (prev season): overall,SEA,0.09019662341480776,5
+WNBA,2019,player impact (prev season): overall,WSH,0.26417817749999084,2
+WNBA,2020,player impact (prev season): overall,SEA,0.2660095478426211,2
+WNBA,2021,player impact (prev season): overall,CHI,0.3567142669574141,1
+WNBA,2022,player impact (prev season): overall,LV,0.21378146761265113,2
+WNBA,2023,player impact (prev season): overall,LV,0.34444255764787984,1
+WNBA,2024,player impact (prev season): overall,NY,0.26831114129755823,2
+WNBA,2025,player impact (prev season): overall,LV,0.1086414083526694,5
+WNBA,2026,player impact (prev season): overall,GS,0.06773575522529103,5
+WNBA,2018,player impact (prev season): offense + defense,SEA,0.0986880020327808,5
+WNBA,2019,player impact (prev season): offense + defense,WSH,0.3267295330410499,1
+WNBA,2020,player impact (prev season): offense + defense,SEA,0.26096039291034245,2
+WNBA,2021,player impact (prev season): offense + defense,CHI,0.3738599856121896,1
+WNBA,2022,player impact (prev season): offense + defense,LV,0.22452543805242836,2
+WNBA,2023,player impact (prev season): offense + defense,LV,0.42468820315660905,1
+WNBA,2024,player impact (prev season): offense + defense,NY,0.27885661562972486,2
+WNBA,2025,player impact (prev season): offense + defense,LV,0.1005819543509741,6
+WNBA,2026,player impact (prev season): offense + defense,GS,0.050994687289345954,6
+WNBA,2018,archetype mix x player quality,SEA,0.0595152514019758,6
+WNBA,2019,archetype mix x player quality,WSH,0.17994809875179849,2
+WNBA,2020,archetype mix x player quality,SEA,0.29540280142733877,1
+WNBA,2021,archetype mix x player quality,CHI,0.2239815132664169,2
+WNBA,2022,archetype mix x player quality,LV,0.2790566644279414,1
+WNBA,2023,archetype mix x player quality,LV,0.6166343354536048,1
+WNBA,2024,archetype mix x player quality,NY,0.12445788525096373,3
+WNBA,2025,archetype mix x player quality,LV,0.0502008939540691,7
+WNBA,2026,archetype mix x player quality,GS,0.14784531928951244,3
+WNBA,2018,playoff-available: offense + defense,SEA,0.08538934176273548,5
+WNBA,2019,playoff-available: offense + defense,WSH,0.31572939864000826,1
+WNBA,2020,playoff-available: offense + defense,SEA,0.33820369655892285,1
+WNBA,2021,playoff-available: offense + defense,CHI,0.3342200927761568,1
+WNBA,2022,playoff-available: offense + defense,LV,0.22900614843222875,2
+WNBA,2023,playoff-available: offense + defense,LV,0.34106550677858294,1
+WNBA,2024,playoff-available: offense + defense,NY,0.2758189849623922,2
+WNBA,2025,playoff-available: offense + defense,LV,0.09545613712050346,6
+WNBA,2026,playoff-available: offense + defense,GS,0.050213529881733145,6
+WNBA,2018,playoff-available: archetype x quality,SEA,0.058605855012578104,6
+WNBA,2019,playoff-available: archetype x quality,WSH,0.17709553547228463,2
+WNBA,2020,playoff-available: archetype x quality,SEA,0.3715142260769035,1
+WNBA,2021,playoff-available: archetype x quality,CHI,0.22684097901564074,2
+WNBA,2022,playoff-available: archetype x quality,LV,0.3265481419065217,1
+WNBA,2023,playoff-available: archetype x quality,LV,0.3459585724001939,1
+WNBA,2024,playoff-available: archetype x quality,NY,0.1322731514620029,3
+WNBA,2025,playoff-available: archetype x quality,LV,0.053560650027330514,7
+WNBA,2026,playoff-available: archetype x quality,GS,0.13873725586782684,3
+WNBA,2018,playoff-available: impact + archetype x quality + age,SEA,0.03203952102906202,5
+WNBA,2019,playoff-available: impact + archetype x quality + age,WSH,0.2989674565306417,1
+WNBA,2020,playoff-available: impact + archetype x quality + age,SEA,0.44300868080943007,1
+WNBA,2021,playoff-available: impact + archetype x quality + age,CHI,0.3440437980606265,1
+WNBA,2022,playoff-available: impact + archetype x quality + age,LV,0.19707821970310208,3
+WNBA,2023,playoff-available: impact + archetype x quality + age,LV,0.5450085674848691,1
+WNBA,2024,playoff-available: impact + archetype x quality + age,NY,0.14667024046297447,2
+WNBA,2025,playoff-available: impact + archetype x quality + age,LV,0.054699389140115684,7
+WNBA,2026,playoff-available: impact + archetype x quality + age,GS,0.08187958908928923,5
+WNBA,2018,playoff-available: impact + mix + age,SEA,0.01998954250922564,5
+WNBA,2019,playoff-available: impact + mix + age,WSH,0.1735743834171789,3
+WNBA,2020,playoff-available: impact + mix + age,SEA,0.24153912728701155,2
+WNBA,2021,playoff-available: impact + mix + age,CHI,0.2999472317327861,2
+WNBA,2022,playoff-available: impact + mix + age,LV,0.19899878534090468,3
+WNBA,2023,playoff-available: impact + mix + age,LV,0.3944097936819793,2
+WNBA,2024,playoff-available: impact + mix + age,NY,0.11560861815619154,2
+WNBA,2025,playoff-available: impact + mix + age,LV,0.16448718970188553,1
+WNBA,2026,playoff-available: impact + mix + age,GS,0.18432654664125192,3
+WNBA,2018,net rating + playoff-available impact,SEA,0.23615691948163053,1
+WNBA,2019,net rating + playoff-available impact,WSH,0.7293519401999338,1
+WNBA,2020,net rating + playoff-available impact,SEA,0.5636552899639506,1
+WNBA,2021,net rating + playoff-available impact,CHI,0.1595316048649978,4
+WNBA,2022,net rating + playoff-available impact,LV,0.2476761761483337,2
+WNBA,2023,net rating + playoff-available impact,LV,0.6267111195486772,1
+WNBA,2024,net rating + playoff-available impact,NY,0.42314134579280266,1
+WNBA,2025,net rating + playoff-available impact,LV,0.06508595924873375,6
+WNBA,2026,net rating + playoff-available impact,GS,0.08709693175303246,5

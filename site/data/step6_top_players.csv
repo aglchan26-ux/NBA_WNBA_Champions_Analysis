@@ -1,0 +1,26 @@
+league,season,player,cohort6,salary_m,impact,surplus_shrunk,surplus_lo_s,surplus_hi_s,label,availability_part
+NBA,2026,AJ Green,veteran,2.3,3.336,1.689,0.599,2.605,underpaid,-0.066
+NBA,2026,Keon Ellis,veteran,2.3,0.648,1.624,0.332,2.48,underpaid,-0.027
+NBA,2026,Micah Potter,veteran,1.53,1.794,1.516,0.348,3.013,underpaid,-0.254
+NBA,2026,Taurean Prince,veteran,3.3,-0.131,1.509,0.272,2.159,underpaid,-0.167
+NBA,2026,Julian Champagnie,veteran,3.0,5.491,1.44,0.18,2.344,underpaid,0.0
+NBA,2026,Luka Garza,veteran,2.46,1.854,1.216,0.168,2.444,underpaid,-0.041
+NBA,2026,Kris Dunn,veteran,5.43,3.447,1.152,0.265,2.076,underpaid,0.0
+WNBA,2026,Natasha Mack,veteran,0.3,3.181,1.078,0.34,1.328,underpaid,-0.037
+NBA,2026,Pat Connaughton,veteran,1.32,-2.891,0.944,0.28,2.484,underpaid,-0.389
+WNBA,2026,Leonie Fiebich,veteran,0.29,5.799,0.741,0.186,1.037,underpaid,-0.183
+WNBA,2026,Myisha Hines-Allen,veteran,0.32,0.112,0.741,0.208,1.265,underpaid,-0.002
+WNBA,2026,Lexi Held,veteran,0.28,-1.849,0.664,0.222,1.142,underpaid,-0.008
+WNBA,2026,Julie Allemand,veteran,0.42,3.232,0.635,0.196,1.023,underpaid,-0.185
+WNBA,2026,Nia Brodie,veteran,0.35,0.614,0.576,0.049,0.99,underpaid,0.0
+WNBA,2026,Rebecca Allen,veteran,0.35,-2.119,0.491,0.019,1.0,underpaid,-0.06
+WNBA,2026,Natasha Howard,veteran,0.7,9.001,0.48,0.265,0.651,underpaid,0.0
+WNBA,2026,Kiah Stokes,veteran,0.38,-1.509,0.438,0.039,0.89,underpaid,0.0
+WNBA,2026,Stephanie Talbot,veteran,0.39,-2.051,0.307,0.007,0.834,underpaid,0.0
+NBA,2026,Dejounte Murray,veteran,30.8,-0.783,-1.94,-3.295,-0.047,overpaid,-0.753
+NBA,2026,Jordan Poole,veteran,31.85,-2.573,-1.323,-2.704,-0.077,overpaid,-0.184
+NBA,2026,Jonathan Kuminga,veteran,22.5,4.216,-0.99,-2.017,-0.065,overpaid,-0.379
+NBA,2026,Jalen Green,veteran,33.55,-2.289,-0.646,-2.566,-0.127,overpaid,-0.312
+WNBA,2026,Temi Fagbenle,veteran,1.0,0.093,-0.333,-0.9,-0.021,overpaid,-0.04
+WNBA,2026,Olivia Nelson-Ododa,veteran,0.74,1.484,-0.29,-0.769,-0.148,overpaid,-0.126
+WNBA,2026,Rhyne Howard,veteran,1.1,1.849,-0.214,-0.929,-0.073,overpaid,-0.002

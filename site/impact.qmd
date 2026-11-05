@@ -7,10 +7,10 @@ title: "Player impact from lineups"
 - **Lineups rebuilt for every game since 2003-04 (NBA) and 2009 (WNBA).** In every season they account for at least 95%
   of points and possessions (98-100% in most).
 - **Player impact predicts next season better than the team's own results.** Last season's player impact,
-  weighted by who actually plays this season, explains 50% of next-season NBA team net rating (36% WNBA), against 35% (24% WNBA)
+  weighted by who actually plays this season, explains 50% of next-season NBA team net rating (37% WNBA), against 35% (24% WNBA)
   for the team's own net rating last season.
 - **Adding player impact to net rating predicts playoff series better.** Over 210 NBA series, adding
-  impact from players available for the playoffs beats net rating alone (one-sided p = 0.03; the 95% interval
+  impact from players available for the playoffs beats net rating alone (one-sided p = 0.02; the 95% interval
   just touches zero). In the WNBA (62 series) the gain points the same way but is not significant.
 - **Weighting the archetype mix by player quality did not beat quality alone.** Who is good matters more than which
   role they play.

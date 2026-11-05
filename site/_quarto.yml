@@ -16,10 +16,14 @@ website:
         text: Data
       - href: archetypes.qmd
         text: Archetypes
+      - href: text.qmd
+        text: Text
       - href: championships.qmd
         text: Championships
       - href: impact.qmd
         text: Player impact
+      - href: contenders.qmd
+        text: 2026-27
       - href: salary.qmd
         text: Salary value
       - href: methods.qmd

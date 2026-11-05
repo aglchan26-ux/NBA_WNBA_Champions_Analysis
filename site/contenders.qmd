@@ -1,0 +1,56 @@
+---
+title: "2026-27 NBA contenders"
+---
+
+::: {.callout-note appearance="simple"}
+## Takeaways
+- **Built only from players:** each team's current roster (ESPN, November 2026), each player's 2025-26 offense and
+  defense impact from lineups, and his 2025-26 minutes as a rough projection. No 2026-27 results are used.
+- **Its track record, tested forward in time over 14 seasons:** an average 16% on the eventual champion among all 30 teams
+  (a random pick gives 3%), with the champion in its top three half the time.
+- Odds are a starting point before any games are played, not a prediction of injuries, trades or development.
+:::
+
+```{python}
+import plotly.graph_objects as go
+from _viz import read, md, show
+c = read("step5_contenders_2027.csv").head(16).iloc[::-1]
+fig = go.Figure()
+fig.add_bar(y=c.team_display_name, x=c.title_prob, orientation="h", marker=dict(color="#2a78d6", line=dict(width=2, color="#fcfcfb")),
+            text=[f"{p:.0%}" for p in c.title_prob], textposition="outside",
+            customdata=c[["o_prev", "d_prev"]],
+            hovertemplate="%{y}: %{x:.1%}<br>offense %{customdata[0]:+.1f}, defense %{customdata[1]:+.1f}<extra></extra>")
+fig.update_layout(height=520, hovermode="closest", xaxis=dict(tickformat=".0%", range=[0, c.title_prob.max() * 1.25]),
+                  margin=dict(l=10, r=40, t=20, b=10))
+show(fig)
+```
+
+## Team details
+
+*Offense* and *defense*: projected points per 100 possessions vs average, from players' 2025-26 impact. *Top players*:
+the three with the most projected minutes and their impact. *Arrivals*: players with 1,000+ minutes last season who
+changed teams. Players who change teams change archetype about 29% of the time, against 17% for those who stay (Step 3),
+so roles for arrivals are less certain: Dončić kept his role after his trade, Bridges did not.
+
+```{python}
+d = read("step5_contenders_2027.csv").head(16)
+d = d[["team_display_name", "title_prob", "o_prev", "d_prev", "age_w", "top_players", "key_arrivals", "main_roles"]]
+d.columns = ["team", "title odds", "offense", "defense", "avg age", "top players (impact)", "arrivals", "main roles"]
+d["title odds"] = d["title odds"].map(lambda x: f"{x:.1%}")
+md(d.round(1).fillna("").to_markdown(index=False))
+```
+
+## Track record
+
+Forward-chained: each season predicted from earlier seasons only.
+
+```{python}
+cv = read("step5_contenders_cv.csv")
+cv["prob_on_champion"] = cv.prob_on_champion.map(lambda x: f"{x:.1%}")
+cv.columns = ["season", "champion", "model's odds on champion", "champion's rank (of 30)"]
+md(cv.to_markdown(index=False))
+```
+
+::: {.caveat}
+WNBA: no 2027 roster file is available yet, so there is no WNBA forecast.
+:::

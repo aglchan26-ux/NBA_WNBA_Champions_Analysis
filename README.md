@@ -35,7 +35,9 @@ python -c "import step3_archetypes as s; s.fit_final(); s.fit_wnba_model()"
 python step3_subtypes.py && python step3_layers.py && python step3_segments.py && python step3_validation.py
 python step5_team_profiles.py && python step5_checklist.py && python step5_models.py
 python step5_league_eras.py && python step5_title_no_net.py
-python build_lineups.py && python player_impact.py && python step5_title_impact.py
+python build_lineups.py && python player_impact.py && python step5_title_impact.py && python step5_contenders.py
+python step4_text.py && python step6_salary_value.py
+python step4_reputation.py   # after running scripts/fetch_team_text.py on a computer that can reach Wikipedia
 python export_site_data.py
 cd ../site && quarto render
 ```
