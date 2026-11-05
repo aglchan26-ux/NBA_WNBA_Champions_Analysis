@@ -39,6 +39,27 @@ Season = the calendar year the season ends (NBA 2026 = 2025-26).
 | **Salary value** | everything above except creation tags, plus salary and age | **2009-10** | **2021** |
 | + hustle stats | NBA.com hustle tracking | 2017-18 | not available |
 
+## Shot-zone calibration
+
+ESPN's recorded position of layups and dunks drifts between eras: on average about 0.35 ft from the hoop in
+2004-10, about 1.6 ft in 2011-17 and 2.3-3.9 ft from 2018, with the WNBA's 2020 bubble season the furthest
+(3.95 ft). A fixed rim line would count different shots as "rim" in different eras; in 2020 it pushed many WNBA layups
+into the mid-range. So the rim zone is re-centered each league-season: **rim cutoff = 4 ft + (that season's mean
+layup/dunk distance - 2 ft)**. This keeps the rim make rate steady across eras and removes the 2020 gap.
+
+```{python}
+import plotly.graph_objects as go
+from _viz import read, show, LEAGUE
+cal = read("shot_distance_calibration.csv")
+fig = go.Figure()
+for lg, col in LEAGUE.items():
+    d = cal[cal.league == lg]
+    fig.add_scatter(x=d.season, y=d.rim_cutoff, name=lg, mode="lines+markers", line=dict(color=col, width=2),
+                    marker=dict(size=7, color=col), hovertemplate=lg + " %{x}: rim = within %{y:.2f} ft<extra></extra>")
+fig.update_layout(height=320, yaxis_title="rim cutoff (ft from hoop, as recorded)", legend=dict(y=1.12))
+show(fig)
+```
+
 ## Who counts
 
 A player-season is **counted** if the player appeared in at least 15% of team games, or averaged 20+ minutes

@@ -1,7 +1,11 @@
 """Step 1b: shot-level table from play-by-play, then player and team-defense zone counts.
 
 Zones (distance from the nearest hoop, ESPN coordinates in feet, hoop at x = +/-41.75):
-  rim        two-pointer, d < 4 ft (restricted-area size)
+  rim        two-pointer, d < rim cutoff. The cutoff is 4 ft (restricted-area size) re-centered each league-season:
+             ESPN's recorded position of layups/dunks drifts between eras (mean layup distance ~0.35 ft in
+             2004-10, ~1.6 ft in 2011-17, ~2.3-3.9 ft from 2018; WNBA 2020 bubble 3.95 ft), so
+             cutoff = 4 + (mean layup/dunk distance that season - 2.0 ft). This keeps the rim make rate steady
+             across eras and removes the WNBA 2020 gap. Table: results/shot_distance_calibration.csv
   short_mid  two-pointer, 4 <= d < 14
   long_mid   two-pointer, d >= 14
   corner3    three-pointer within 14 ft of the baseline (|x| >= 33) and |y| >= 20
@@ -22,7 +26,9 @@ import pyarrow.parquet as pq
 from common import ESPN, PROC, SEASONS, SEASON_TYPE
 
 HOOP_X = 41.75
+LAYUP_REF = 2.0  # ft: reference mean recorded distance of layups/dunks
 ZONES = ["rim", "short_mid", "long_mid", "corner3", "above3"]
+CALIB: list = []
 
 
 def shots(lg: str, y: int) -> pd.DataFrame:
@@ -42,8 +48,12 @@ def shots(lg: str, y: int) -> pd.DataFrame:
     s["made"] = s.scoring_play.fillna(False).astype(bool)
     s["assisted"] = s.made & s.athlete_id_2.notna()
     corner = (x.abs() >= 33) & (yy.abs() >= 20)
+    lay = s.coord_ok & s.type_text.str.contains("Layup|Dunk", case=False, na=False) & (s.dist < 12)
+    lay_mean = float(s.dist[lay].mean())
+    cut = 4.0 + (lay_mean - LAYUP_REF)
+    CALIB.append({"league": lg.upper(), "season": y, "layups": int(lay.sum()), "mean_layup_dist": lay_mean, "rim_cutoff": cut})
     s["zone"] = np.select(
-        [s.is3 & corner, s.is3, s.dist < 4, s.dist < 14],
+        [s.is3 & corner, s.is3, s.dist < cut, s.dist < 14],
         ["corner3", "above3", "rim", "short_mid"], default="long_mid")
     s.loc[~s.coord_ok & ~s.is3, "zone"] = "unknown2"
     s["def_team_id"] = np.where(s.team_id == s.home_team_id, s.away_team_id, s.home_team_id)
@@ -73,6 +83,7 @@ def main() -> None:
     games = pd.read_parquet(PROC / "player_game.parquet", columns=["game_id"]).game_id.unique()
     allshots = allshots[allshots.game_id.isin(games)]
     allshots.to_parquet(PROC / "shots.parquet", index=False)
+    pd.DataFrame(CALIB).round(3).to_csv(PROC.parent.parent / "results" / "shot_distance_calibration.csv", index=False)
     pz = zone_counts(allshots, ["league", "season", "season_type", "athlete_id"])
     pz.to_parquet(PROC / "player_zones.parquet", index=False)
     # Team defense: what opponents attempted and made against each team, by zone.
