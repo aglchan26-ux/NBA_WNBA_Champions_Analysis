@@ -1,109 +1,95 @@
 league,season,model,champion,champion_prob,champion_rank,playoff_teams
-NBA,2012,net rating only (reference),MIA,0.09067382432493326,3,16
-NBA,2013,net rating only (reference),MIA,0.1318644995794386,2,16
-NBA,2014,net rating only (reference),SA,0.14133321231984527,1,16
-NBA,2015,net rating only (reference),GS,0.21914555119505572,1,16
-NBA,2016,net rating only (reference),CLE,0.07753979476584066,4,16
-NBA,2017,net rating only (reference),GS,0.3988568600809223,1,16
-NBA,2018,net rating only (reference),GS,0.10309785493371207,3,16
-NBA,2019,net rating only (reference),TOR,0.09782236489754612,3,16
-NBA,2020,net rating only (reference),LAL,0.08715361031335489,5,16
-NBA,2021,net rating only (reference),MIL,0.08876743846004609,4,16
-NBA,2022,net rating only (reference),GS,0.09082462734379429,5,16
-NBA,2023,net rating only (reference),DEN,0.06896797626342671,6,16
-NBA,2024,net rating only (reference),BOS,0.2958525184092531,1,16
-NBA,2025,net rating only (reference),OKC,0.3082752961988089,1,16
-NBA,2026,net rating only (reference),NY,0.07626645776214512,5,16
-NBA,2012,archetype mix,MIA,0.1324168728510577,2,16
-NBA,2013,archetype mix,MIA,0.18866346564080358,1,16
-NBA,2014,archetype mix,SA,0.07314514912016253,5,16
-NBA,2015,archetype mix,GS,0.05517567331497437,7,16
-NBA,2016,archetype mix,CLE,0.031035406894659993,14,16
-NBA,2017,archetype mix,GS,0.044219559552385226,9,16
-NBA,2018,archetype mix,GS,0.011834035227296489,16,16
-NBA,2019,archetype mix,TOR,0.05837547894640969,10,16
-NBA,2020,archetype mix,LAL,0.05121082150052977,7,16
-NBA,2021,archetype mix,MIL,0.07277979502117138,7,16
-NBA,2022,archetype mix,GS,0.07297277335081744,6,16
-NBA,2023,archetype mix,DEN,0.04290895854620832,9,16
-NBA,2024,archetype mix,BOS,0.06216861635398379,7,16
-NBA,2025,archetype mix,OKC,0.13828043747696112,2,16
-NBA,2026,archetype mix,NY,0.051598146711691335,11,16
-NBA,2012,"player quality (efficiency vs role, stars)",MIA,0.07833267930136416,4,16
-NBA,2013,"player quality (efficiency vs role, stars)",MIA,0.07264112861473629,5,16
-NBA,2014,"player quality (efficiency vs role, stars)",SA,0.08667599533339983,3,16
-NBA,2015,"player quality (efficiency vs role, stars)",GS,0.0645250304092775,7,16
-NBA,2016,"player quality (efficiency vs role, stars)",CLE,0.06875428921127993,7,16
-NBA,2017,"player quality (efficiency vs role, stars)",GS,0.15410458811727004,1,16
-NBA,2018,"player quality (efficiency vs role, stars)",GS,0.09440574534159683,3,16
-NBA,2019,"player quality (efficiency vs role, stars)",TOR,0.04240626718442339,10,16
-NBA,2020,"player quality (efficiency vs role, stars)",LAL,0.0461120351486633,11,16
-NBA,2021,"player quality (efficiency vs role, stars)",MIL,0.06753238479512445,6,16
-NBA,2022,"player quality (efficiency vs role, stars)",GS,0.05160445193893372,10,16
-NBA,2023,"player quality (efficiency vs role, stars)",DEN,0.07002109719945214,5,16
-NBA,2024,"player quality (efficiency vs role, stars)",BOS,0.11118693160358245,2,16
-NBA,2025,"player quality (efficiency vs role, stars)",OKC,0.055719306257440086,9,16
-NBA,2026,"player quality (efficiency vs role, stars)",NY,0.08024606154552955,4,16
-NBA,2012,mix + quality,MIA,0.13854397783905234,2,16
-NBA,2013,mix + quality,MIA,0.19571927788787657,1,16
-NBA,2014,mix + quality,SA,0.09345836790543545,4,16
-NBA,2015,mix + quality,GS,0.054097910237955585,7,16
-NBA,2016,mix + quality,CLE,0.029577457483418244,13,16
-NBA,2017,mix + quality,GS,0.08254769527900248,3,16
-NBA,2018,mix + quality,GS,0.017164890873729303,16,16
-NBA,2019,mix + quality,TOR,0.04446403310901683,10,16
-NBA,2020,mix + quality,LAL,0.039311508237832964,9,16
-NBA,2021,mix + quality,MIL,0.07738546004121563,6,16
-NBA,2022,mix + quality,GS,0.05980795697605586,5,16
-NBA,2023,mix + quality,DEN,0.057835063350803434,8,16
-NBA,2024,mix + quality,BOS,0.07737705930694767,4,16
-NBA,2025,mix + quality,OKC,0.11510640550407193,3,16
-NBA,2026,mix + quality,NY,0.05819093414387126,7,16
-NBA,2012,"mix + quality + stats (age, shot diet, defense)",MIA,0.15418385345067656,2,16
-NBA,2013,"mix + quality + stats (age, shot diet, defense)",MIA,0.2920312503302601,1,16
-NBA,2014,"mix + quality + stats (age, shot diet, defense)",SA,0.042992959477639356,5,16
-NBA,2015,"mix + quality + stats (age, shot diet, defense)",GS,0.05737773276121213,7,16
-NBA,2016,"mix + quality + stats (age, shot diet, defense)",CLE,0.012791290763589761,12,16
-NBA,2017,"mix + quality + stats (age, shot diet, defense)",GS,0.15910046505741204,1,16
-NBA,2018,"mix + quality + stats (age, shot diet, defense)",GS,0.019935506493645495,13,16
-NBA,2019,"mix + quality + stats (age, shot diet, defense)",TOR,0.043680012240795076,6,16
-NBA,2020,"mix + quality + stats (age, shot diet, defense)",LAL,0.215669335089627,1,16
-NBA,2021,"mix + quality + stats (age, shot diet, defense)",MIL,0.10071092311085217,3,16
-NBA,2022,"mix + quality + stats (age, shot diet, defense)",GS,0.14507465172363843,1,16
-NBA,2023,"mix + quality + stats (age, shot diet, defense)",DEN,0.09079388768917346,6,16
-NBA,2024,"mix + quality + stats (age, shot diet, defense)",BOS,0.05122576573392074,9,16
-NBA,2025,"mix + quality + stats (age, shot diet, defense)",OKC,0.13571525505584467,3,16
-NBA,2026,"mix + quality + stats (age, shot diet, defense)",NY,0.04974017105215775,8,16
-NBA,2012,playoff-available roster: mix + quality + stats,MIA,0.16087305716012232,2,16
-NBA,2013,playoff-available roster: mix + quality + stats,MIA,0.22972719529253333,2,16
-NBA,2014,playoff-available roster: mix + quality + stats,SA,0.03984947511193713,6,16
-NBA,2015,playoff-available roster: mix + quality + stats,GS,0.051273795404126264,8,16
-NBA,2016,playoff-available roster: mix + quality + stats,CLE,0.03357501948666261,10,16
-NBA,2017,playoff-available roster: mix + quality + stats,GS,0.23787996610605425,1,16
-NBA,2018,playoff-available roster: mix + quality + stats,GS,0.08326729260232357,3,16
-NBA,2019,playoff-available roster: mix + quality + stats,TOR,0.022181226240605593,12,16
-NBA,2020,playoff-available roster: mix + quality + stats,LAL,0.2529464319269526,1,16
-NBA,2021,playoff-available roster: mix + quality + stats,MIL,0.09268754741121898,5,16
-NBA,2022,playoff-available roster: mix + quality + stats,GS,0.15002155656863347,1,16
-NBA,2023,playoff-available roster: mix + quality + stats,DEN,0.11080309786347348,2,16
-NBA,2024,playoff-available roster: mix + quality + stats,BOS,0.04114208317938312,7,16
-NBA,2025,playoff-available roster: mix + quality + stats,OKC,0.11075942592368594,2,16
-NBA,2026,playoff-available roster: mix + quality + stats,NY,0.06645907915309869,4,16
-NBA,2012,two-stage: composition -> predicted net -> title,MIA,0.08370642433357467,2,16
-NBA,2013,two-stage: composition -> predicted net -> title,MIA,0.10684895623820573,2,16
-NBA,2014,two-stage: composition -> predicted net -> title,SA,0.057745698944114444,6,16
-NBA,2015,two-stage: composition -> predicted net -> title,GS,0.08172796269584133,5,16
-NBA,2016,two-stage: composition -> predicted net -> title,CLE,0.06426596324614042,7,16
-NBA,2017,two-stage: composition -> predicted net -> title,GS,0.15105246615510481,1,16
-NBA,2018,two-stage: composition -> predicted net -> title,GS,0.10874034368024962,2,16
-NBA,2019,two-stage: composition -> predicted net -> title,TOR,0.058593805187277435,7,16
-NBA,2020,two-stage: composition -> predicted net -> title,LAL,0.14108192845278286,2,16
-NBA,2021,two-stage: composition -> predicted net -> title,MIL,0.08380769484124753,2,16
-NBA,2022,two-stage: composition -> predicted net -> title,GS,0.0720738147381407,4,16
-NBA,2023,two-stage: composition -> predicted net -> title,DEN,0.06372049852254733,7,16
-NBA,2024,two-stage: composition -> predicted net -> title,BOS,0.1249958932440513,1,16
-NBA,2025,two-stage: composition -> predicted net -> title,OKC,0.105649288473379,2,16
-NBA,2026,two-stage: composition -> predicted net -> title,NY,0.07389383403207557,5,16
+NBA,2014,net rating only (reference),SA,0.1246879811795173,1,16
+NBA,2015,net rating only (reference),GS,0.18690414527575092,1,16
+NBA,2016,net rating only (reference),CLE,0.07911008462682949,4,16
+NBA,2017,net rating only (reference),GS,0.3434450015880147,1,16
+NBA,2018,net rating only (reference),GS,0.10125701872036949,3,16
+NBA,2019,net rating only (reference),TOR,0.09590693310885652,3,16
+NBA,2020,net rating only (reference),LAL,0.08704576961232763,5,16
+NBA,2021,net rating only (reference),MIL,0.0881553038800592,4,16
+NBA,2022,net rating only (reference),GS,0.08967548627478492,5,16
+NBA,2023,net rating only (reference),DEN,0.06960330364956974,6,16
+NBA,2024,net rating only (reference),BOS,0.27123596485940227,1,16
+NBA,2025,net rating only (reference),OKC,0.28739860708884646,1,16
+NBA,2026,net rating only (reference),NY,0.07671649294332715,5,16
+NBA,2014,archetype mix,SA,0.05489550693464875,5,16
+NBA,2015,archetype mix,GS,0.043565004164373713,7,16
+NBA,2016,archetype mix,CLE,0.02437612400335213,14,16
+NBA,2017,archetype mix,GS,0.051218934416705886,9,16
+NBA,2018,archetype mix,GS,0.009986343406763616,16,16
+NBA,2019,archetype mix,TOR,0.049822133130784534,11,16
+NBA,2020,archetype mix,LAL,0.03980636673398844,7,16
+NBA,2021,archetype mix,MIL,0.06139757106544422,8,16
+NBA,2022,archetype mix,GS,0.054083149176770456,7,16
+NBA,2023,archetype mix,DEN,0.03163660205764983,12,16
+NBA,2024,archetype mix,BOS,0.05122365608792757,10,16
+NBA,2025,archetype mix,OKC,0.16694098766863222,1,16
+NBA,2026,archetype mix,NY,0.05697400445801704,9,16
+NBA,2014,"player quality (efficiency vs role, stars)",SA,0.09354965387140403,3,16
+NBA,2015,"player quality (efficiency vs role, stars)",GS,0.05447416824385103,8,16
+NBA,2016,"player quality (efficiency vs role, stars)",CLE,0.06898164994765317,7,16
+NBA,2017,"player quality (efficiency vs role, stars)",GS,0.160009736637184,1,16
+NBA,2018,"player quality (efficiency vs role, stars)",GS,0.10556742646693816,2,16
+NBA,2019,"player quality (efficiency vs role, stars)",TOR,0.05803541454329939,7,16
+NBA,2020,"player quality (efficiency vs role, stars)",LAL,0.04443890845473794,11,16
+NBA,2021,"player quality (efficiency vs role, stars)",MIL,0.07475093494061155,5,16
+NBA,2022,"player quality (efficiency vs role, stars)",GS,0.052683727213963825,9,16
+NBA,2023,"player quality (efficiency vs role, stars)",DEN,0.08066951768533606,4,16
+NBA,2024,"player quality (efficiency vs role, stars)",BOS,0.12584174127206674,1,16
+NBA,2025,"player quality (efficiency vs role, stars)",OKC,0.05568763163771617,11,16
+NBA,2026,"player quality (efficiency vs role, stars)",NY,0.08699619044035548,3,16
+NBA,2014,mix + quality,SA,0.07198067846628359,4,16
+NBA,2015,mix + quality,GS,0.0374996899778909,8,16
+NBA,2016,mix + quality,CLE,0.02471312933909332,12,16
+NBA,2017,mix + quality,GS,0.10604356752279001,3,16
+NBA,2018,mix + quality,GS,0.015575376895509972,16,16
+NBA,2019,mix + quality,TOR,0.0463003999017755,8,16
+NBA,2020,mix + quality,LAL,0.028369946383629843,10,16
+NBA,2021,mix + quality,MIL,0.06813168824682976,6,16
+NBA,2022,mix + quality,GS,0.041800429682317036,11,16
+NBA,2023,mix + quality,DEN,0.046697579152689135,12,16
+NBA,2024,mix + quality,BOS,0.06821747313901465,5,16
+NBA,2025,mix + quality,OKC,0.13605871070620945,2,16
+NBA,2026,mix + quality,NY,0.06491253318466973,6,16
+NBA,2014,"mix + quality + stats (age, shot diet, defense)",SA,0.025195986672193256,6,16
+NBA,2015,"mix + quality + stats (age, shot diet, defense)",GS,0.04364105868230414,10,16
+NBA,2016,"mix + quality + stats (age, shot diet, defense)",CLE,0.01123623412605799,14,16
+NBA,2017,"mix + quality + stats (age, shot diet, defense)",GS,0.1817963257018995,1,16
+NBA,2018,"mix + quality + stats (age, shot diet, defense)",GS,0.018650079193332378,12,16
+NBA,2019,"mix + quality + stats (age, shot diet, defense)",TOR,0.04753553967741225,7,16
+NBA,2020,"mix + quality + stats (age, shot diet, defense)",LAL,0.15785309476395562,2,16
+NBA,2021,"mix + quality + stats (age, shot diet, defense)",MIL,0.08266522376260264,5,16
+NBA,2022,"mix + quality + stats (age, shot diet, defense)",GS,0.10107716771577592,2,16
+NBA,2023,"mix + quality + stats (age, shot diet, defense)",DEN,0.0873939162177749,4,16
+NBA,2024,"mix + quality + stats (age, shot diet, defense)",BOS,0.039280277403171984,9,16
+NBA,2025,"mix + quality + stats (age, shot diet, defense)",OKC,0.17809474600270098,1,16
+NBA,2026,"mix + quality + stats (age, shot diet, defense)",NY,0.05113616148540975,8,16
+NBA,2014,playoff-available roster: mix + quality + stats,SA,0.03967568943022164,5,16
+NBA,2015,playoff-available roster: mix + quality + stats,GS,0.06138879579172803,8,16
+NBA,2016,playoff-available roster: mix + quality + stats,CLE,0.03627283428817799,8,16
+NBA,2017,playoff-available roster: mix + quality + stats,GS,0.24645738368760062,1,16
+NBA,2018,playoff-available roster: mix + quality + stats,GS,0.09735002572935013,2,16
+NBA,2019,playoff-available roster: mix + quality + stats,TOR,0.02426655305706844,11,16
+NBA,2020,playoff-available roster: mix + quality + stats,LAL,0.2630060382707674,1,16
+NBA,2021,playoff-available roster: mix + quality + stats,MIL,0.07609046068297542,5,16
+NBA,2022,playoff-available roster: mix + quality + stats,GS,0.13166485051562923,1,16
+NBA,2023,playoff-available roster: mix + quality + stats,DEN,0.10378024022713847,2,16
+NBA,2024,playoff-available roster: mix + quality + stats,BOS,0.049546966586711774,7,16
+NBA,2025,playoff-available roster: mix + quality + stats,OKC,0.13351233310306587,2,16
+NBA,2026,playoff-available roster: mix + quality + stats,NY,0.06849074781224261,5,16
+NBA,2014,two-stage: composition -> predicted net -> title,SA,0.05615883732571774,7,16
+NBA,2015,two-stage: composition -> predicted net -> title,GS,0.07643865483099212,5,16
+NBA,2016,two-stage: composition -> predicted net -> title,CLE,0.06195830807987184,7,16
+NBA,2017,two-stage: composition -> predicted net -> title,GS,0.17184483304415446,1,16
+NBA,2018,two-stage: composition -> predicted net -> title,GS,0.11720323130800518,2,16
+NBA,2019,two-stage: composition -> predicted net -> title,TOR,0.0631333732315537,6,16
+NBA,2020,two-stage: composition -> predicted net -> title,LAL,0.14257603789630857,2,16
+NBA,2021,two-stage: composition -> predicted net -> title,MIL,0.08561740145853061,2,16
+NBA,2022,two-stage: composition -> predicted net -> title,GS,0.06890274782646406,6,16
+NBA,2023,two-stage: composition -> predicted net -> title,DEN,0.06586916581155004,7,16
+NBA,2024,two-stage: composition -> predicted net -> title,BOS,0.1311442328669674,1,16
+NBA,2025,two-stage: composition -> predicted net -> title,OKC,0.10749587123989045,3,16
+NBA,2026,two-stage: composition -> predicted net -> title,NY,0.07502651955984176,5,16
 WNBA,2017,net rating only (reference),MIN,0.37735218111856056,1,8
 WNBA,2018,net rating only (reference),SEA,0.2918880939466208,1,8
 WNBA,2019,net rating only (reference),WSH,0.5962150212857386,1,8

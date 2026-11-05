@@ -58,6 +58,11 @@ fig.update_layout(height=380, barmode="group", hovermode="closest", legend=dict(
 show(fig)
 ```
 
+**What this shows:** the gray bars are how many players the notebook's ratio rule flagged; the blue bars are how many
+the new rule flags once uncertainty is counted. For veterans, the old rule flagged roughly three in four players;
+most of those flags were noise, because a 20% gap between predicted and actual pay is well inside what the model
+cannot tell apart. The players who survive the new rule are the cases worth writing about.
+
 ## Clearly over- or underpaid veterans, latest season
 
 Only players whose 90% interval excludes zero. *Surplus* is in log units (+0.69 ≈ worth twice the pay; −0.69 ≈ worth half).
@@ -93,21 +98,6 @@ for lg in ["NBA", "WNBA"]:
 f = read("step6_model_cv.csv")
 f.columns = ["league", "veteran contracts", "R² of log pay (held-out seasons)", "90% band coverage"]
 md(f.round(3).to_markdown(index=False))
-```
-
-## Salary coverage
-
-Share of minutes played by players with a known salary.
-
-```{python}
-from _viz import LEAGUE, line
-s = read("step1_salary_coverage.csv")
-fig = go.Figure()
-for lg, col in LEAGUE.items():
-    d = s[s.league == lg]
-    line(fig, d.season, d.minutes_weighted_matched, lg, col, hovertemplate=lg + ": %{y:.0%}<extra></extra>")
-fig.update_layout(height=340, yaxis=dict(tickformat=".0%", range=[0, 1.02]))
-show(fig)
 ```
 
 ::: {.caveat}

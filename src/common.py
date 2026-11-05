@@ -39,3 +39,9 @@ def norm_name(s) -> str:
     s = unicodedata.normalize("NFKD", str(s)).encode("ascii", "ignore").decode().lower()
     s = re.sub(r"\b(jr|sr|ii|iii|iv|v)\b\.?", " ", s)
     return re.sub(r"[^a-z]", "", s)
+
+
+# First season used by team / title models and site sections: NBA from 2005-06, the first season with salaries for
+# ~99% of minutes (2003-04 and 2004-05: 32-51%); WNBA from 2009 (all seasons; WNBA salaries only exist from 2021,
+# which would leave too few champions to learn from).
+MODEL_START = {"NBA": 2006, "WNBA": 2009}

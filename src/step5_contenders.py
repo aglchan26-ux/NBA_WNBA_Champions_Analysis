@@ -18,7 +18,7 @@ import sys
 import numpy as np
 import pandas as pd
 
-from common import PROC, RAW, RESULTS
+from common import MODEL_START, PROC, RAW, RESULTS
 from step5_models import clogit_fit, clogit_ll
 
 FEATS = ["o_prev_z", "d_prev_z", "age_w_z"]
@@ -49,7 +49,7 @@ def roster_features(roster: pd.DataFrame, season: int) -> pd.DataFrame:
 
 def historical() -> pd.DataFrame:
     pt = pd.read_parquet(PROC / "player_team_season.parquet")
-    pt = pt[(pt.league == "NBA") & (pt.season_type == "regular")]
+    pt = pt[(pt.league == "NBA") & (pt.season_type == "regular") & (pt.season >= MODEL_START["NBA"] - 1)]
     # one team per player-season: where he played the most minutes (end-of-season roster proxy)
     pt = pt.sort_values("minutes").drop_duplicates(["season", "athlete_id"], keep="last")
     ages = pd.read_parquet(PROC / "player_season_salary.parquet", columns=["league", "season", "athlete_id", "age"])

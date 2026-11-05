@@ -1,0 +1,9 @@
+league,model,test_seasons,mean_loglik_champion,mean_prob_on_champion,champion_ranked_1st,champion_in_top3
+NBA,net rating only (reference),13,-2.081921615030538,0.14624169944674276,0.38461538461538464,0.5384615384615384
+NBA,availability-adjusted strength only,13,-2.081778780416342,0.14533498324224703,0.46153846153846156,0.7692307692307693
+NBA,net rating + availability-adjusted strength,13,-1.9520079318081425,0.18177077700671299,0.38461538461538464,0.6923076923076923
+NBA,"net + availability-adjusted (offense, defense) + archetype x quality + age",13,-2.0302240897399324,0.15392099514749666,0.23076923076923078,0.6923076923076923
+WNBA,net rating only (reference),10,-1.427080932795747,0.30264637453912424,0.7,0.8
+WNBA,availability-adjusted strength only,10,-1.473752684283564,0.27094600475713065,0.6,0.8
+WNBA,net rating + availability-adjusted strength,10,-1.3482493693566477,0.34972212417213705,0.6,0.8
+WNBA,"net + availability-adjusted (offense, defense) + archetype x quality + age",10,-1.3259364670606362,0.3721446496033519,0.6,0.8

@@ -22,7 +22,8 @@ COPY = [
     "step5_A_ridge_coefs.csv", "step5_league_profiles.csv", "step5_wnba_years_behind.csv",
     "step5_champion_vs_league.csv", "step5_champion_identity.csv", "step5_title_no_net_cv.csv",
     "lineups_validation.csv", "player_impact_validation.csv", "step5_title_impact_cv.csv", "step5_series_cv.csv",
-    "step5_series_significance.csv", "shot_distance_calibration.csv", "step4_topics.csv", "step4_text_vs_archetypes.csv",
+    "step5_series_significance.csv", "shot_distance_calibration.csv", "step3_hand_label_agreement_v3.csv",
+    "step5_final_title_cv.csv", "step5_final_series_cv.csv", "step5_final_significance.csv", "step5_final_weights.csv", "step4_topics.csv", "step4_text_vs_archetypes.csv",
     "step4_text_cluster_vs_archetype.csv", "step4_archetype_tokens.csv", "step6_counts.csv", "step6_model_cv.csv",
     "step6_top_players.csv", "step6_max_contracts.csv", "step6_lambda.csv", "step5_contenders_2027.csv", "step5_contenders_cv.csv", "step5_C_drift_windows.csv", "step5_checklist_by_group.csv",
 ]
@@ -48,12 +49,45 @@ def top_impact(n: int = 10) -> pd.DataFrame:
             [["league", "season", "player", "o_impact", "d_impact", "impact", "minutes"]].round(1))
 
 
+def champion_arch_share() -> pd.DataFrame:
+    """Each champion's archetype minutes shares and the league-season average team share (for the mix chart)."""
+    ts = pd.read_parquet(PROC / "team_seasons.parquet")
+    arch = [c for c in ts.columns if c.startswith("arch_share::")]
+    lg = ts.groupby(["league", "season"])[arch].mean().stack().rename("league_avg")
+    ch = ts[ts.champion.astype(bool)].set_index(["league", "season"])[arch].stack().rename("champion")
+    out = pd.concat([lg, ch], axis=1).reset_index()
+    out.columns = ["league", "season", "archetype", "league_avg", "champion"]
+    out["archetype"] = out.archetype.str.replace("arch_share::", "", regex=False)
+    return out
+
+
+def champion_position_share() -> pd.DataFrame:
+    """Minutes share by listed position (G / F / C) for each champion vs the league-season team average."""
+    pt = pd.read_parquet(PROC / "player_team_season.parquet")
+    pt = pt[pt.season_type == "regular"][["league", "season", "athlete_id", "team_id", "minutes"]]
+    pos = pd.read_parquet(PROC / "player_season.parquet")
+    pos = pos[pos.season_type == "regular"][["league", "season", "athlete_id", "position"]]
+    d = pt.merge(pos, on=["league", "season", "athlete_id"], how="left")
+    d = d[d.position.isin(["G", "F", "C"])]
+    sh = d.groupby(["league", "season", "team_id", "position"]).minutes.sum().unstack(fill_value=0)
+    sh = sh.div(sh.sum(1), axis=0)
+    ts = pd.read_parquet(PROC / "team_seasons.parquet")[["league", "season", "team_id", "champion"]]
+    sh = sh.reset_index().merge(ts, on=["league", "season", "team_id"])
+    lg = sh.groupby(["league", "season"])[["G", "F", "C"]].transform("mean")
+    ch = sh[sh.champion.astype(bool)].copy()
+    for p in ["G", "F", "C"]:
+        ch[f"{p}_vs_league"] = ch[p] - lg.loc[ch.index, p]
+    return ch[["league", "season", "G", "F", "C", "G_vs_league", "F_vs_league", "C_vs_league"]]
+
+
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     for f in COPY:
         shutil.copy(RES / f, OUT / f)
     (ROOT / "site" / "figures").mkdir(exist_ok=True)
     shutil.copy(ROOT / "figures" / "step3_archetype_profiles.png", ROOT / "site" / "figures")
+    champion_position_share().to_csv(OUT / "champion_position_share.csv", index=False)
+    champion_arch_share().to_csv(OUT / "champion_arch_share.csv", index=False)
     top_impact().to_csv(OUT / "top_player_impact.csv", index=False)
     archetype_share_by_season().to_csv(OUT / "archetype_share_by_season.csv", index=False)
     print(f"exported {len(COPY) + 1} tables to {OUT}", file=sys.stderr)

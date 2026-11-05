@@ -24,7 +24,7 @@ import pandas as pd
 from scipy.optimize import minimize
 from sklearn.linear_model import Ridge
 
-from common import PROC, RESULTS
+from common import MODEL_START, PROC, RESULTS
 
 warnings.filterwarnings("ignore")
 ARCH = ["On-ball creator", "Secondary guard", "Spot-up 3-and-D wing", "Hub big / point forward", "Rim-running big"]
@@ -39,6 +39,7 @@ RNG = np.random.default_rng(42)
 
 def load() -> pd.DataFrame:
     T = pd.read_parquet(PROC / "team_seasons.parquet").copy()
+    T = T[T.season >= T.league.map(MODEL_START)].reset_index(drop=True)
     for c in ["C1_primary_scorer", "C2_secondary_scorer"]:
         T[c] = T[c].astype(float)
     for c in STYLE + EFF:

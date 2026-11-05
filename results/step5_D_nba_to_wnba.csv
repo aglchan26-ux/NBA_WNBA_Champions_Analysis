@@ -1,3 +1,3 @@
 model,trained_on,tested_on,seasons,mean_loglik_champion,mean_prob_on_champion,uniform_baseline_loglik
-net rating only,NBA (all seasons),WNBA (every season),18,-1.2209614663601602,0.3623658555089384,-2.0794415416798357
-net + roster mix,NBA (all seasons),WNBA (every season),18,-1.2689790394119218,0.3476524392908524,-2.0794415416798357
+net rating only,NBA (all seasons),WNBA (every season),18,-1.2417021627568008,0.350497044590888,-2.0794415416798357
+net + roster mix,NBA (all seasons),WNBA (every season),18,-1.2890046030058366,0.34086391856337345,-2.0794415416798357

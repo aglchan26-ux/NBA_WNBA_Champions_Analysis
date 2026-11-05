@@ -2,19 +2,31 @@
 title: "Player impact from lineups"
 ---
 
-::: {.callout-note appearance="simple"}
+```{python}
+#| label: takeaways
+from _viz import read, md
+v = read("player_impact_validation.csv").set_index(["league", "model"])
+r2 = lambda lg, m: v.loc[(lg, m), "r2"]
+sig = read("step5_final_significance.csv").set_index(["league", "model"])
+sr = read("step5_final_series_cv.csv").set_index(["league", "model"])
+g = sig.loc[("NBA", "net rating + availability-adjusted strength")]
+gw = sig.loc[("WNBA", "net rating + availability-adjusted strength")]
+P, L = "prior-season player impact (prior-informed)", "last season team net rating"
+md(f"""::: {{.callout-note appearance="simple"}}
 ## Takeaways
 - **Lineups rebuilt for every game since 2003-04 (NBA) and 2009 (WNBA).** In every season they account for at least 95%
   of points and possessions (98-100% in most).
-- **Player impact predicts next season better than the team's own results.** Last season's player impact,
-  weighted by who actually plays this season, explains 50% of next-season NBA team net rating (37% WNBA), against 35% (24% WNBA)
-  for the team's own net rating last season.
-- **Adding player impact to net rating predicts playoff series better.** Over 210 NBA series, adding
-  impact from players available for the playoffs beats net rating alone (one-sided p = 0.02; the 95% interval
-  just touches zero). In the WNBA (62 series) the gain points the same way but is not significant.
+- **Player impact predicts next season better than the team's own results.** Last season's player impact, weighted by
+  who actually plays this season, explains {r2('NBA', P):.0%} of next-season NBA team net rating ({r2('WNBA', P):.0%} WNBA),
+  against {r2('NBA', L):.0%} ({r2('WNBA', L):.0%} WNBA) for the team's own net rating last season.
+- **Net rating plus our variables predicts playoff series better than net rating alone.** Adding availability-adjusted
+  strength (this season's player impact, counting only players available for the playoffs) improves NBA series predictions
+  ({g.loglik_gain_per_series:+.3f} log-likelihood per series, one-sided p = {g.p_gain_le_0:.2f}); in the WNBA the gain points the
+  same way (p = {gw.p_gain_le_0:.2f}). Details on the Championships page.
 - **Weighting the archetype mix by player quality did not beat quality alone.** Who is good matters more than which
   role they play.
-:::
+:::""")
+```
 
 ## How it is measured
 

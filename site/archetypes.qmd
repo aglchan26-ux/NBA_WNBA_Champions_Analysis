@@ -8,34 +8,96 @@ league and season. Sub-types split each archetype further (e.g. *Alpha scorer*, 
 
 ![Average profile of each archetype (standard deviations from the league-season mean).](figures/step3_archetype_profiles.png)
 
-## How the mix has shifted
+**Reading the profile:** each row is an archetype and each column a habit, in standard deviations from the
+league-season average. Red = more than average, blue = less. On-ball creators use the most possessions and assist the
+most; spot-up 3-and-D wings take corner threes off passes; rim-running bigs live at the rim and on the glass.
 
-Share of all minutes played by each archetype, by season.
+## How the mix has shifted, and what champions did first
+
+For the three archetypes whose share of minutes moved the most, the line is the league's share (three-season average)
+and the dots are each champion's share. A dot above the line means the champion leaned on that archetype more than the
+league did that season.
 
 ```{python}
+import numpy as np
+import pandas as pd
 import plotly.graph_objects as go
-from plotly.subplots import make_subplots
-from _viz import show, read, SERIES
-s = read("archetype_share_by_season.csv")
-order = s.groupby("archetype").minutes_share.mean().sort_values(ascending=False).index.tolist()
-fig = make_subplots(rows=1, cols=2, subplot_titles=("NBA", "WNBA"), shared_yaxes=True, horizontal_spacing=0.06)
-colors = dict(zip(order, ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300"]))
-for j, lg in enumerate(["NBA", "WNBA"], 1):
-    for a in order:
-        d = s[(s.league == lg) & (s.archetype == a)]
-        fig.add_scatter(x=d.season, y=d.minutes_share, name=a, legendgroup=a, showlegend=(j == 1),
-                        mode="lines", line=dict(color=colors[a], width=2),
-                        hovertemplate=a + ": %{y:.0%}<extra></extra>", row=1, col=j)
-fig.update_yaxes(tickformat=".0%", rangemode="tozero")
-fig.update_layout(height=430, legend=dict(y=-0.15, orientation="h"))
-show(fig)
+from _viz import show, read, md
+
+ca = read("champion_arch_share.csv")
+START = {"NBA": 2006, "WNBA": 2009}
+COL = ["#2a78d6", "#eb6834", "#1baf7a"]
+
+
+def mix_chart(lg):
+    d = ca[(ca.league == lg) & (ca.season >= START[lg])].sort_values("season")
+    first = d[d.season <= d.season.min() + 2].groupby("archetype").league_avg.mean()
+    last = d[d.season >= d.season.max() - 2].groupby("archetype").league_avg.mean()
+    change = (last - first).sort_values(key=abs, ascending=False)
+    top = change.index[:3].tolist()
+    fig = go.Figure()
+    for a, c in zip(top, COL):
+        g = d[d.archetype == a]
+        fig.add_scatter(x=g.season, y=g.league_avg.rolling(3, center=True, min_periods=1).mean(), name=f"{a} (league)",
+                        mode="lines", line=dict(color=c, width=2.5), hovertemplate=a + " league: %{y:.0%}<extra></extra>")
+        fig.add_scatter(x=g.season, y=g.champion, name=f"{a} (champion)", mode="markers", showlegend=False,
+                        marker=dict(size=9, color=c, line=dict(width=2, color="#fcfcfb")),
+                        hovertemplate=a + " champion: %{y:.0%}<extra></extra>")
+    fig.update_layout(height=400, yaxis=dict(tickformat=".0%", title="share of team minutes"), hovermode="closest",
+                      legend=dict(y=1.16))
+    return fig, change, top, d
+
+
+def mix_text(lg, change, top, d):
+    lines = []
+    for a in top:
+        g = d[d.archetype == a]
+        lead = (g.champion - g.league_avg).mean()
+        early = (g[g.season <= g.season.min() + 4].champion - g[g.season <= g.season.min() + 4].league_avg).mean()
+        lines.append(f"- **{a}:** league share {'rose' if change[a] > 0 else 'fell'} by {abs(change[a]) * 100:.1f} points "
+                     f"from the first to the last three seasons. Champions were {abs(lead) * 100:.1f} points "
+                     f"{'above' if lead > 0 else 'below'} the league on average"
+                     + (f", and {abs(early) * 100:.1f} points {'above' if early > 0 else 'below'} it in the first five seasons, "
+                        f"before the league moved" if np.sign(early) == np.sign(change[a]) and abs(early) > 0.01 else "") + ".")
+    return "\n".join(lines)
 ```
+
+### NBA (2005-06 to 2025-26)
+
+```{python}
+fig, change, top, d = mix_chart("NBA")
+show(fig)
+md("**The trend:**\n\n" + mix_text("NBA", change, top, d))
+```
+
+### WNBA (2009 to 2026)
+
+```{python}
+fig, change, top, d = mix_chart("WNBA")
+show(fig)
+md("**The trend:**\n\n" + mix_text("WNBA", change, top, d))
+```
+
+**How to read this with the title results:** when champions sit above the line *before* the league's share rises,
+the winners were early adopters of that role. It's a pattern, not proof that the role caused the titles; the
+Championships and Impact pages test what actually predicts winning (player quality and availability matter more
+than the role mix itself).
 
 ## How trustworthy are the labels?
 
+The checks the rest of the analysis relies on.
+
 ```{python}
-from _viz import md
-v = read("step3_validation_summary.csv")
-v["estimate"] = v.estimate.round(2); v["95% range"] = [("" if lo != lo else f"{lo:.2f} to {hi:.2f}") for lo, hi in zip(v.lo95, v.hi95)]
-md(v[["check", "estimate", "95% range", "how_to_read"]].to_markdown(index=False))
+v = read("step3_validation_summary.csv").set_index("check")
+h3 = read("step3_hand_label_agreement_v3.csv").set_index("group")
+rows = [
+    ("Labels are stable when the data is resampled", f"{v.estimate.iloc[0]:.2f}", "1 = identical groups every time; above 0.9 is very stable"),
+    ("NBA players keep their archetype next season (same team)", f"{v.estimate.iloc[2]:.0%}", "roles persist but can evolve"),
+    ("WNBA players keep their archetype next season (same team)", f"{v.estimate.iloc[3]:.0%}", ""),
+    ("Agreement with blind hand labels, NBA (labels never used in tuning)", f"{v.estimate.iloc[13]:.0%}", "6 archetypes: chance is about 17%"),
+    ("Agreement with blind hand labels, WNBA 2025-26 batch", f"{h3.loc['all', 'archetype_agreement']:.0%}", ""),
+    ("Trades change roles: archetype change after a trade vs same team (NBA)", f"{v.estimate.iloc[18]:.0%} vs {v.estimate.iloc[17]:.0%}", "e.g. Bridges changed role, Dončić did not"),
+    ("Defense check: low-usage rim protectors contest more 2s (NBA hustle data)", f"{v.estimate.iloc[24]:+.1f} SD", "independent tracking data agrees with the label"),
+]
+md(pd.DataFrame(rows, columns=["check", "result", "how to read"]).to_markdown(index=False))
 ```
