@@ -101,10 +101,25 @@ def champion_profiles() -> pd.DataFrame:
     ch = ts[ts.champion.astype(bool)]
     d = pt.merge(ch[["league", "season", "team_id", "team"]]).merge(P).merge(A)
     d = d[d.minutes >= d.league.map({"NBA": 1000, "WNBA": 500})]           # WNBA seasons are 34-44 games
+    # league rank of each player's impact that season (same minutes floor), to tell true star engines from committees
+    allp = pt.merge(P).groupby(["league", "season", "athlete_id"]).agg(minutes=("minutes", "sum"), impact=("impact", "first")).reset_index()
+    allp = allp[allp.minutes >= allp.league.map({"NBA": 1000, "WNBA": 500})]
+    allp["league_rank"] = allp.groupby(["league", "season"]).impact.rank(ascending=False)
+    d = d.merge(allp[["league", "season", "athlete_id", "league_rank"]], on=["league", "season", "athlete_id"], how="left")
     d = d.sort_values("impact", ascending=False).groupby(["league", "season"]).head(1)
     # an alpha scorer who plays as a hub big (e.g. Jokic) is a playmaking hub, not a scoring guard-type engine
     d.loc[(d.subtype == "Alpha scorer") & (d.archetype == "Hub big / point forward"), "subtype"] = "Playmaking hub"
-    out = ci.merge(d[["league", "season", "player", "subtype", "impact"]], on=["league", "season"], how="left")
+    out = ci.merge(d[["league", "season", "player", "subtype", "impact", "league_rank"]], on=["league", "season"], how="left")
+    # role emphasis in standard deviations: (champion share - league mean) / spread across teams that season, so a role
+    # every team plays a lot (e.g. 3-and-D wings) can't dominate just because its raw percentage-point gaps are bigger
+    ts_all = pd.read_parquet(PROC / "team_seasons.parquet")
+    archs = [c for c in ts_all.columns if c.startswith("arch_share::")]
+    g = ts_all.groupby(["league", "season"])[archs]
+    z = (ts_all[archs] - g.transform("mean")) / g.transform("std").replace(0, np.nan)
+    z.columns = [c.replace("arch_share::", "z::") for c in archs]
+    zc = pd.concat([ts_all[["league", "season", "champion"]], z], axis=1)
+    zc = zc[zc.champion.astype(bool)].drop(columns="champion")
+    out = out.merge(zc, on=["league", "season"], how="left")
     arch = [c for c in ci.columns if c.startswith("arch_vs_league::")]
     rows = []
     for r in out.itertuples():
@@ -116,7 +131,9 @@ def champion_profiles() -> pd.DataFrame:
         rows.append({"league": r.league, "season": r.season, "team": r.team, "identity": r.identity,
                      "role": ROLE.get(r.subtype, str(r.subtype).lower()) if isinstance(r.player, str) else "deep roster",
                      "off_edge": r.off_edge, "def_edge": r.def_edge,
-                     "best_player": r.player, "best_player_impact": r.impact, "lean": top.split("::")[1],
+                     "best_player": r.player, "best_player_impact": r.impact, "best_player_rank": r.league_rank,
+                     "lean": top.split("::")[1],
+                     **{c: out.loc[r.Index, c] for c in out.columns if c.startswith("z::")},
                      "summary": f"{lead}, {star}, deep {DEPTH[top.split('::')[1]]}"})
     return pd.DataFrame(rows)
 

@@ -5,9 +5,9 @@ title: "Salary value: who is over- or underpaid?"
 ::: {.callout-note appearance="simple"}
 ## Takeaways
 - **The old ratio rule labeled most players.** The notebook's rule (predicted ÷ actual salary above 1.2 or below 0.8)
-  called 38% of NBA veterans underpaid and 37% overpaid. With 90% intervals, only 5% and 5% are clearly
+  called 38% of NBA veterans underpaid and 37% overpaid. With 90% intervals, only 6% and 4% are clearly
   over- or underpaid; for everyone else the difference is within the model's uncertainty.
-- **Max contracts can't be judged against the market.** The old rule called 69% of NBA max-contract players overpaid,
+- **Max contracts can't be judged against the market.** The old rule called 72% of NBA max-contract players overpaid,
   but max pay is capped by the league's rules, so their market value is never observed. They're shown by value
   delivered instead.
 - **Minimum contracts are underpaid by design**, especially late-season prorated deals.

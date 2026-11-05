@@ -1,13 +1,13 @@
 league,model,test_seasons,mean_loglik_champion,mean_prob_on_champion,champion_ranked_1st,champion_in_top3
 NBA,net rating only (reference),13,-2.081921615030538,0.14624169944674276,0.38461538461538464,0.5384615384615384
-NBA,availability-adjusted strength only,13,-2.081778780416342,0.14533498324224703,0.46153846153846156,0.7692307692307693
-NBA,net rating + availability-adjusted strength,13,-1.9520079318081425,0.18177077700671299,0.38461538461538464,0.6923076923076923
-NBA,net + availability-adjusted strength + star,13,-1.9282585929879674,0.193163753199852,0.38461538461538464,0.6923076923076923
-NBA,net + availability-adjusted strength + star + archetype x quality,13,-1.9793831471817724,0.1805659685741502,0.23076923076923078,0.5384615384615384
-NBA,"net + availability-adjusted (offense, defense) + archetype x quality + age",13,-2.0302240897399324,0.15392099514749666,0.23076923076923078,0.6923076923076923
+NBA,availability-adjusted strength only,13,-2.0879841992076473,0.14330710923888798,0.46153846153846156,0.6923076923076923
+NBA,net rating + availability-adjusted strength,13,-1.958611878774166,0.1793924564803972,0.38461538461538464,0.5384615384615384
+NBA,net + availability-adjusted strength + star,13,-2.0262181357864457,0.17967192440798338,0.23076923076923078,0.6153846153846154
+NBA,net + availability-adjusted strength + star + archetype x quality,13,-2.0148672508631296,0.1798315860641368,0.23076923076923078,0.6923076923076923
+NBA,"net + availability-adjusted (offense, defense) + archetype x quality + age",13,-2.0529574791229663,0.15952041357199526,0.38461538461538464,0.6153846153846154
 WNBA,net rating only (reference),10,-1.427080932795747,0.30264637453912424,0.7,0.8
-WNBA,availability-adjusted strength only,10,-1.473752684283564,0.27094600475713065,0.6,0.8
-WNBA,net rating + availability-adjusted strength,10,-1.3482493693566477,0.34972212417213705,0.6,0.8
-WNBA,net + availability-adjusted strength + star,10,-1.3748892113365199,0.3455885308944786,0.6,0.8
-WNBA,net + availability-adjusted strength + star + archetype x quality,10,-1.4033793951057583,0.3582664023084247,0.7,0.8
-WNBA,"net + availability-adjusted (offense, defense) + archetype x quality + age",10,-1.3259364670606362,0.3721446496033519,0.6,0.8
+WNBA,availability-adjusted strength only,10,-1.4669797059497482,0.2726168494294156,0.6,0.8
+WNBA,net rating + availability-adjusted strength,10,-1.3533273938455976,0.3473850822696962,0.6,0.8
+WNBA,net + availability-adjusted strength + star,10,-1.3705962505543066,0.34220155769983956,0.6,0.8
+WNBA,net + availability-adjusted strength + star + archetype x quality,10,-1.4792775699453673,0.36356743509181627,0.5,0.8
+WNBA,"net + availability-adjusted (offense, defense) + archetype x quality + age",10,-1.4487159573113637,0.3838597805064525,0.6,0.8

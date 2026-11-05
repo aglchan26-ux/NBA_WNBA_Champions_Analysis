@@ -8,8 +8,8 @@ title: "2026-27 NBA contenders"
   defense impact from lineups, and his 2025-26 minutes as a rough projection. No 2026-27 results are used.
 - **Stars count.** Besides overall roster strength, the model weighs each team's best player (lineup-based impact,
   1,000+ projected minutes), so Gilgeous-Alexander, Jokić and Wembanyama lift their teams directly.
-- **Its track record, tested forward in time over 13 seasons:** an average 18% on the eventual champion among all 30 teams
-  (a random pick gives 3%), with the champion in its top three in 7 of 13 seasons.
+- **Its track record, tested forward in time over 13 seasons:** an average 15% on the eventual champion among all 30 teams
+  (a random pick gives 3%), with the champion in its top three in 8 of 13 seasons.
 - Odds are a starting point before any games are played, not a prediction of injuries, trades or development.
 :::
 

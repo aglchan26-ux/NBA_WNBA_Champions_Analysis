@@ -52,25 +52,37 @@ for lg in ["NBA", "WNBA"]:
                      "champion in top 3": f"{ft.loc[(lg, m), 'champion_in_top3']:.0%}",
                      "gain over net rating (p)": "" if m.startswith("net rating only") else f"p = {fg.loc[(lg, m), 'p_gain_le_0']:.2f}"})
 md(pd.DataFrame(rows).to_markdown(index=False))
-g = fg.loc[("NBA", "net rating + availability-adjusted strength")]
+C = "net rating + availability-adjusted strength"
+N = "net rating only (reference)"
+S = "net + availability-adjusted strength + star"
+Q = "net + availability-adjusted strength + star + archetype x quality"
+pv = {lg: fg.loc[(lg, C), "p_gain_le_0"] for lg in ["NBA", "WNBA"]}
+gain_txt = lambda lg: ("statistically reliable" if pv[lg] < 0.05 else "in the same direction but not statistically reliable on its own")
+wn, wo = fw.loc[("NBA", "avail_now"), "share_of_total_weight"], fw.loc[("NBA", "net"), "share_of_total_weight"]
 md(f"""**Why this one.** *Availability-adjusted strength* is our variable: each team rebuilt from this season's lineup-based
 player impact, counting only the players available for the playoffs, so a team that lost its best player late in the
 season is rated on the roster it will actually play with. Net rating can't see that.
 
-- **It beats net rating.** In the NBA it calls more playoff series correctly and puts more probability on the eventual
-  champion; the gain over net rating alone is statistically reliable (one-sided p = {g.p_gain_le_0:.2f}).
-- **In the NBA, our variable carries the most weight.** In the combined NBA model it holds {fw.loc[('NBA', 'avail_now'), 'share_of_total_weight']:.0%}
-  of the weight against {fw.loc[('NBA', 'net'), 'share_of_total_weight']:.0%} for net rating ({fw.loc[('WNBA', 'avail_now'), 'share_of_total_weight']:.0%}
-  vs {fw.loc[('WNBA', 'net'), 'share_of_total_weight']:.0%} in the WNBA).
-- **Why keep net rating in it.** Our variable alone is about as good at calling series but less steady at picking
-  champions in some seasons; net rating captures things our lineup estimates miss (team scheme and coaching, and
-players with too few minutes to estimate well). Together they are the most accurate and the most stable in both leagues.
-- **Star players.** Adding the best available player's impact ("star") gives the best NBA title picker and the best
-  series log-loss, so star power is used in the 2026-27 forecast (Jokić, Gilgeous-Alexander and Wembanyama drive
-  their teams' ratings). It adds nothing in the WNBA, so the two-variable model stays the main one for both leagues.
-- **Archetype x quality.** Tuning its penalty inside the season-by-season test lifted it to about the chosen model's level
-  (NBA ~18% on the champion, WNBA ~36%), but not above it: with 13-20 test seasons, six extra role variables add noise
-  about as fast as signal. Who is good still explains more than which role they play.
+- **It improves on net rating at picking champions.** Average chance on the eventual champion: NBA
+  {ft.loc[('NBA', C), 'mean_prob_on_champion']:.0%} vs {ft.loc[('NBA', N), 'mean_prob_on_champion']:.0%} for net rating alone; WNBA
+  {ft.loc[('WNBA', C), 'mean_prob_on_champion']:.0%} vs {ft.loc[('WNBA', N), 'mean_prob_on_champion']:.0%}.
+- **Playoff series:** {fs.loc[('NBA', C), 'accuracy']:.0%} vs {fs.loc[('NBA', N), 'accuracy']:.0%} called correctly in the NBA. The gain over
+  net rating alone is {gain_txt('NBA')} (one-sided p = {pv['NBA']:.2f}; WNBA p = {pv['WNBA']:.2f}).
+- **Weight:** in the combined NBA model our variable holds {wn:.0%} of the weight against {wo:.0%} for net rating
+  ({fw.loc[('WNBA', 'avail_now'), 'share_of_total_weight']:.0%} vs {fw.loc[('WNBA', 'net'), 'share_of_total_weight']:.0%} in the WNBA): the two carry
+  about equal weight, so each adds information the other lacks.
+- **Why keep net rating in it.** Net rating captures things our lineup estimates miss (team scheme and coaching, and
+  players with too few minutes to estimate well); ours captures who will actually play. Together they beat either alone.
+- **Star players.** Adding the best available player's impact puts the champion in the NBA top three in
+  {ft.loc[('NBA', S), 'champion_in_top3']:.0%} of test seasons (vs {ft.loc[('NBA', C), 'champion_in_top3']:.0%} without it), so star power is
+  used in the 2026-27 forecast (Gilgeous-Alexander, Wembanyama and Jokić drive their teams' ratings).
+- **Archetype x quality.** With its penalty tuned inside the season-by-season test it reaches
+  {ft.loc[('NBA', Q), 'mean_prob_on_champion']:.0%} on the NBA champion and {ft.loc[('WNBA', Q), 'mean_prob_on_champion']:.0%} in the WNBA, about the
+  chosen model's level but not clearly above it: with 13-20 test seasons, six extra role variables add noise about as
+  fast as signal. Who is good still explains more than which role they play.
+- **Honest caveat.** The player-impact version we use was chosen because it predicts unseen games best. An older version
+  (which let last season's estimates carry over in full) gave bigger gains here, but fit unseen games worse, so we did
+  not pick it to flatter this table.
 - **How it is trained.** Season by season, using only earlier seasons, with recent seasons weighted more heavily
   (the weighting is chosen from past seasons only).""")
 ```
@@ -176,9 +188,9 @@ interval from resampling whole seasons (above zero = better than net rating).
 g = read("step5_series_significance.csv")
 g["95% interval"] = [f"{lo:+.3f} to {hi:+.3f}" for lo, hi in zip(g.lo95, g.hi95)]
 g["gain"] = g.loglik_gain_per_series.map(lambda x: f"{x:+.3f}")
-g["chance gain is not real"] = g.p_gain_le_0.map(lambda x: f"{x:.2f}")
+
 for lg in ["NBA", "WNBA"]:
-    md(f"**{lg}**\n\n" + g[g.league == lg][["model", "gain", "95% interval", "chance gain is not real"]].to_markdown(index=False))
+    md(f"**{lg}**\n\n" + g[g.league == lg][["model", "gain", "95% interval"]].to_markdown(index=False))
 ```
 
 ::: {.caveat}

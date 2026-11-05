@@ -1,91 +1,58 @@
 league,season,test,model,r2
-NBA,2004,A within-season holdout,single-season,0.007388947733271589
-NBA,2004,A within-season holdout,prior-informed,0.007388947733271589
-NBA,2005,A within-season holdout,single-season,0.006938727976615877
-NBA,2005,A within-season holdout,prior-informed,0.009197708145701866
-NBA,2006,A within-season holdout,single-season,0.006932212114619918
-NBA,2006,A within-season holdout,prior-informed,0.0083419417537699
-NBA,2007,A within-season holdout,single-season,0.005996836967440244
-NBA,2007,A within-season holdout,prior-informed,0.007682194700175282
-NBA,2008,A within-season holdout,single-season,0.008811530807661394
-NBA,2008,A within-season holdout,prior-informed,0.011727507986527774
-NBA,2009,A within-season holdout,single-season,0.0077174686269222414
-NBA,2009,A within-season holdout,prior-informed,0.007459854785794584
-NBA,2010,A within-season holdout,single-season,0.004812061165933579
-NBA,2010,A within-season holdout,prior-informed,0.005089141074894887
-NBA,2011,A within-season holdout,single-season,0.005805262569492431
-NBA,2011,A within-season holdout,prior-informed,0.0076421481147473935
-NBA,2012,A within-season holdout,single-season,0.006193117933572245
-NBA,2012,A within-season holdout,prior-informed,0.008584992190745822
-NBA,2013,A within-season holdout,single-season,0.006851141049946774
-NBA,2013,A within-season holdout,prior-informed,0.007688045946547484
-NBA,2014,A within-season holdout,single-season,0.005947199907681111
-NBA,2014,A within-season holdout,prior-informed,0.007258187181388265
-NBA,2015,A within-season holdout,single-season,0.005496061976639655
-NBA,2015,A within-season holdout,prior-informed,0.007121007691451187
-NBA,2016,A within-season holdout,single-season,0.004921989539332761
-NBA,2016,A within-season holdout,prior-informed,0.006287651488496304
-NBA,2017,A within-season holdout,single-season,0.005242312291257489
-NBA,2017,A within-season holdout,prior-informed,0.006113618318022596
-NBA,2018,A within-season holdout,single-season,0.004994928837535162
-NBA,2018,A within-season holdout,prior-informed,0.006445293302978272
-NBA,2019,A within-season holdout,single-season,0.0041934850720282135
-NBA,2019,A within-season holdout,prior-informed,0.00602072500025308
-NBA,2020,A within-season holdout,single-season,0.0034868598551294205
-NBA,2020,A within-season holdout,prior-informed,0.004000315531363041
-NBA,2021,A within-season holdout,single-season,0.00540320907260583
-NBA,2021,A within-season holdout,prior-informed,0.006613380532588975
-NBA,2022,A within-season holdout,single-season,0.002954857472393546
-NBA,2022,A within-season holdout,prior-informed,0.004683497862512209
-NBA,2023,A within-season holdout,single-season,0.003724815172014395
-NBA,2023,A within-season holdout,prior-informed,0.004969485108710092
-NBA,2024,A within-season holdout,single-season,0.004770352340621509
-NBA,2024,A within-season holdout,prior-informed,0.0050216643147742435
-NBA,2025,A within-season holdout,single-season,0.005378112188903383
-NBA,2025,A within-season holdout,prior-informed,0.0065749499772810305
-NBA,2026,A within-season holdout,single-season,0.0044004157280151945
-NBA,2026,A within-season holdout,prior-informed,0.006238422527909071
-WNBA,2009,A within-season holdout,single-season,0.003380934041856687
-WNBA,2009,A within-season holdout,prior-informed,0.003380934041856687
-WNBA,2010,A within-season holdout,single-season,0.007394045597107324
-WNBA,2010,A within-season holdout,prior-informed,0.008083819459894226
-WNBA,2011,A within-season holdout,single-season,0.004833630386250953
-WNBA,2011,A within-season holdout,prior-informed,0.006015381872687242
-WNBA,2012,A within-season holdout,single-season,0.008644170419164654
-WNBA,2012,A within-season holdout,prior-informed,0.010287926947796233
-WNBA,2013,A within-season holdout,single-season,0.007478454897824172
-WNBA,2013,A within-season holdout,prior-informed,0.008943591894446712
-WNBA,2014,A within-season holdout,single-season,0.004362741754728394
-WNBA,2014,A within-season holdout,prior-informed,0.007212292971644385
-WNBA,2015,A within-season holdout,single-season,0.0016067520503636468
-WNBA,2015,A within-season holdout,prior-informed,0.0031855914437691757
-WNBA,2016,A within-season holdout,single-season,0.0014758342189079565
-WNBA,2016,A within-season holdout,prior-informed,0.0021009479636427963
-WNBA,2017,A within-season holdout,single-season,0.0070684261724738295
-WNBA,2017,A within-season holdout,prior-informed,0.009430970556986051
-WNBA,2018,A within-season holdout,single-season,0.007669602428360456
-WNBA,2018,A within-season holdout,prior-informed,0.009477683630580103
-WNBA,2019,A within-season holdout,single-season,0.008429037185361699
-WNBA,2019,A within-season holdout,prior-informed,0.01050889840101421
-WNBA,2020,A within-season holdout,single-season,0.006589170659957677
-WNBA,2020,A within-season holdout,prior-informed,0.008551916765715095
-WNBA,2021,A within-season holdout,single-season,0.005211670708782035
-WNBA,2021,A within-season holdout,prior-informed,0.004727972737967323
-WNBA,2022,A within-season holdout,single-season,0.0075419031444374784
-WNBA,2022,A within-season holdout,prior-informed,0.009994055562320914
-WNBA,2023,A within-season holdout,single-season,0.006865828805880936
-WNBA,2023,A within-season holdout,prior-informed,0.008108888030404215
-WNBA,2024,A within-season holdout,single-season,0.00865187630141484
-WNBA,2024,A within-season holdout,prior-informed,0.009121900869808797
-WNBA,2025,A within-season holdout,single-season,0.006017532467315956
-WNBA,2025,A within-season holdout,prior-informed,0.006705328027097224
-WNBA,2026,A within-season holdout,single-season,0.007340849648166836
-WNBA,2026,A within-season holdout,prior-informed,0.010126374589370268
-NBA,-1,B next-season team net rating,prior-season player impact (prior-informed),0.49779028791542435
+NBA,2004,A within-season holdout,prior-informed,0.010651926029549008
+NBA,2005,A within-season holdout,prior-informed,0.00979300658814719
+NBA,2006,A within-season holdout,prior-informed,0.00994706243567689
+NBA,2007,A within-season holdout,prior-informed,0.008391416923392181
+NBA,2008,A within-season holdout,prior-informed,0.011771069337239815
+NBA,2009,A within-season holdout,prior-informed,0.009877744102807284
+NBA,2010,A within-season holdout,prior-informed,0.0068154997460248
+NBA,2011,A within-season holdout,prior-informed,0.00798394671889524
+NBA,2012,A within-season holdout,prior-informed,0.010539034603003983
+NBA,2013,A within-season holdout,prior-informed,0.009049961085826896
+NBA,2014,A within-season holdout,prior-informed,0.008177330702199836
+NBA,2015,A within-season holdout,prior-informed,0.00824439700798174
+NBA,2016,A within-season holdout,prior-informed,0.007103439143991586
+NBA,2017,A within-season holdout,prior-informed,0.007460459908135708
+NBA,2018,A within-season holdout,prior-informed,0.00807281707508578
+NBA,2019,A within-season holdout,prior-informed,0.006378141446312879
+NBA,2020,A within-season holdout,prior-informed,0.00563138130191021
+NBA,2021,A within-season holdout,prior-informed,0.008428374263157568
+NBA,2022,A within-season holdout,prior-informed,0.00541529591949097
+NBA,2023,A within-season holdout,prior-informed,0.0066099399119744495
+NBA,2024,A within-season holdout,prior-informed,0.007690570329277668
+NBA,2025,A within-season holdout,prior-informed,0.007649725603297464
+NBA,2026,A within-season holdout,prior-informed,0.007341633372060952
+WNBA,2009,A within-season holdout,prior-informed,0.006144769361016822
+WNBA,2010,A within-season holdout,prior-informed,0.010073161794818208
+WNBA,2011,A within-season holdout,prior-informed,0.007858049753155183
+WNBA,2012,A within-season holdout,prior-informed,0.01129722500034902
+WNBA,2013,A within-season holdout,prior-informed,0.01090475608251873
+WNBA,2014,A within-season holdout,prior-informed,0.007995042680702724
+WNBA,2015,A within-season holdout,prior-informed,0.004854284422993849
+WNBA,2016,A within-season holdout,prior-informed,0.004618031431006697
+WNBA,2017,A within-season holdout,prior-informed,0.011212587699798382
+WNBA,2018,A within-season holdout,prior-informed,0.011146583005844812
+WNBA,2019,A within-season holdout,prior-informed,0.012219928654187862
+WNBA,2020,A within-season holdout,prior-informed,0.011152390736601125
+WNBA,2021,A within-season holdout,prior-informed,0.008157623936748903
+WNBA,2022,A within-season holdout,prior-informed,0.011493168940850507
+WNBA,2023,A within-season holdout,prior-informed,0.009663066313526536
+WNBA,2024,A within-season holdout,prior-informed,0.011602932418019796
+WNBA,2025,A within-season holdout,prior-informed,0.0095353460264046
+WNBA,2026,A within-season holdout,prior-informed,0.010677207327427163
+NBA,-1,B next-season team net rating,prior-season player impact (prior-informed),0.5424887000822793
 NBA,-1,B next-season team net rating,prior-season player impact (single-season),0.488740894343107
 NBA,-1,B next-season team net rating,last season team net rating,0.3460749971417326
-NBA,-1,B next-season team net rating,player impact + last season net rating (in-sample),0.517198170181615
-WNBA,-1,B next-season team net rating,prior-season player impact (prior-informed),0.36492391120482737
+NBA,-1,B next-season team net rating,player impact + last season net rating (in-sample),0.5428311019007104
+WNBA,-1,B next-season team net rating,prior-season player impact (prior-informed),0.4279128839737642
 WNBA,-1,B next-season team net rating,prior-season player impact (single-season),0.36848924336090655
 WNBA,-1,B next-season team net rating,last season team net rating,0.23707901839429563
-WNBA,-1,B next-season team net rating,player impact + last season net rating (in-sample),0.38377873700580345
+WNBA,-1,B next-season team net rating,player impact + last season net rating (in-sample),0.4279790155325933
+NBA,-1,B next-season team net rating,prior-season player impact: A prev x1.0 (old),0.49779028791542435
+WNBA,-1,B next-season team net rating,prior-season player impact: A prev x1.0 (old),0.36492391120482737
+NBA,-1,B next-season team net rating,prior-season player impact: B prev x0.5,0.5275213753315109
+WNBA,-1,B next-season team net rating,prior-season player impact: B prev x0.5,0.3943285623484455
+NBA,-1,B next-season team net rating,prior-season player impact: C box-score prior,0.5424887000822793
+WNBA,-1,B next-season team net rating,prior-season player impact: C box-score prior,0.4279128839737642
+NBA,-1,B next-season team net rating,prior-season player impact: D box 0.5 + prev 0.5,0.5594855409938803
+WNBA,-1,B next-season team net rating,prior-season player impact: D box 0.5 + prev 0.5,0.4306612152495968

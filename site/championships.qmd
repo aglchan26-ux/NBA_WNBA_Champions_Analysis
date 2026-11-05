@@ -114,10 +114,10 @@ def champ_tables(lg):
     g = c.groupby("era", observed=True)
     t = (g[list(cols)].mean() * 100).round(1).rename(columns=cols)
     t.insert(0, "champions", g.size())
-    i = ci[ci.league == lg].copy()
+    i = prof_ch[prof_ch.league == lg].copy()
     i["era"] = pd.cut(i.season, *ERAS[lg][:1], labels=ERAS[lg][1])
-    arch = [x for x in i.columns if x.startswith("arch_vs_league::")]
-    a = (i.groupby("era", observed=True)[arch].mean() * 100).round(1).rename(columns=lambda x: x.split("::")[1])
+    zc = [x for x in i.columns if x.startswith("z::")]
+    a = i.groupby("era", observed=True)[zc].mean().round(2).rename(columns=lambda x: x[3:])
     return t.reset_index(), a.reset_index()
 
 
@@ -157,33 +157,6 @@ SHORT = {"Spot-up 3-and-D wing": "3-and-D wings", "Rim-running big": "rim-runnin
          "Secondary guard": "secondary guards", "On-ball creator": "extra creators", "Hub big / point forward": "hub bigs"}
 
 
-def era_lines(lg, arch):
-    """5-8 words per era, built from what differs between eras: offense/defense lean of the champions, their shot mix
-    vs the league, how star-led they were, and the role that grew most vs the era before."""
-    a = arch.set_index("era")
-    pc = prof_ch[prof_ch.league == lg].copy()
-    pc["era"] = pd.cut(pc.season, *ERAS[lg][:1], labels=ERAS[lg][1])
-    sh = cv[cv.league == lg].copy()
-    sh["era"] = pd.cut(sh.season, *ERAS[lg][:1], labels=ERAS[lg][1])
-    sh = sh.groupby("era", observed=True)[["three_share_vs_league", "rim_share_vs_league", "mid_share_vs_league"]].mean() * 100
-    out, prev = [], None
-    for era in a.index:
-        g = pc[pc.era == era]
-        gap = (g.def_edge - g.off_edge).mean()
-        lean = ("defense-first" if gap >= 5 else "defense-leaning" if gap >= 2 else "offense-first" if gap <= -5 else
-                "offense-leaning" if gap <= -2 else "two-way" if (g.def_edge.mean() > 3 and g.off_edge.mean() > 3) else "balanced")
-        x = sh.loc[era]
-        shots = ("three-heavy" if x.three_share_vs_league > 2 else "paint-leaning" if x.rim_share_vs_league > 1
-                 else "mid-range-leaning" if x.mid_share_vs_league > 1 else "league-typical shots")
-        alpha = (g.role.isin(["alpha engine", "playmaking hub", "shot-maker"])).mean()
-        star = "star-engine" if alpha >= 0.6 else "committee"
-        row = a.loc[era]
-        grow = row.drop("Spot-up 3-and-D wing").idxmax() if prev is None else (row - prev).idxmax()
-        out.append(f"- **{era}:** {lean}, {shots}, {star}, {'leaning' if prev is None else 'more'} {SHORT[grow]}")
-        prev = row
-    return "\n".join(out)
-
-
 def three_trend(lg):
     """League three-point share (line) and each champion's (dots), with the recent five-season average gap."""
     L = prof[(prof.league == lg) & (prof.season >= START[lg])][["season", "three_share"]]
@@ -206,15 +179,67 @@ def three_trend(lg):
     return fig, txt
 
 
-def champ_list(lg):
-    d = prof_ch[prof_ch.league == lg].sort_values("season", ascending=False)[["season", "team", "summary"]]
-    d.columns = ["season", "champion", "in a few words"]
-    return d.to_markdown(index=False)
+IDS = ["defense-first", "defense-leaning", "balanced", "offense-leaning", "offense-first"]
+
+
+def era_table(lg):
+    """One row per era: who won, how they won (identity mix), star-driven or committee, shots vs league, roles that
+    stood out (in standard deviations, so big roles can't dominate by size), and what changed from the era before."""
+    pc = prof_ch[prof_ch.league == lg].copy()
+    pc["era"] = pd.cut(pc.season, *ERAS[lg][:1], labels=ERAS[lg][1])
+    sh = cv[cv.league == lg].copy()
+    sh["era"] = pd.cut(sh.season, *ERAS[lg][:1], labels=ERAS[lg][1])
+    sh = sh.groupby("era", observed=True)[["three_share_vs_league", "rim_share_vs_league", "mid_share_vs_league"]].mean() * 100
+    zc = [c for c in pc.columns if c.startswith("z::")]
+    rows, prev = [], None
+    for era, g in pc.groupby("era", observed=True):
+        n = len(g)
+        ids = g.identity.value_counts()
+        mix = " · ".join(f"{ids[k]} {k}" for k in IDS if k in ids)
+        stars = int((g.best_player_rank <= 5).sum())
+        engine = (f"star-driven ({stars} of {n} had a top-5 player)" if stars > n / 2
+                  else f"committee ({stars} of {n} had a top-5 player)")
+        x = sh.loc[era]
+        shots = ("three-heavy" if x.three_share_vs_league > 2 else "paint-leaning" if x.rim_share_vs_league > 1
+                 else "mid-range-leaning" if x.mid_share_vs_league > 1 else "like the league")
+        shots += f" (threes {x.three_share_vs_league:+.1f} pts)"
+        zm = g[zc].mean()
+        hi = zm[zm >= 0.3].sort_values(ascending=False)
+        lo = zm[zm <= -0.3].sort_values()
+        stood = "; ".join([f"more {SHORT[k[3:]]} ({v:+.1f})" for k, v in hi.items()] +
+                          [f"fewer {SHORT[k[3:]]} ({v:+.1f})" for k, v in lo.items()]) or "no role far from the league"
+        if prev is None:
+            change = "(first era)"
+        else:
+            dz = (zm - prev)
+            k = dz.abs().idxmax()
+            change = f"{'more' if dz[k] > 0 else 'fewer'} {SHORT[k[3:]]} ({dz[k]:+.1f})"
+        champs = ", ".join(f"{r.team} {r.season % 100:02d} ({str(r.best_player).split(' ', 1)[-1]})" for r in g.sort_values("season").itertuples())
+        rows.append({"era": era, "how champions won": mix, "engine": engine, "shots vs league": shots,
+                     "roles that stood out (SD)": stood, "biggest change from era before": change, "champions (best player)": champs})
+        prev = zm
+    return pd.DataFrame(rows)
+
+
+def era_constants(lg):
+    pc = prof_ch[prof_ch.league == lg].copy()
+    pc["era"] = pd.cut(pc.season, *ERAS[lg][:1], labels=ERAS[lg][1])
+    zc = [c for c in pc.columns if c.startswith("z::")]
+    m = pc.groupby("era", observed=True)[zc].mean()
+    always = [SHORT[c[3:]] for c in zc if (m[c] > 0.2).all()]
+    never = [SHORT[c[3:]] for c in zc if (m[c] < -0.2).all()]
+    parts = []
+    if always:
+        parts.append(f"champions had more {', '.join(always)} than the league in **every** era")
+    if never:
+        parts.append(f"fewer {', '.join(never)} in every era")
+    return ("**What stays the same:** " + "; ".join(parts) + ". Everything else in the table is what tells the eras apart."
+            if parts else "**What stays the same:** no role stood out in every era; each era's mix is its own.")
 
 
 HOW_TO_READ = (
-    "**How to read these tables:** every number is the champions' average minus the league average that season, in "
-    "percentage points of team minutes or shots. +5 means the champions gave 5 points more of their minutes (or shots) to "
+    "**How to read these tables:** the shot and position numbers are the champions' average minus the league average that "
+    "season, in percentage points of shots or minutes; the role table is in standard deviations (see its caption). +5 means the champions gave 5 points more of their minutes (or shots) to "
     "that role than the average team did; 0 means they looked like everyone else. *Champions* is the number of title "
     "teams in that era. Positions are the listed G / F / C; archetypes describe how players actually play, so a team can "
     "have few centers but many interior roles, or the reverse.")
@@ -284,14 +309,12 @@ md(identity_text("NBA"))
 md(HOW_TO_READ)
 shot, arch = champ_tables("NBA")
 md("**How NBA champions' shots differed from the league** (percentage points; + = more of that shot than the league)\n\n" + shot.to_markdown(index=False))
-md("**NBA champions' archetype minutes minus the league average** (percentage points)\n\n" + arch.to_markdown(index=False))
+md("**NBA champions' role emphasis in standard deviations** (champion's share of minutes minus the league average, divided by "
+   "how much teams differ in that role that season; +0.5 = clearly more than a typical team, 0 = typical)\n\n" + arch.to_markdown(index=False))
 md("**NBA champions' minutes by listed position, minus the league average** (percentage points)\n\n" + position_table("NBA").to_markdown(index=False))
-md("**Team composition, era by era:**\n\n" + composition_text("NBA", arch))
-md("**Each era in a few words:** the champions' average identity, their shots compared with the league, whether they "
-   "were built around a star engine or a committee, and the role that grew most compared with the era before "
-   "(3-and-D wings lead in every era, so eras are told apart by what changed):\n\n" + era_lines("NBA", arch))
-md("**Every NBA champion in a few words** (identity from offense/defense ranks, the best player by lineup impact and "
-   "his or her role, and the role the team leaned on most compared with the league):\n\n" + champ_list("NBA"))
+md("**NBA eras at a glance** (one row per era; *SD* = standard deviations from a typical team that season)")
+md(era_table("NBA").to_markdown(index=False))
+md(era_constants("NBA"))
 ```
 
 ## NBA: picking champions and series
@@ -331,14 +354,12 @@ md(identity_text("WNBA"))
 md(HOW_TO_READ)
 shot, arch = champ_tables("WNBA")
 md("**How WNBA champions' shots differed from the league** (percentage points)\n\n" + shot.to_markdown(index=False))
-md("**WNBA champions' archetype minutes minus the league average** (percentage points)\n\n" + arch.to_markdown(index=False))
+md("**WNBA champions' role emphasis in standard deviations** (champion's share of minutes minus the league average, divided by "
+   "how much teams differ in that role that season; +0.5 = clearly more than a typical team, 0 = typical)\n\n" + arch.to_markdown(index=False))
 md("**WNBA champions' minutes by listed position, minus the league average** (percentage points)\n\n" + position_table("WNBA").to_markdown(index=False))
-md("**Team composition, era by era:**\n\n" + composition_text("WNBA", arch))
-md("**Each era in a few words:** the champions' average identity, their shots compared with the league, whether they "
-   "were built around a star engine or a committee, and the role that grew most compared with the era before "
-   "(3-and-D wings lead in every era, so eras are told apart by what changed):\n\n" + era_lines("WNBA", arch))
-md("**Every WNBA champion in a few words** (identity from offense/defense ranks, the best player by lineup impact and "
-   "his or her role, and the role the team leaned on most compared with the league):\n\n" + champ_list("WNBA"))
+md("**WNBA eras at a glance** (one row per era; *SD* = standard deviations from a typical team that season)")
+md(era_table("WNBA").to_markdown(index=False))
+md(era_constants("WNBA"))
 ```
 
 ## WNBA: picking champions and series

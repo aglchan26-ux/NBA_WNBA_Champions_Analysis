@@ -12,71 +12,71 @@ NBA,2023,net rating only (reference),,2.0,0.06960330364956974,6
 NBA,2024,net rating only (reference),,2.0,0.27123596485940227,1
 NBA,2025,net rating only (reference),,2.0,0.28739860708884646,1
 NBA,2026,net rating only (reference),,2.0,0.07671649294332715,5
-NBA,2014,availability-adjusted strength only,,2.0,0.11180590467926678,1
-NBA,2015,availability-adjusted strength only,,2.0,0.1820626336839103,1
-NBA,2016,availability-adjusted strength only,,2.0,0.07055839477568368,4
-NBA,2017,availability-adjusted strength only,,2.0,0.31543098518725754,1
-NBA,2018,availability-adjusted strength only,,2.0,0.1389039017724821,2
-NBA,2019,availability-adjusted strength only,,2.0,0.1766244692138945,1
-NBA,2020,availability-adjusted strength only,,2.0,0.10174978586266564,3
-NBA,2021,availability-adjusted strength only,,2.0,0.07190700874578199,5
-NBA,2022,availability-adjusted strength only,,2.0,0.102665503453635,3
-NBA,2023,availability-adjusted strength only,,2.0,0.040876368406464934,9
-NBA,2024,availability-adjusted strength only,,2.0,0.2513575591251664,1
-NBA,2025,availability-adjusted strength only,,2.0,0.2395381189807939,1
-NBA,2026,availability-adjusted strength only,,2.0,0.08587414826220852,3
-NBA,2014,net rating + availability-adjusted strength,,2.0,0.14815912067688444,1
-NBA,2015,net rating + availability-adjusted strength,,2.0,0.2683571649170313,1
-NBA,2016,net rating + availability-adjusted strength,,2.0,0.06746768089271736,4
-NBA,2017,net rating + availability-adjusted strength,,2.0,0.4844108658743307,1
-NBA,2018,net rating + availability-adjusted strength,,2.0,0.1329491368878127,3
-NBA,2019,net rating + availability-adjusted strength,,2.0,0.1558937453961272,2
-NBA,2020,net rating + availability-adjusted strength,,2.0,0.09953600905646359,3
-NBA,2021,net rating + availability-adjusted strength,,2.0,0.07774980983659943,5
-NBA,2022,net rating + availability-adjusted strength,,2.0,0.10263662867775748,3
-NBA,2023,net rating + availability-adjusted strength,,2.0,0.04614989723119049,7
-NBA,2024,net rating + availability-adjusted strength,,2.0,0.3550232437276669,1
-NBA,2025,net rating + availability-adjusted strength,,2.0,0.3460830640651594,1
-NBA,2026,net rating + availability-adjusted strength,,2.0,0.07860373384752793,5
-NBA,2014,net + availability-adjusted strength + star,,2.0,0.06349683062899772,6
-NBA,2015,net + availability-adjusted strength + star,,10.0,0.1533793586170337,1
-NBA,2016,net + availability-adjusted strength + star,,2.0,0.15781463389601572,2
-NBA,2017,net + availability-adjusted strength + star,,2.0,0.4986293017534362,1
-NBA,2018,net + availability-adjusted strength + star,,2.0,0.2009681365078055,2
-NBA,2019,net + availability-adjusted strength + star,,2.0,0.11803982932976079,3
-NBA,2020,net + availability-adjusted strength + star,,2.0,0.23482205435421918,1
-NBA,2021,net + availability-adjusted strength + star,,2.0,0.05732831356506945,5
-NBA,2022,net + availability-adjusted strength + star,,2.0,0.13502808549489212,2
-NBA,2023,net + availability-adjusted strength + star,,2.0,0.1017630577410948,4
-NBA,2024,net + availability-adjusted strength + star,,2.0,0.18975431235844534,1
-NBA,2025,net + availability-adjusted strength + star,,2.0,0.5640333460786239,1
-NBA,2026,net + availability-adjusted strength + star,,2.0,0.03607153127268121,5
-NBA,2014,net + availability-adjusted strength + star + archetype x quality,,2.0,0.045745678125720085,7
-NBA,2015,net + availability-adjusted strength + star + archetype x quality,5.0,10.0,0.1248733565364449,2
-NBA,2016,net + availability-adjusted strength + star + archetype x quality,5.0,2.0,0.1394001401516915,2
-NBA,2017,net + availability-adjusted strength + star + archetype x quality,5.0,2.0,0.40517746080751776,1
-NBA,2018,net + availability-adjusted strength + star + archetype x quality,,2.0,0.28321144193807185,1
-NBA,2019,net + availability-adjusted strength + star + archetype x quality,,2.0,0.08742191383464674,4
-NBA,2020,net + availability-adjusted strength + star + archetype x quality,,2.0,0.19255176660504475,2
-NBA,2021,net + availability-adjusted strength + star + archetype x quality,,2.0,0.07218037902078694,4
-NBA,2022,net + availability-adjusted strength + star + archetype x quality,,2.0,0.17241625502181784,2
-NBA,2023,net + availability-adjusted strength + star + archetype x quality,,2.0,0.12193200512971362,4
-NBA,2024,net + availability-adjusted strength + star + archetype x quality,,2.0,0.08488694412398737,5
-NBA,2025,net + availability-adjusted strength + star + archetype x quality,,2.0,0.557041149659887,1
-NBA,2026,net + availability-adjusted strength + star + archetype x quality,,2.0,0.06051910050862221,5
-NBA,2014,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.10429019369960342,3
-NBA,2015,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.14682550610608833,2
-NBA,2016,"net + availability-adjusted (offense, defense) + archetype x quality + age",5.0,2.0,0.08667908046072093,4
-NBA,2017,"net + availability-adjusted (offense, defense) + archetype x quality + age",5.0,2.0,0.37240108777544567,1
-NBA,2018,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.20499426164441384,2
-NBA,2019,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.12197778674108263,4
-NBA,2020,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.13531897609694676,3
-NBA,2021,"net + availability-adjusted (offense, defense) + archetype x quality + age",12.0,2.0,0.09806851967893118,4
-NBA,2022,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.21723856903131794,2
-NBA,2023,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.02259972848330381,9
-NBA,2024,"net + availability-adjusted (offense, defense) + archetype x quality + age",12.0,2.0,0.16160165411031555,1
-NBA,2025,"net + availability-adjusted (offense, defense) + archetype x quality + age",12.0,2.0,0.18796282317543495,1
-NBA,2026,"net + availability-adjusted (offense, defense) + archetype x quality + age",12.0,2.0,0.1410147499138517,3
+NBA,2014,availability-adjusted strength only,,2.0,0.11223202404331012,1
+NBA,2015,availability-adjusted strength only,,2.0,0.19326100438732005,1
+NBA,2016,availability-adjusted strength only,,2.0,0.06525149371217136,5
+NBA,2017,availability-adjusted strength only,,2.0,0.30839988590744155,1
+NBA,2018,availability-adjusted strength only,,2.0,0.13904456380744756,2
+NBA,2019,availability-adjusted strength only,,2.0,0.18225772784402022,1
+NBA,2020,availability-adjusted strength only,,2.0,0.09390153103639048,3
+NBA,2021,availability-adjusted strength only,,2.0,0.07099608453530412,5
+NBA,2022,availability-adjusted strength only,,2.0,0.10463093079500123,3
+NBA,2023,availability-adjusted strength only,,2.0,0.04827793181532626,6
+NBA,2024,availability-adjusted strength only,,2.0,0.22833057464396608,1
+NBA,2025,availability-adjusted strength only,,2.0,0.2349495711030714,1
+NBA,2026,availability-adjusted strength only,,2.0,0.08145909647477308,5
+NBA,2014,net rating + availability-adjusted strength,,2.0,0.1483992356239958,1
+NBA,2015,net rating + availability-adjusted strength,,2.0,0.2777600703970941,1
+NBA,2016,net rating + availability-adjusted strength,,2.0,0.06385959169222455,4
+NBA,2017,net rating + availability-adjusted strength,,2.0,0.4761172999243987,1
+NBA,2018,net rating + availability-adjusted strength,,2.0,0.1323935723957126,3
+NBA,2019,net rating + availability-adjusted strength,,2.0,0.15754663269097388,2
+NBA,2020,net rating + availability-adjusted strength,,2.0,0.09324373519232859,4
+NBA,2021,net rating + availability-adjusted strength,,2.0,0.07721532958152409,5
+NBA,2022,net rating + availability-adjusted strength,,2.0,0.10358270095613493,4
+NBA,2023,net rating + availability-adjusted strength,,2.0,0.05179662427400323,7
+NBA,2024,net rating + availability-adjusted strength,,2.0,0.33326546049230593,1
+NBA,2025,net rating + availability-adjusted strength,,2.0,0.3405770439669676,1
+NBA,2026,net rating + availability-adjusted strength,,2.0,0.0763446370574994,5
+NBA,2014,net + availability-adjusted strength + star,,2.0,0.07164344574318725,5
+NBA,2015,net + availability-adjusted strength + star,,10.0,0.16531379097741686,1
+NBA,2016,net + availability-adjusted strength + star,,2.0,0.09443014256953101,3
+NBA,2017,net + availability-adjusted strength + star,,2.0,0.45827058753874633,1
+NBA,2018,net + availability-adjusted strength + star,,2.0,0.22291419571744853,2
+NBA,2019,net + availability-adjusted strength + star,,2.0,0.16187815078482037,3
+NBA,2020,net + availability-adjusted strength + star,,2.0,0.09841685248943015,4
+NBA,2021,net + availability-adjusted strength + star,,2.0,0.05667625625829699,5
+NBA,2022,net + availability-adjusted strength + star,,2.0,0.08375983017649877,5
+NBA,2023,net + availability-adjusted strength + star,,2.0,0.14886023501735068,3
+NBA,2024,net + availability-adjusted strength + star,,2.0,0.1379554760868351,3
+NBA,2025,net + availability-adjusted strength + star,,2.0,0.6015783730310158,1
+NBA,2026,net + availability-adjusted strength + star,,2.0,0.034037680913205776,6
+NBA,2014,net + availability-adjusted strength + star + archetype x quality,,2.0,0.05356519283337629,5
+NBA,2015,net + availability-adjusted strength + star + archetype x quality,5.0,10.0,0.1554668753983507,1
+NBA,2016,net + availability-adjusted strength + star + archetype x quality,5.0,2.0,0.09402609159987717,3
+NBA,2017,net + availability-adjusted strength + star + archetype x quality,5.0,2.0,0.34561641106363544,1
+NBA,2018,net + availability-adjusted strength + star + archetype x quality,,2.0,0.2852700379428231,2
+NBA,2019,net + availability-adjusted strength + star + archetype x quality,,2.0,0.17323445712918215,2
+NBA,2020,net + availability-adjusted strength + star + archetype x quality,,2.0,0.08885874594028757,4
+NBA,2021,net + availability-adjusted strength + star + archetype x quality,,2.0,0.04797242529615385,4
+NBA,2022,net + availability-adjusted strength + star + archetype x quality,,2.0,0.1262119782524397,2
+NBA,2023,net + availability-adjusted strength + star + archetype x quality,,2.0,0.1129088665185873,3
+NBA,2024,net + availability-adjusted strength + star + archetype x quality,,2.0,0.12106998846481393,3
+NBA,2025,net + availability-adjusted strength + star + archetype x quality,,2.0,0.669675791418167,1
+NBA,2026,net + availability-adjusted strength + star + archetype x quality,,2.0,0.06393375697608404,4
+NBA,2014,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.09400680060020689,4
+NBA,2015,"net + availability-adjusted (offense, defense) + archetype x quality + age",5.0,2.0,0.27057764617861474,1
+NBA,2016,"net + availability-adjusted (offense, defense) + archetype x quality + age",5.0,2.0,0.07166032674454886,4
+NBA,2017,"net + availability-adjusted (offense, defense) + archetype x quality + age",5.0,2.0,0.35404649398973687,1
+NBA,2018,"net + availability-adjusted (offense, defense) + archetype x quality + age",12.0,2.0,0.1769451967966673,2
+NBA,2019,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.09509560338626413,4
+NBA,2020,"net + availability-adjusted (offense, defense) + archetype x quality + age",12.0,2.0,0.1367827102844286,3
+NBA,2021,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.07312193131151262,4
+NBA,2022,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.21644753948473192,1
+NBA,2023,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.01764529667744806,12
+NBA,2024,"net + availability-adjusted (offense, defense) + archetype x quality + age",12.0,2.0,0.22064292931284127,1
+NBA,2025,"net + availability-adjusted (offense, defense) + archetype x quality + age",12.0,2.0,0.21838492291920852,1
+NBA,2026,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.12840797874972865,2
 WNBA,2017,net rating only (reference),,2.0,0.37735218111856056,1
 WNBA,2018,net rating only (reference),,2.0,0.2918880939466208,1
 WNBA,2019,net rating only (reference),,2.0,0.5962150212857386,1
@@ -87,53 +87,53 @@ WNBA,2023,net rating only (reference),,2.0,0.5300421331368821,1
 WNBA,2024,net rating only (reference),,2.0,0.33374746550993567,1
 WNBA,2025,net rating only (reference),,2.0,0.07457423701584683,5
 WNBA,2026,net rating only (reference),,2.0,0.19256344890459326,1
-WNBA,2017,availability-adjusted strength only,,2.0,0.3487015469171487,1
-WNBA,2018,availability-adjusted strength only,,2.0,0.22340844744799324,1
-WNBA,2019,availability-adjusted strength only,,2.0,0.49785787376347146,1
-WNBA,2020,availability-adjusted strength only,,2.0,0.3895700684899824,1
-WNBA,2021,availability-adjusted strength only,,2.0,0.08431352998061721,5
-WNBA,2022,availability-adjusted strength only,,2.0,0.23782668174490101,2
-WNBA,2023,availability-adjusted strength only,,2.0,0.43211016559705273,1
-WNBA,2024,availability-adjusted strength only,,2.0,0.2799952498634632,1
-WNBA,2025,availability-adjusted strength only,,2.0,0.07992444647861388,6
-WNBA,2026,availability-adjusted strength only,,2.0,0.13575203728806232,3
-WNBA,2017,net rating + availability-adjusted strength,,2.0,0.47588544427619545,1
-WNBA,2018,net rating + availability-adjusted strength,,2.0,0.3275737207003682,1
-WNBA,2019,net rating + availability-adjusted strength,,2.0,0.7349252548837373,1
-WNBA,2020,net rating + availability-adjusted strength,,2.0,0.49342272944498883,1
-WNBA,2021,net rating + availability-adjusted strength,,2.0,0.04537182758851934,6
-WNBA,2022,net rating + availability-adjusted strength,,2.0,0.2369434223191876,2
-WNBA,2023,net rating + availability-adjusted strength,,2.0,0.583520490495606,1
-WNBA,2024,net rating + availability-adjusted strength,,2.0,0.36220375521614545,1
-WNBA,2025,net rating + availability-adjusted strength,,2.0,0.061901915153723126,6
-WNBA,2026,net rating + availability-adjusted strength,,2.0,0.17547268164289975,3
-WNBA,2017,net + availability-adjusted strength + star,,2.0,0.5563337771234501,1
-WNBA,2018,net + availability-adjusted strength + star,,2.0,0.3181149928048269,1
-WNBA,2019,net + availability-adjusted strength + star,,2.0,0.6602553456003053,1
-WNBA,2020,net + availability-adjusted strength + star,,2.0,0.4764800843599811,1
-WNBA,2021,net + availability-adjusted strength + star,,2.0,0.03584939172064428,6
-WNBA,2022,net + availability-adjusted strength + star,,2.0,0.23609133820120945,2
-WNBA,2023,net + availability-adjusted strength + star,,2.0,0.5755144881119444,1
-WNBA,2024,net + availability-adjusted strength + star,,2.0,0.3579186449905389,1
-WNBA,2025,net + availability-adjusted strength + star,,2.0,0.06215094100537953,6
-WNBA,2026,net + availability-adjusted strength + star,,2.0,0.17717630502650586,3
-WNBA,2017,net + availability-adjusted strength + star + archetype x quality,,2.0,0.5777649149945534,1
-WNBA,2018,net + availability-adjusted strength + star + archetype x quality,,2.0,0.17610847661485682,4
-WNBA,2019,net + availability-adjusted strength + star + archetype x quality,,2.0,0.8007736691105022,1
-WNBA,2020,net + availability-adjusted strength + star + archetype x quality,,2.0,0.4656670212582006,1
-WNBA,2021,net + availability-adjusted strength + star + archetype x quality,,2.0,0.019659428240706597,6
-WNBA,2022,net + availability-adjusted strength + star + archetype x quality,12.0,2.0,0.33921970326949125,1
-WNBA,2023,net + availability-adjusted strength + star + archetype x quality,,2.0,0.554687672813802,1
-WNBA,2024,net + availability-adjusted strength + star + archetype x quality,,2.0,0.25531760603545417,1
-WNBA,2025,net + availability-adjusted strength + star + archetype x quality,,2.0,0.06917892165746627,3
-WNBA,2026,net + availability-adjusted strength + star + archetype x quality,12.0,2.0,0.32428660908921375,1
-WNBA,2017,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.6029871504984207,1
-WNBA,2018,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.20168745886053227,2
-WNBA,2019,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.8664115066675462,1
-WNBA,2020,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.4373940467838144,1
-WNBA,2021,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.04872137489700665,6
-WNBA,2022,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.3266444353993264,1
-WNBA,2023,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.687366760036685,1
-WNBA,2024,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.3254385312955546,1
-WNBA,2025,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.06762969865821139,7
-WNBA,2026,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.1571655329364212,3
+WNBA,2017,availability-adjusted strength only,,2.0,0.3387727469244986,1
+WNBA,2018,availability-adjusted strength only,,2.0,0.2721470373098056,1
+WNBA,2019,availability-adjusted strength only,,2.0,0.5012746423385908,1
+WNBA,2020,availability-adjusted strength only,,2.0,0.3395150141578627,1
+WNBA,2021,availability-adjusted strength only,,2.0,0.0662568813317577,6
+WNBA,2022,availability-adjusted strength only,,2.0,0.24630863191580174,1
+WNBA,2023,availability-adjusted strength only,,2.0,0.4627623286998364,1
+WNBA,2024,availability-adjusted strength only,,2.0,0.24661103838319876,2
+WNBA,2025,availability-adjusted strength only,,2.0,0.08913465954242242,5
+WNBA,2026,availability-adjusted strength only,,2.0,0.16338551369038126,3
+WNBA,2017,net rating + availability-adjusted strength,,2.0,0.4607880405303419,1
+WNBA,2018,net rating + availability-adjusted strength,,2.0,0.3570402453694513,1
+WNBA,2019,net rating + availability-adjusted strength,,2.0,0.7264067752490186,1
+WNBA,2020,net rating + availability-adjusted strength,,2.0,0.45378229095524253,1
+WNBA,2021,net rating + availability-adjusted strength,,2.0,0.038687255371594106,6
+WNBA,2022,net rating + availability-adjusted strength,,2.0,0.24148078660778582,2
+WNBA,2023,net rating + availability-adjusted strength,,2.0,0.5971964369521985,1
+WNBA,2024,net rating + availability-adjusted strength,,2.0,0.33741250564611536,1
+WNBA,2025,net rating + availability-adjusted strength,,2.0,0.06690495930563328,5
+WNBA,2026,net rating + availability-adjusted strength,,2.0,0.19415152670958094,2
+WNBA,2017,net + availability-adjusted strength + star,,2.0,0.46921650374746193,1
+WNBA,2018,net + availability-adjusted strength + star,,2.0,0.38101619125627123,1
+WNBA,2019,net + availability-adjusted strength + star,,2.0,0.6576201691942035,1
+WNBA,2020,net + availability-adjusted strength + star,,2.0,0.44690314082986915,1
+WNBA,2021,net + availability-adjusted strength + star,,2.0,0.0346919854625203,6
+WNBA,2022,net + availability-adjusted strength + star,,2.0,0.23917745417059907,2
+WNBA,2023,net + availability-adjusted strength + star,,2.0,0.5968672127003577,1
+WNBA,2024,net + availability-adjusted strength + star,,2.0,0.33321440842339545,1
+WNBA,2025,net + availability-adjusted strength + star,,2.0,0.0648367548993591,5
+WNBA,2026,net + availability-adjusted strength + star,,2.0,0.19847175631435865,2
+WNBA,2017,net + availability-adjusted strength + star + archetype x quality,,2.0,0.6013000590710668,1
+WNBA,2018,net + availability-adjusted strength + star + archetype x quality,,2.0,0.25214440458226434,2
+WNBA,2019,net + availability-adjusted strength + star + archetype x quality,,2.0,0.8381159525547713,1
+WNBA,2020,net + availability-adjusted strength + star + archetype x quality,,2.0,0.544091267744996,1
+WNBA,2021,net + availability-adjusted strength + star + archetype x quality,,2.0,0.01783262843540845,6
+WNBA,2022,net + availability-adjusted strength + star + archetype x quality,,2.0,0.17143831779892124,2
+WNBA,2023,net + availability-adjusted strength + star + archetype x quality,,2.0,0.7079403212129,1
+WNBA,2024,net + availability-adjusted strength + star + archetype x quality,,2.0,0.28904557794355396,1
+WNBA,2025,net + availability-adjusted strength + star + archetype x quality,,2.0,0.054702354076057225,5
+WNBA,2026,net + availability-adjusted strength + star + archetype x quality,12.0,2.0,0.15906346749822375,3
+WNBA,2017,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.7155443259439255,1
+WNBA,2018,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.2500808941845493,1
+WNBA,2019,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.894372668986266,1
+WNBA,2020,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.5285364031638382,1
+WNBA,2021,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.03346754893358692,6
+WNBA,2022,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.16201682128888736,3
+WNBA,2023,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.7669141930724046,1
+WNBA,2024,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.35837304956475574,1
+WNBA,2025,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.05339719778176366,7
+WNBA,2026,"net + availability-adjusted (offense, defense) + archetype x quality + age",,2.0,0.07589470214454751,3
