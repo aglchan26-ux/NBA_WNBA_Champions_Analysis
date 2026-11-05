@@ -21,11 +21,11 @@ website:
       - href: championships.qmd
         text: Championships
       - href: impact.qmd
-        text: Player impact
+        text: Impact
       - href: contenders.qmd
         text: 2026-27
       - href: salary.qmd
-        text: Salary value
+        text: Salary
       - href: methods.qmd
         text: Methods
   page-footer:

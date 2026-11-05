@@ -1,9 +1,9 @@
 league,method,n,ari_vs_stat_archetype,nmi_vs_stat_archetype,accuracy_vs_stat_archetype,accuracy_vs_hand_labels
-NBA,"text clustering (K-Means on LSA, k=6)",3276,0.2243193111499984,0.3307844218603651,,
-WNBA,"text clustering (K-Means on LSA, k=6)",691,0.254583035950417,0.34767062560733303,,
-both,"text clustering (K-Means on LSA, k=6)",3967,0.1873432191684417,0.28189635541467273,,
-NBA,zero-shot from written descriptions,3276,0.1375046145912673,0.22476532962414558,0.2670940170940171,
-WNBA,zero-shot from written descriptions,691,0.08505195643217509,0.20641755910883453,0.29088277858176553,
-both,zero-shot from written descriptions,3967,0.12348211928905328,0.21113504591363288,0.27123771111671285,
+NBA,"text clustering (K-Means on LSA, k=6)",3276,0.2237743759097647,0.3302438799197821,,
+WNBA,"text clustering (K-Means on LSA, k=6)",691,0.2632519381530038,0.35745601387083786,,
+both,"text clustering (K-Means on LSA, k=6)",3967,0.18693954324718393,0.2820356650277254,,
+NBA,zero-shot from written descriptions,3276,0.13566251464217025,0.22214217412226048,0.26495726495726496,
+WNBA,zero-shot from written descriptions,691,0.08498708503200042,0.20659666750714567,0.2865412445730825,
+both,zero-shot from written descriptions,3967,0.1223846447124759,0.20924395833902104,0.26871691454499624,
 both,zero-shot from written descriptions: agreement with hand labels,106,,,,0.29245283018867924
 both,stat archetype (Step 3): agreement with hand labels,106,,,,0.4811320754716981

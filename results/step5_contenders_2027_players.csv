@@ -1,6 +1,6 @@
 team_abbreviation,player,proj_min,o_impact,d_impact,impact,archetype,subtype,changed_team,new_to_nba_data
 ATL,Nickeil Alexander-Walker,2603.0,4.24,0.71,4.94,Secondary guard,Microwave scoring guard,False,False
-ATL,Dyson Daniels,2523.0,4.54,3.97,8.51,Connector forward,Perimeter stopper forward,False,False
+ATL,Dyson Daniels,2523.0,4.54,3.97,8.51,Secondary guard,Defensive / connector guard,False,False
 ATL,RayJ Dennis,206.0,-1.62,1.35,-0.27,Secondary guard,Defensive / connector guard,True,False
 ATL,Luguentz Dort,1851.0,-0.34,0.92,0.58,Spot-up 3-and-D wing,Low-usage glue defender,True,False
 ATL,Zuby Ejiofor,500.0,0.0,0.0,0.0,,,False,True
@@ -35,7 +35,7 @@ HOU,Bruce Thornton,500.0,0.0,0.0,0.0,,,False,True
 HOU,Oscar Tshiebwe,447.0,1.53,-0.05,1.48,Rim-running big,Rim-running finisher,True,False
 HOU,Fred VanVleet,500.0,0.0,0.0,0.0,,,False,True
 IND,Kobe Brown,962.0,0.06,-3.26,-3.2,Connector forward,Rebounding / rim-running forward,False,False
-IND,Johnny Furphy,640.0,0.58,0.99,1.57,Connector forward,Rebounding / rim-running forward,False,False
+IND,Johnny Furphy,640.0,0.58,0.99,1.57,Spot-up 3-and-D wing,Low-usage glue defender,False,False
 IND,Tyrese Haliburton,500.0,0.0,0.0,0.0,,,False,True
 IND,Jay Huff,1723.0,-1.44,2.99,1.55,Connector forward,Perimeter stopper forward,False,False
 IND,Quenton Jackson,898.0,0.32,1.8,2.11,On-ball creator,Floor general,False,False
@@ -44,7 +44,7 @@ IND,Larry Nance Jr.,450.0,-3.21,2.04,-1.17,Connector forward,Rebounding / rim-ru
 IND,Andrew Nembhard,1786.0,-0.49,-0.1,-0.59,On-ball creator,Shot-making scorer,False,False
 IND,Aaron Nesmith,1334.0,3.8,0.58,4.38,Connector forward,Scoring stretch forward,False,False
 IND,Kelly Oubre Jr.,1575.0,0.41,-1.13,-0.72,Connector forward,Perimeter stopper forward,True,False
-IND,Ben Sheppard,1391.0,-1.0,-0.1,-1.1,Spot-up 3-and-D wing,Low-usage glue defender,False,False
+IND,Ben Sheppard,1391.0,-1.0,-0.1,-1.1,Spot-up 3-and-D wing,Movement shooter,False,False
 IND,Pascal Siakam,2058.0,4.1,2.46,6.57,Hub big / point forward,Alpha scorer,False,False
 IND,Jalen Slawson,311.0,0.1,1.0,1.1,Connector forward,Perimeter stopper forward,False,False
 IND,Braden Smith,500.0,0.0,0.0,0.0,,,False,True
@@ -121,7 +121,7 @@ MIL,Pete Nance,732.0,1.29,-0.17,1.12,Spot-up 3-and-D wing,Catch-and-shoot wing,F
 MIL,Ryan Rollins,2375.0,2.1,1.95,4.05,On-ball creator,Shot-making scorer,False,False
 MIL,Cormac Ryan,270.0,0.85,-0.75,0.1,Secondary guard,Microwave scoring guard,False,False
 MIL,Jericho Sims,1319.0,0.01,-1.23,-1.22,Rim-running big,Low-usage rim protector,False,False
-MIL,Gary Trent Jr.,1377.0,-0.89,-4.89,-5.79,Spot-up 3-and-D wing,Movement shooter,False,False
+MIL,Gary Trent Jr.,1377.0,-0.89,-4.89,-5.79,Secondary guard,Microwave scoring guard,False,False
 MIL,Myles Turner,1910.0,-2.14,3.09,0.96,Connector forward,Scoring stretch forward,False,False
 MIL,Kel'el Ware,1708.0,0.7,1.03,1.73,Rim-running big,Rim-running finisher,True,False
 MIN,LaMelo Ball,2015.0,7.62,-3.08,4.54,On-ball creator,Alpha scorer,True,False
@@ -181,7 +181,7 @@ ORL,Desmond Bane,2757.0,4.23,1.13,5.36,On-ball creator,Shot-making scorer,False,
 ORL,Goga Bitadze,970.0,0.15,3.93,4.08,Rim-running big,Low-usage rim protector,False,False
 ORL,Anthony Black,1913.0,-0.25,1.3,1.05,On-ball creator,Floor general,False,False
 ORL,Jamal Cain,483.0,2.36,-1.01,1.35,Connector forward,Scoring stretch forward,False,False
-ORL,Jevon Carter,868.0,-0.31,0.3,-0.02,Secondary guard,Defensive / connector guard,False,False
+ORL,Jevon Carter,868.0,-0.31,0.3,-0.02,Secondary guard,Microwave scoring guard,False,False
 ORL,Wendell Carter Jr.,2290.0,-0.19,5.73,5.53,Connector forward,Rebounding / rim-running forward,False,False
 ORL,Colin Castleton,21.0,-1.88,0.67,-1.22,Rim-running big,Rim-running finisher,False,False
 ORL,Tristan da Silva,1901.0,-0.04,0.14,0.1,Connector forward,Scoring stretch forward,False,False
@@ -207,7 +207,7 @@ BOS,Neemias Queta,1927.0,2.12,4.69,6.81,Rim-running big,Low-usage rim protector,
 BOS,Mitchell Robinson,1194.0,2.04,2.7,4.74,Rim-running big,Low-usage rim protector,True,False
 BOS,Baylor Scheierman,1434.0,-0.13,1.57,1.45,Spot-up 3-and-D wing,Movement shooter,False,False
 BOS,Jayson Tatum,522.0,3.82,2.17,5.99,On-ball creator,Alpha scorer,False,False
-BOS,Jordan Walsh,1214.0,1.84,-0.28,1.56,Connector forward,Rebounding / rim-running forward,False,False
+BOS,Jordan Walsh,1214.0,1.84,-0.28,1.56,Spot-up 3-and-D wing,Low-usage glue defender,False,False
 BOS,Derrick White,2623.0,3.35,7.28,10.63,Secondary guard,Defensive / connector guard,False,False
 BOS,Amari Williams,145.0,-2.81,0.2,-2.61,Connector forward,Rebounding / rim-running forward,False,False
 PHI,Dominick Barlow,1685.0,0.17,2.32,2.49,Connector forward,Rebounding / rim-running forward,False,False
@@ -232,7 +232,7 @@ PHX,Jamaree Bouyea,645.0,-1.83,1.51,-0.33,Secondary guard,Defensive / connector 
 PHX,Miles Bridges,2386.0,1.29,1.73,3.02,Connector forward,Perimeter stopper forward,True,False
 PHX,Dillon Brooks,1702.0,0.2,3.02,3.22,On-ball creator,Alpha scorer,False,False
 PHX,Ryan Dunn,1356.0,-1.01,3.5,2.49,Connector forward,Rebounding / rim-running forward,False,False
-PHX,Rasheer Fleming,677.0,0.84,1.72,2.56,Connector forward,Rebounding / rim-running forward,False,False
+PHX,Rasheer Fleming,677.0,0.84,1.72,2.56,Spot-up 3-and-D wing,Low-usage glue defender,False,False
 PHX,Collin Gillespie,2278.0,3.37,1.4,4.77,Secondary guard,Microwave scoring guard,False,False
 PHX,Jordan Goodwin,1576.0,0.55,1.23,1.77,Secondary guard,Defensive / connector guard,False,False
 PHX,Jalen Green,829.0,-0.07,-2.22,-2.29,On-ball creator,Alpha scorer,False,False
@@ -242,11 +242,11 @@ PHX,Khaman Maluach,410.0,-2.07,1.67,-0.4,Rim-running big,Low-usage rim protector
 PHX,Koa Peat,500.0,0.0,0.0,0.0,,,False,True
 PHX,Duop Reath,256.0,-0.83,0.1,-0.74,Spot-up 3-and-D wing,Stretch big (spot-up),True,False
 PHX,Pat Spencer,1225.0,1.25,-1.4,-0.15,On-ball creator,Floor general,True,False
-PHX,Drew Timme,236.0,-0.39,-0.56,-0.95,Connector forward,Scoring stretch forward,True,False
+PHX,Drew Timme,236.0,-0.39,-0.56,-0.95,Connector forward,Perimeter stopper forward,True,False
 PHX,Mark Williams,1415.0,-1.09,1.76,0.67,Rim-running big,Rim-running finisher,False,False
 POR,Deni Avdija,2202.0,5.86,-1.64,4.22,Hub big / point forward,Alpha scorer,False,False
-POR,Toumani Camara,2730.0,0.86,3.54,4.4,Spot-up 3-and-D wing,Catch-and-shoot wing,False,False
-POR,Branden Carlson,491.0,0.36,-2.69,-2.33,Rim-running big,Rim-running finisher,True,False
+POR,Toumani Camara,2730.0,0.86,3.54,4.4,Spot-up 3-and-D wing,Low-usage glue defender,False,False
+POR,Branden Carlson,491.0,0.36,-2.69,-2.33,Connector forward,Scoring stretch forward,True,False
 POR,Sidy Cissoko,1434.0,-1.43,2.84,1.41,Spot-up 3-and-D wing,Low-usage glue defender,False,False
 POR,Donovan Clingan,2093.0,0.13,1.37,1.49,Rim-running big,Rim-running finisher,False,False
 POR,Yang Hansen,301.0,-3.08,0.65,-2.43,Hub big / point forward,Interior hub big,False,False
@@ -340,7 +340,7 @@ WSH,AJ Dybantsa,500.0,0.0,0.0,0.0,,,False,True
 WSH,Kyshawn George,1389.0,-0.26,1.48,1.22,On-ball creator,Shot-making scorer,False,False
 WSH,Anthony Gill,953.0,0.76,-0.71,0.05,Connector forward,Rebounding / rim-running forward,False,False
 WSH,Tre Johnson,1438.0,0.84,0.2,1.04,Secondary guard,Microwave scoring guard,False,False
-WSH,Tre Mann,670.0,-3.36,-2.2,-5.56,Secondary guard,Defensive / connector guard,True,False
+WSH,Tre Mann,670.0,-3.36,-2.2,-5.56,On-ball creator,Floor general,True,False
 WSH,Khris Middleton,1438.0,2.15,-3.01,-0.86,On-ball creator,Shot-making scorer,False,False
 WSH,Felix Okpara,500.0,0.0,0.0,0.0,,,False,True
 WSH,Will Riley,1631.0,-0.75,-2.56,-3.31,Secondary guard,Defensive / connector guard,False,False
@@ -381,12 +381,12 @@ MEM,Olivier-Maxence Prosper,983.0,-1.69,-0.4,-2.09,Connector forward,Scoring str
 MEM,Javon Small,830.0,1.91,-0.23,1.68,On-ball creator,Shot-making scorer,False,False
 MEM,Cam Spencer,1717.0,1.68,-0.03,1.65,Secondary guard,Microwave scoring guard,False,False
 MEM,Isaiah Stewart,1314.0,-0.82,0.69,-0.13,Rim-running big,Rim-running finisher,True,False
-MEM,Jaylen Wells,1821.0,1.79,-1.18,0.61,Secondary guard,Microwave scoring guard,False,False
+MEM,Jaylen Wells,1821.0,1.79,-1.18,0.61,Connector forward,Scoring stretch forward,False,False
 NO,Saddiq Bey,2246.0,1.74,-0.1,1.64,Secondary guard,Microwave scoring guard,False,False
 NO,Malik Dia,500.0,0.0,0.0,0.0,,,False,True
 NO,Jeremiah Fears,2110.0,-0.14,-1.55,-1.69,On-ball creator,Floor general,False,False
-NO,AJ Johnson,455.0,-2.52,-0.57,-3.09,On-ball creator,Floor general,True,False
-NO,Herbert Jones,1589.0,2.46,6.48,8.94,Connector forward,Perimeter stopper forward,False,False
+NO,AJ Johnson,455.0,-2.52,-0.57,-3.09,Secondary guard,Defensive / connector guard,True,False
+NO,Herbert Jones,1589.0,2.46,6.48,8.94,Spot-up 3-and-D wing,Low-usage glue defender,False,False
 NO,DeAndre Jordan,198.0,-2.1,2.04,-0.06,Rim-running big,Low-usage rim protector,False,False
 NO,Bennedict Mathurin,1618.0,-0.39,-0.66,-1.05,On-ball creator,Floor general,True,False
 NO,Karlo Matkovic,910.0,-0.82,3.6,2.78,Connector forward,Rebounding / rim-running forward,False,False
@@ -418,7 +418,7 @@ CHA,Hannes Steinbach,500.0,0.0,0.0,0.0,,,False,True
 CHA,Coby White,1249.0,4.14,-0.7,3.44,On-ball creator,Alpha scorer,True,False
 CHA,Grant Williams,713.0,1.56,2.93,4.49,Connector forward,Scoring stretch forward,False,False
 CHI,Tobe Awaka,500.0,0.0,0.0,0.0,,,False,True
-CHI,Matas Buzelis,2248.0,-0.86,0.84,-0.02,Connector forward,Scoring stretch forward,False,False
+CHI,Matas Buzelis,2248.0,-0.86,0.84,-0.02,Connector forward,Perimeter stopper forward,False,False
 CHI,Nic Claxton,1920.0,-3.08,2.02,-1.06,Rim-running big,Rim-running finisher,True,False
 CHI,Zach Collins,184.0,-1.06,4.34,3.29,Connector forward,Scoring stretch forward,False,False
 CHI,Noa Essengue,6.0,-0.37,-0.42,-0.79,Connector forward,Perimeter stopper forward,False,False
@@ -511,7 +511,7 @@ GS,Al Horford,971.0,1.38,1.98,3.36,Connector forward,Scoring stretch forward,Fal
 GS,Graham Ike,500.0,0.0,0.0,0.0,,,False,True
 GS,Yaxel Lendeborg,500.0,0.0,0.0,0.0,,,False,True
 GS,Malevy Leons,276.0,-0.17,-1.66,-1.83,Connector forward,Rebounding / rim-running forward,False,False
-GS,De'Anthony Melton,1127.0,3.57,1.9,5.48,On-ball creator,Alpha scorer,False,False
+GS,De'Anthony Melton,1127.0,3.57,1.9,5.48,On-ball creator,Floor general,False,False
 GS,Moses Moody,1541.0,-1.41,3.01,1.61,Spot-up 3-and-D wing,Movement shooter,False,False
 GS,Georges Niang,500.0,0.0,0.0,0.0,,,False,True
 GS,Gary Payton II,1142.0,2.92,1.47,4.39,Connector forward,Perimeter stopper forward,False,False
